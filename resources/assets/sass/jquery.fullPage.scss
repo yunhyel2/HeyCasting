@@ -25,6 +25,7 @@ html.fp-enabled,
     touch-action: none;
 }
 .fp-section {
+    height:100%;
     position: relative;
     -webkit-box-sizing: border-box; /* Safari<=5 Android<=3 */
     -moz-box-sizing: border-box; /* <=28 */

@@ -1023,6 +1023,7 @@ html.fp-enabled,
 }
 
 .fp-section {
+  height: 100%;
   position: relative;
   /* Safari<=5 Android<=3 */
   /* <=28 */

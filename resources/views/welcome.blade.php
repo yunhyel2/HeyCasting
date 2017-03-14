@@ -6,8 +6,12 @@
         <title>헤이캐스팅 Hey Casting - 전 세계 유일의 캐스팅 플랫폼</title>
         <meta name="description" content="헤이캐스팅은 캐스팅이 필요한 일반회원과 헤이캐스팅의 엔터테이너 회원을 직접 연결시켜주는 캐스팅 플랫폼입니다.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!---css-->
         <link rel="stylesheet" href="css/app.css">
-
+        <!---js-->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="js/jquery.fullPage.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
         <!--favicon-->
         <link rel="shortcut icon" href="favicon/favicon.ico">
         
@@ -116,12 +120,7 @@
                 </div>
             </div>
         </div>
-
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
         <script src="js/jquery.counterup.min.js"></script>
-        <script src="js/jquery.fullPage.js"></script>
-
         <script>
             $('#fullpage').fullpage({
                 verticalCentered: false
