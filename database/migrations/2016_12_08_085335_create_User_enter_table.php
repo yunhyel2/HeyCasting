@@ -13,17 +13,20 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('User_enter', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('flag');
+            $table->string('link');
+            $table->string('email');
             $table->string('password');
+            $table->string('name');
+            $table->string('nickname');
+            $table->string('nation');
+            $table->string('gukgi');
+            $table->integer('code')->unsigned();
             $table->string('address');
             $table->rememberToken();
             $table->timestamps();
-            
-            $table->integer('community_id')->unsigned();
-            $table->foreign('community_id')->references('id')->on('communities');
         });
     }
 

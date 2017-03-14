@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'address',
+        // 'name', 'email', 'password', 'address',
     ];
 
     /**
@@ -24,16 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        // 'password', 'remember_token',
     ];
 
-     public function communities()
-    {
-        return $this->belongsTo('App\Community');
-    }
-
-     public function comments()
-    {
-        return $this->hasMany('App\Comment');
-    }
 }

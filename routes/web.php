@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/join', 'JoinController@index');
 
 /*
 Route::get('/user', 'UserController@index');
