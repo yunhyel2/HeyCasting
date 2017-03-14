@@ -13,4 +13,9 @@ class JoinController extends Controller
         return view('Join.index');
     }
 
+    public function create() 
+    {
+        return view('Join.create');
+    }
+
 }

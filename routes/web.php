@@ -19,15 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/join', 'JoinController@index');
+Route::get('/singer', 'Joincontroller@create');
+Route::get('/actor', 'Joincontroller@create');
+Route::get('/musician', 'Joincontroller@create');
+Route::get('/dancer', 'Joincontroller@create');
+Route::get('/mc', 'Joincontroller@create');
+Route::get('/model', 'Joincontroller@create');
 
-/*
-Route::get('/user', 'UserController@index');
-Route::get('/user/{id}', 'UserController@show');
-Route::get('/user/create', 'UserController@create');
-Route::get('/user/{id}/edit', 'UserController@edit');
-Route::post('/user', 'UserController@store');
-Route::put('/user/{id}', 'UserController@update');
-Route::patch('/user/{id}', 'UserController@update');
-Route::delete('/user', 'UserController@destroy');
-*/
 

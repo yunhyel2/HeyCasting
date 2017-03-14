@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('User_enter', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('flag');
+            $table->string('flag')->default('E');
             $table->string('link');
             $table->string('email');
             $table->string('password');
@@ -24,8 +24,8 @@ class CreateUsersTable extends Migration
             $table->string('nation');
             $table->string('gukgi');
             $table->integer('code')->unsigned();
-            $table->string('address');
-            $table->rememberToken();
+            $table->string('phone');
+            $table->string('image');
             $table->timestamps();
         });
     }

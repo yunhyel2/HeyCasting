@@ -6,13 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CreateComments' => $baseDir . '/database/migrations/2016_12_08_083330_create_comments.php',
-    'CreateCommentsTable' => $baseDir . '/database/migrations/2016_12_08_085430_create_comments_table.php',
-    'CreateCommunities' => $baseDir . '/database/migrations/2016_12_08_083325_create_communities.php',
-    'CreateCommunitiesTable' => $baseDir . '/database/migrations/2016_12_08_085335_create_communities_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-    'CreateUsers' => $baseDir . '/database/migrations/2016_12_08_083252_create_users.php',
-    'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
+    'CreateUserEnterJobTable' => $baseDir . '/database/migrations/2017_03_14_065521_create_User_enter_job_table.php',
+    'CreateUserEnterPerformTable' => $baseDir . '/database/migrations/2017_03_14_070307_create_User_enter_perform_table.php',
+    'CreateUsersTable' => $baseDir . '/database/migrations/2016_12_08_085335_create_User_enter_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',

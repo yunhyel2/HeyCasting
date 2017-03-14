@@ -278,13 +278,10 @@ class ComposerStaticInitff488b093a8f53dec7755d3851da98c6
     );
 
     public static $classMap = array (
-        'CreateComments' => __DIR__ . '/../..' . '/database/migrations/2016_12_08_083330_create_comments.php',
-        'CreateCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_08_085430_create_comments_table.php',
-        'CreateCommunities' => __DIR__ . '/../..' . '/database/migrations/2016_12_08_083325_create_communities.php',
-        'CreateCommunitiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_08_085335_create_communities_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-        'CreateUsers' => __DIR__ . '/../..' . '/database/migrations/2016_12_08_083252_create_users.php',
-        'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
+        'CreateUserEnterJobTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_065521_create_User_enter_job_table.php',
+        'CreateUserEnterPerformTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_070307_create_User_enter_perform_table.php',
+        'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_08_085335_create_User_enter_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
