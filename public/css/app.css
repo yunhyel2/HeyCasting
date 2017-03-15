@@ -1032,7 +1032,7 @@ div.page {
   box-sizing: border-box;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 500px) {
   div.page {
     width: 90%;
   }
@@ -1068,16 +1068,28 @@ div.page.join-form div.form-group.half {
   padding: 10px 0 10px 5%;
 }
 
+@media (max-width: 500px) {
+  div.page.join-form div.form-group.half {
+    width: 90%;
+    padding: 10px 5%;
+  }
+}
+
 div.page.join-form div.form-group > label {
   display: inline-block;
   width: 100%;
   line-height: 2.0;
 }
 
+div.page.join-form div.form-group input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+}
+
 div.page.join-form div.form-group input[type="text"], div.page.join-form div.form-group input[type="password"], div.page.join-form div.form-group select, div.page.join-form div.form-group textarea {
   width: 100%;
   box-sizing: border-box;
-  padding: 15px 20px;
+  padding: 15px 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 12px;
@@ -1088,27 +1100,68 @@ div.page.join-form div.form-group input[type="text"]#sample6_postcode, div.page.
   margin-bottom: 10px;
 }
 
+div.page.join-form div.form-group input[type="text"]#cost, div.page.join-form div.form-group input[type="password"]#cost, div.page.join-form div.form-group select#cost, div.page.join-form div.form-group textarea#cost {
+  width: 70%;
+  float: left;
+}
+
+@media (max-width: 500px) {
+  div.page.join-form div.form-group input[type="text"]#cost, div.page.join-form div.form-group input[type="password"]#cost, div.page.join-form div.form-group select#cost, div.page.join-form div.form-group textarea#cost {
+    width: 80%;
+  }
+}
+
 div.page.join-form div.form-group input[type="button"] {
-  font-size: 12px;
-  padding: 12px 15px;
+  font-size: 11px;
+  letter-spacing: -1px;
+  padding: 10px;
   border-radius: 10px;
   border: 1px solid #ddd;
   cursor: pointer;
+}
+
+div.page.join-form div.form-group input[type="button"]:active {
+  background: #ccc;
 }
 
 div.page.join-form div.form-group div#container_image {
   border: 1px solid #333;
 }
 
-div.page.join-form div.form-group div:not(#container_image) {
+div.page.join-form div.form-group div:not(#container_image):not(.secret) {
   background: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   padding: 10px 10px;
   box-sizing: border-box;
 }
 
-div.page.join-form div.form-group div:not(#container_image) label {
+div.page.join-form div.form-group div:not(#container_image):not(.secret) label {
   margin-left: 10px;
+}
+
+div.page.join-form div.form-group div.secret {
+  width: 30%;
+  float: left;
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+
+@media (max-width: 500px) {
+  div.page.join-form div.form-group div.secret {
+    width: 20%;
+  }
+}
+
+div.page.join-form div.form-group div.secret label {
+  display: inline-block;
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+div.page.join-form div.form-group div.secret input[type="checkbox"] {
+  position: relative;
+  left: 12px;
 }
 
 div.page.join-form input[type="submit"] {
