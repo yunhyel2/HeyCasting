@@ -56,13 +56,18 @@
                 <!---<input type="file" id="profile-image" name="image[]" accept="image/*"/>-->
                 </div>
                 <div class="form-group half">
-                    <label for="howmany">인원 및 성별</label>
+                    <label for="howmany">{{ Request::segment(1) == 'singer' || Request::segment(1) == 'player' || Request::segment(1) == 'dancer' ? '인원 및 성별' : '성별' }}</label>
                     <select id ="howmany" name="howmany">
-                        <option value=0>솔로, 여자</option>
-                        <option value=1>솔로, 남자</option>
-                        <option value=2>그룹, 여자</option>
-                        <option value=3>그룹, 남자</option>
-                        <option value=4>그룹, 혼성</option>
+                        @if( Request::segment(1) == 'singer' || Request::segment(1) == 'player' || Request::segment(1) == 'dancer' )
+                            <option value="0">솔로, 여자</option>
+                            <option value="1">솔로, 남자</option>
+                            <option value="2">그룹, 여자</option>
+                            <option value="3">그룹, 남자</option>
+                            <option value="4">그룹, 혼성</option>
+                        @else
+                            <option value="0">여자</option>
+                            <option value="1">남자</option>
+                        @endif
                     </select>
                 </div>
                 <div class="form-group half">
