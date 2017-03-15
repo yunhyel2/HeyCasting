@@ -42,7 +42,7 @@ class JoinController extends Controller
         $phone = $request->input('phone');
         $enter_name = $request->input('enter_name');
         $job = $request->input('job');
-        $categories = $request->input('category[]');
+        $categories = $request->input('category');
         $perform = $request->input('perform');
         $howmany = $request->input('howmany');
         $intro = $request->input('intro');
@@ -123,12 +123,12 @@ class JoinController extends Controller
             // $profile_main_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
             // $profile_main_image->save();
 
-            foreach( $images as $image ) {
-                $profile_image = new Enter_image;
-                $profile_image->enter_id = $enter_id;
-                $profile_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $image, 'public');
-                $profile_image->save();
-            }
+            // foreach( $images as $image ) {
+            //     $profile_image = new Enter_image;
+            //     $profile_image->enter_id = $enter_id;
+            //     $profile_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $image, 'public');
+            //     $profile_image->save();
+            // }
 
             $profile_video = new Enter_profile_video;
             $profile_video->enter_id = $enter_id;
@@ -150,6 +150,7 @@ class JoinController extends Controller
             $user_key->device_id = 0;
             $user_key->push_state = 'Y';
             $user_key->save();
+
         }
 
         return redirect('/');
