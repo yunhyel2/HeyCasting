@@ -6,9 +6,19 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CreateJobGenreTable' => $baseDir . '/database/migrations/2017_03_14_072242_create_Job_genre_table.php',
+    'CreateJobHowmanyTable' => $baseDir . '/database/migrations/2017_03_14_072256_create_Job_howmany_table.php',
+    'CreateJobTable' => $baseDir . '/database/migrations/2017_03_14_072233_create_Job_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreatePerformCategoryTable' => $baseDir . '/database/migrations/2017_03_14_072321_create_Perform_category_table.php',
+    'CreatePerformTable' => $baseDir . '/database/migrations/2017_03_14_072312_create_Perform_table.php',
     'CreateUserEnterJobTable' => $baseDir . '/database/migrations/2017_03_14_065521_create_User_enter_job_table.php',
     'CreateUserEnterPerformTable' => $baseDir . '/database/migrations/2017_03_14_070307_create_User_enter_perform_table.php',
+    'CreateUserEnterProfileImageTable' => $baseDir . '/database/migrations/2017_03_14_072109_create_User_enter_profile_image_table.php',
+    'CreateUserEnterProfileMainImageTable' => $baseDir . '/database/migrations/2017_03_14_072122_create_User_enter_profile_main_image_table.php',
+    'CreateUserEnterProfileTable' => $baseDir . '/database/migrations/2017_03_14_071230_create_User_enter_profile_table.php',
+    'CreateUserEnterProfileVideoTable' => $baseDir . '/database/migrations/2017_03_14_072142_create_User_enter_profile_video_table.php',
+    'CreateUserKeyTable' => $baseDir . '/database/migrations/2017_03_14_072201_create_User_key_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2016_12_08_085335_create_User_enter_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',

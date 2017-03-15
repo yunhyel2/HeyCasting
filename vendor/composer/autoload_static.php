@@ -278,9 +278,19 @@ class ComposerStaticInitff488b093a8f53dec7755d3851da98c6
     );
 
     public static $classMap = array (
+        'CreateJobGenreTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_072242_create_Job_genre_table.php',
+        'CreateJobHowmanyTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_072256_create_Job_howmany_table.php',
+        'CreateJobTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_072233_create_Job_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreatePerformCategoryTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_072321_create_Perform_category_table.php',
+        'CreatePerformTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_072312_create_Perform_table.php',
         'CreateUserEnterJobTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_065521_create_User_enter_job_table.php',
         'CreateUserEnterPerformTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_070307_create_User_enter_perform_table.php',
+        'CreateUserEnterProfileImageTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_072109_create_User_enter_profile_image_table.php',
+        'CreateUserEnterProfileMainImageTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_072122_create_User_enter_profile_main_image_table.php',
+        'CreateUserEnterProfileTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_071230_create_User_enter_profile_table.php',
+        'CreateUserEnterProfileVideoTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_072142_create_User_enter_profile_video_table.php',
+        'CreateUserKeyTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_14_072201_create_User_key_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_08_085335_create_User_enter_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
