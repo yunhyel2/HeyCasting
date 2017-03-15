@@ -18,6 +18,7 @@ use App\Enter;
 use App\Job_genre;
 use App\Job_howmany;
 use App\Perform_category;
+use App\User_key;
 
 class JoinController extends Controller
 {
@@ -102,9 +103,11 @@ class JoinController extends Controller
             $profile->perform_minutes = $perform_minutes;
             $profile->address = $address;
             $profile->region = ''; //안쓰는 column
-            $map = 'https://maps.google.com/maps/api/geocode/json?address=' . $address;
-            $profile->latitude = 
-            $profile->longtitude = 
+            $address = urlencode($address);
+            $map = file_get_contents('https://maps.google.com/maps/api/geocode/json?address=' . $address . '&key=AIzaSyAOM1ShbybK3wFn8rdsojUlp0BuwBK_08w');
+            $json = json_decode($map, true);
+            $profile->latitude = $json['results'][0]['geometry']['location']['lat'];
+            $profile->longitude = $json['results'][0]['geometry']['location']['lng'];
             $profile->cost = $cost;
             if( $cost_flag == 'checked' ) { 
                 $profile->cost_flag = 'N';
@@ -146,7 +149,7 @@ class JoinController extends Controller
 
             $user_key = new User_key;
             $user_key->email = $email;
-            $user_key->session_id = Str::random(60);
+            $user_key->session_id = Str::random(15);
             $user_key->device_id = 0;
             $user_key->push_state = 'Y';
             $user_key->save();
