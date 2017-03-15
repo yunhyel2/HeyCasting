@@ -22,33 +22,33 @@
             <div class="group user-group">
                 <div class="form-group">
                     <label for="email">이메일</label>
-                    <input type="text" value="" id="email" name="email" />
+                    <input type="text" value="" id="email" name="email" placeholder="기입된 이메일은 ID로 쓰이게 됩니다."/>
                 </div>
                 <div class="form-group half">
                     <label for="name">실명</label>
-                    <input type="text" value="" id="name" name="name"/>
+                    <input type="text" value="" id="name" name="name" placeholder="본명을 입력해 주세요."/>
                 </div>
                 <div class="form-group half">
                     <label for="nickname">닉네임</label>
-                    <input type="text" value="" id="nickname" name="nickname"/>
+                    <input type="text" value="" id="nickname" name="nickname" placeholder="앱 내에서 사용될 이름입니다."/>
                 </div>
                 <div class="form-group half">
                     <label for="password">비밀번호</label>
-                    <input type="password" value="" id="password" name="password"/>
+                    <input type="password" value="" id="password" name="password" placeholder="영어, 숫자, !@#$%^*()_+/ 포함하여 최소 10자리."/>
                 </div>
                 <div class="form-group half">
                     <label for="password-confirm">비밀번호확인</label>
-                    <input type="password" value="" id="password-confirm" name="password-confirm"/>
+                    <input type="password" value="" id="password-confirm" name="password-confirm" placeholder="비밀번호를 다시 한번 입력해주세요."/>
                 </div>
                 <div class="form-group">
                     <label for="phone">핸드폰</label>
-                    <input type="text" value="" id="phone" name="phone"/>
+                    <input type="text" value="" id="phone" name="phone" placeholder="숫자만 입력해주세요."/>
                 </div>
             </div>
             <div class="group team-group">
                 <div class="form-group half">
                     <label for="enter_name">공연자 이름(팀명)</label>
-                    <input type="text" value="" id="enter_name" name="enter_name"/>
+                    <input type="text" value="" id="enter_name" name="enter_name" placeholder="엔터테이너로서의 이름을 입력해주세요."/>
                 </div>
                 <div class="form-group half">
                 <label for="profile-image">메인 프로필 사진</label>
@@ -58,11 +58,11 @@
                 <div class="form-group half">
                     <label for="howmany">인원 및 성별</label>
                     <select id ="howmany" name="howmany">
-                        <option value=0>솔로여자</option>
-                        <option value=1>솔로남자</option>
-                        <option value=2>그룹여자</option>
-                        <option value=3>그룹남자</option>
-                        <option value=4>혼성</option>
+                        <option value=0>솔로, 여자</option>
+                        <option value=1>솔로, 남자</option>
+                        <option value=2>그룹, 여자</option>
+                        <option value=3>그룹, 남자</option>
+                        <option value=4>그룹, 혼성</option>
                     </select>
                 </div>
                 <div class="form-group half">
@@ -87,6 +87,7 @@
                         <input type="checkbox" name="category[]" id="15" value="5">
                         <label for="16">기타</label>
                         <input type="checkbox" name="category[]" id="16" value="6">
+                        <input type="hidden" name="job" value="1"/>
                     @elseif( Request::segment(1) == 'actor' )
                         <label for="50">성인</label>
                         <input type="checkbox" name="category[]" id="50" value="0">
@@ -94,6 +95,7 @@
                         <input type="checkbox" name="category[]" id="51" value="1">
                         <label for="52">성우</label>
                         <input type="checkbox" name="category[]" id="52" value="2">
+                        <input type="hidden" name="job" value="5"/>
                     @elseif( Request::segment(1) == 'player' )
                         <label for="20">국악</label>
                         <input type="checkbox" name="category[]" id="20" value="0">
@@ -103,6 +105,7 @@
                         <input type="checkbox" name="category[]" id="22" value="2">
                         <label for="30">기타</lab0l>
                         <input type="checkbox" name="category[]" id="23" value="3">
+                        <input type="hidden" name="job" value="2"/>
                     @elseif( Request::segment(1) == 'dancer' )
                         <label for="30">비보이</label>
                         <input type="checkbox" name="category[]" id="30" value="0">
@@ -120,6 +123,7 @@
                         <input type="checkbox" name="category[]" id="36" value="6">
                         <label for="37">기타</label>
                         <input type="checkbox" name="category[]" id="37" value="7">
+                        <input type="hidden" name="job" value="3"/>
                     @elseif( Request::segment(1) == 'host' )
                         <label for="40">개그맨</label>
                         <input type="checkbox" name="category[]" id="40" value="0">
@@ -131,6 +135,7 @@
                         <input type="checkbox" name="category[]" id="43" value="3">
                         <label for="44">기타</label>
                         <input type="checkbox" name="category[]" id="44" value="4">
+                        <input type="hidden" name="job" value="4"/>
                     @elseif( Request::segment(1) == 'model' )
                         <label for="60">패션/피팅</label>
                         <input type="checkbox" name="category[]" id="60" value="0">
@@ -140,6 +145,7 @@
                         <input type="checkbox" name="category[]" id="62" value="2">
                         <label for="63">기타</label>
                         <input type="checkbox" name="category[]" id="63" value="3">
+                        <input type="hidden" name="job" value="6"/>
                     @endif
                     </div>
                 </div>
@@ -208,17 +214,19 @@
             </div>
             <div class="form-group half">
                 <label for="cost">가격</label>
-                <input type="text" value="" id="cost" name="cost"/>
-                <input type="checkbox" id="cost_flag" name="cost_flag" value="N"/>
-                <label for="cost_flag">비공개</label>
+                <input type="text" value="" id="cost" name="cost" placeholder="원 단위로 숫자만 입력해주세요."/>
+                <div class="secret">
+                    <label for="cost_flag">비공개</label>
+                    <input type="checkbox" id="cost_flag" name="cost_flag" value="N"/>
+                </div>
             </div>
             <div class="form-group">
-                <label for="video">Youtube URL 주소</label>
-                <input type="text" value="" id="video" name="video"/>
+                <label for="video">활동 Youtube 영상</label>
+                <input type="text" value="" id="video" name="video" placeholder="Youtube 영상 URL을 입력해주세요."/>
             </div>
             <div class="form-group">
-                <label for="intro">한줄소개</label>
-                <input type="text" value="" id="intro" name="intro"/>
+                <label for="intro">한 줄 소개</label>
+                <input type="text" value="" id="intro" name="intro" placeholder="메인프로필에 실릴 소개를 입력해주세요."/>
             </div>
             <div class="form-group">
                 <label for="intro_detail">상세 소개</label>

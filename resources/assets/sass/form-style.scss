@@ -1,7 +1,7 @@
 $breakpoints: (
   'big' : (min-width: 851px),
   'small': (max-width: 850px),
-  'too-small': (max-width: 450px),
+  'too-small': (max-width: 500px),
 );
 /// 반응형 매니저
 /// @access public
@@ -71,16 +71,24 @@ div.page{
             &.half{
                 width:42.5%;
                 padding:10px 0 10px 5%;
+                @include respond-to('too-small'){
+                    width:90%;
+                    padding:10px 5%;
+                }
             }
             > label{
                 display:inline-block;
                 width:100%;
                 line-height:2.0;
             }
+            input[type="checkbox"]{
+                width:15px;
+                height:15px;
+            }
             input[type="text"], input[type="password"], select, textarea{
                 width:100%;
                 box-sizing:border-box;
-                padding:15px 20px;
+                padding:15px 10px;
                 border-radius:8px;
                 border:1px solid #ccc;
                 font-size:12px;
@@ -88,24 +96,55 @@ div.page{
                     width:50%;
                     margin-bottom:10px;
                 }
+                &#cost{
+                    width:70%;
+                    float:left;
+                    @include respond-to('too-small'){
+                        width:80%;
+                    }
+                }
             }
             input[type="button"]{
-                font-size:12px;
-                padding:12px 15px;
+                font-size:11px;
+                letter-spacing:-1px;
+                padding:10px;
                 border-radius:10px;
                 border:1px solid #ddd;
                 cursor:pointer;
+                &:active{
+                    background:#ccc;
+                    
+                }
             }
             div#container_image{
                 border:1px solid #333;
             }
-            div:not(#container_image){
+            div:not(#container_image):not(.secret){
                 background:rgba(255,255,255,0.5);
                 border-radius:10px;
                 padding:10px 10px;
                 box-sizing:border-box;
                 label{
                     margin-left:10px;
+                }
+            }
+            div.secret{
+                width:30%;
+                float:left;
+                box-sizing:border-box;
+                padding-left:10px;
+                @include respond-to('too-small'){
+                    width:20%;
+                }
+                label{
+                    display:inline-block;
+                    width:100%;
+                    font-size:14px;
+                    line-height:1.5;
+                }
+                input[type="checkbox"]{
+                    position:relative;
+                    left:12px;
                 }
             }
         }
