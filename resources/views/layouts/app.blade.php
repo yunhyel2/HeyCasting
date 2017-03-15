@@ -45,7 +45,7 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div id="logo">
+        <div id="logo" class="{{ Request::segment(2) == 'create' ? 'fixed' : '' }}">
             <a href="{{ url('/') }}">
             <img src="{{ url('/img') . '/logo.png' }}" class="logo1"/>
             <img src="{{ url('/img') . '/logo2.png' }}" class="logo2"/>

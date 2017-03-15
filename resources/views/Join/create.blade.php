@@ -1,6 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="step">
+        @if( Request::segment(1) == 'singer' )
+            <p>프로필 등록하기 > 가수</p>
+        @elseif( Request::segment(1) == 'actor' )
+            <p>프로필 등록하기 > 배우</p>
+        @elseif( Request::segment(1) == 'musician' )
+            <p>프로필 등록하기 > 연주자</p>
+        @elseif( Request::segment(1) == 'dancer' )
+            <p>프로필 등록하기 > 댄서</p>
+        @elseif( Request::segment(1) == 'host' )
+            <p>프로필 등록하기 > MC, 사회자</p>
+        @elseif( Request::segment(1) == 'model' )
+            <p>프로필 등록하기 > 모델</p>
+        @endif
+    </div>
     <div class="page join-form">
         <form method="post" ENCTYPE="multipart/form-data" action="{{ url('join') }}">
         {{ csrf_field() }}

@@ -1003,6 +1003,28 @@ body.back {
   }
 }
 
+@media (min-width: 851px) {
+  div#logo.fixed {
+    position: fixed;
+    top: 50px;
+    left: 10%;
+  }
+}
+
+div.step {
+  margin: 10px;
+  color: #fff;
+}
+
+@media (min-width: 851px) {
+  div.step {
+    font-size: 18px;
+    position: fixed;
+    top: 110px;
+    left: 15%;
+  }
+}
+
 div.page {
   width: 80%;
   margin: 50px auto;
