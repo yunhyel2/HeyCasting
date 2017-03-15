@@ -56,7 +56,7 @@ class JoinController extends Controller
         $career = $request->input('career');
         $recent_perform = $request->input('recent_perform');
         // $main_image = $request->file('main');
-        $images = $request->file('image[]');
+        $images = $request->file('image');
 
         if( $password != $password2 ) {
             return back();
@@ -126,12 +126,12 @@ class JoinController extends Controller
             // $profile_main_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
             // $profile_main_image->save();
 
-            // foreach( $images as $image ) {
-            //     $profile_image = new Enter_image;
-            //     $profile_image->enter_id = $enter_id;
-            //     $profile_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $image, 'public');
-            //     $profile_image->save();
-            // }
+            foreach( $images as $image ) {
+                $profile_image = new Enter_image;
+                $profile_image->enter_id = $enter_id;
+                $profile_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $image, 'public');
+                $profile_image->save();
+            }
 
             $profile_video = new Enter_profile_video;
             $profile_video->enter_id = $enter_id;
