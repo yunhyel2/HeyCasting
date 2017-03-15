@@ -278,10 +278,10 @@ class PictureCut{
 
 	public function exceptionsToJson(){
 		return json_encode(array(
-				"status"          => $this->status,
-				"request"         => $this->request,
-				"errorMessage"    => $this->errorMessage
-			));
+			"status"          => $this->status,
+			"request"         => $this->request,
+			"errorMessage"    => $this->errorMessage
+		));
 	}
 
 
