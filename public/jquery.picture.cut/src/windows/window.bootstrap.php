@@ -9,6 +9,9 @@
 	font-weight: normal;
 	padding: 0;
 }
+span.ui-button-text{
+  display:none;
+}
 </style>
 <script>
 
