@@ -72,8 +72,11 @@ body{
     height:auto;
     /*background: -webkit-linear-gradient(125deg, #ff9271, #ff627d) fixed;
     background: linear-gradient(-35deg, #ff9271, #ff627d) fixed;*/
-    background: url(../img/joinback.png) no-repeat 0 0;
     font-family: 'kopub';
+    &.back{
+        background: url(../img/joinback.png) no-repeat 0 0;
+        background-attachment:fixed;
+    }
 }
 
 #logo{
