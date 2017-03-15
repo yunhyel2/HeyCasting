@@ -19,11 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/join', 'JoinController@index');
-Route::get('/singer', 'Joincontroller@create');
-Route::get('/actor', 'Joincontroller@create');
-Route::get('/musician', 'Joincontroller@create');
-Route::get('/dancer', 'Joincontroller@create');
-Route::get('/mc', 'Joincontroller@create');
-Route::get('/model', 'Joincontroller@create');
+Route::get('/singer/create', 'Joincontroller@create');
+Route::get('/actor/create', 'Joincontroller@create');
+Route::get('/player/create', 'Joincontroller@create');
+Route::get('/dancer/create', 'Joincontroller@create');
+Route::get('/host/create', 'Joincontroller@create');
+Route::get('/model/create', 'Joincontroller@create');
 
 
