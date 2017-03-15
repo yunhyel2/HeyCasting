@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserEnterPerformTable extends Migration
+class CreateUserKeyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateUserEnterPerformTable extends Migration
      */
     public function up()
     {
-        Schema::create('User_enter_perform', function (Blueprint $table) {
+        Schema::create('User_key', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('enter_id')->unsigned();
-            $table->integer('perform_id')->unsigned();
-            $table->integer('category_id')->unsigned();
+            $table->string('email');
+            $table->string('session_id');
+            $table->string('device_id');
+            $table->string('push_state')->default('Y');
             $table->timestamps();
         });
     }
