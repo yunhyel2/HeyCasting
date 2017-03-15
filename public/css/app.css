@@ -873,8 +873,12 @@ body {
   height: auto;
   /*background: -webkit-linear-gradient(125deg, #ff9271, #ff627d) fixed;
     background: linear-gradient(-35deg, #ff9271, #ff627d) fixed;*/
-  background: url(../img/joinback.png) no-repeat 0 0;
   font-family: 'kopub';
+}
+
+body.back {
+  background: url(../img/joinback.png) no-repeat 0 0;
+  background-attachment: fixed;
 }
 
 #logo {
@@ -1002,7 +1006,7 @@ body {
 div.page {
   width: 80%;
   margin: 50px auto;
-  padding: 50px 3%;
+  padding: 50px 0;
   box-sizing: border-box;
 }
 
@@ -1013,43 +1017,96 @@ div.page {
 }
 
 div.page.join-form {
-  max-width: 800px;
-  background: rgba(255, 255, 255, 0.5);
+  width: 50%;
+  margin-left: 45%;
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 20px;
-  overflow-y: scroll;
+}
+
+@media (max-width: 850px) {
+  div.page.join-form {
+    width: 90%;
+    margin: 100px auto;
+  }
 }
 
 div.page.join-form div.group {
   clear: both;
+  margin: 0 auto;
 }
 
 div.page.join-form div.form-group {
-  margin: 10px 0;
-  width: 100%;
+  padding: 10px 5%;
+  width: 90%;
   float: left;
 }
 
 div.page.join-form div.form-group.half {
-  width: 40%;
-  margin-right: 7%;
+  width: 42.5%;
+  padding: 10px 0 10px 5%;
 }
 
-div.page.join-form div.form-group label {
+div.page.join-form div.form-group > label {
+  display: inline-block;
   width: 100%;
+  line-height: 2.0;
 }
 
-div.page.join-form div.form-group input[type="text"], div.page.join-form div.form-group input[type="password"] {
-  width: 94%;
+div.page.join-form div.form-group input[type="text"], div.page.join-form div.form-group input[type="password"], div.page.join-form div.form-group select, div.page.join-form div.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
   padding: 15px 20px;
   border-radius: 8px;
-  border: 1px solid #aaa;
-  margin: 5px 0;
+  border: 1px solid #ccc;
+  font-size: 12px;
 }
 
-div.page div#container_image {
-  width: 90px;
-  height: 30px;
+div.page.join-form div.form-group input[type="text"]#sample6_postcode, div.page.join-form div.form-group input[type="password"]#sample6_postcode, div.page.join-form div.form-group select#sample6_postcode, div.page.join-form div.form-group textarea#sample6_postcode {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+div.page.join-form div.form-group input[type="button"] {
+  font-size: 12px;
+  padding: 12px 15px;
+  border-radius: 10px;
   border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+div.page.join-form div.form-group div#container_image {
+  border: 1px solid #333;
+}
+
+div.page.join-form div.form-group div:not(#container_image) {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 10px 10px;
+  box-sizing: border-box;
+}
+
+div.page.join-form div.form-group div:not(#container_image) label {
+  margin-left: 10px;
+}
+
+div.page.join-form input[type="submit"] {
+  display: block;
+  padding: 10px 20px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  letter-spacing: -2px;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 50px auto 0 auto;
+  cursor: pointer;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+div.page.join-form input[type="submit"]:hover {
+  color: hotpink;
 }
 
 /*!

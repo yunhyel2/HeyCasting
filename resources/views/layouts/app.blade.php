@@ -39,7 +39,7 @@
         ]); ?>
     </script>
 </head>
-<body style="{{ Request::segment(2) == 'create' ? '' : '' }}">
+<body class="{{ Request::segment(1) == 'join' || Request::segment(2) == 'create' ? 'back' : '' }}">
     <div id="app">
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

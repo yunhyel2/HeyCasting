@@ -30,11 +30,16 @@
                 </div>
             </div>
             <div class="group team-group">
-                <div class="form-group">
+                <div class="form-group half">
                     <label for="enter_name">공연자 이름(팀명)</label>
                     <input type="text" value="" id="enter_name" name="enter_name"/>
                 </div>
-                <div class="form-group">
+                <div class="form-group half">
+                <label for="profile-image">메인 프로필 사진</label>
+                <div id="container_image"></div> 
+                <!---<input type="file" id="profile-image" name="image[]" accept="image/*"/>-->
+                </div>
+                <div class="form-group half">
                     <label for="howmany">인원 및 성별</label>
                     <select id ="howmany" name="howmany">
                         <option value=0>솔로여자</option>
@@ -44,16 +49,9 @@
                         <option value=4>혼성</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="job">직업종류</label>
-                    <select id="job" name="job">
-                        <option value=1>가수</option>
-                        <option value=2>연주자</option>
-                        <option value=3>댄서</option>
-                        <option value=4>사회자</option>
-                        <option value=5>연기자</option>
-                        <option value=6>모델</option>
-                    </select>
+                <div class="form-group half">
+                    <label for="detail-image">상세이미지(중복선택가능)</label>
+                    <input type="file" id="detail-image" name="image[]" accept="image/*" multiple/>
                 </div>
                 <div class="form-group">
                     <label>분야(중복선택가능)</label>
@@ -130,7 +128,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group half">
                 <label for="perform">행사종류</label>
                 <select id ="perform" name="perform">
                     <option value=1>기업행사</option>
@@ -139,14 +137,10 @@
                     <option value=4>기타행사</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="intro">한줄소개</label>
-                <input type="text" value="" id="intro" name="intro"/>
-            </div>
-            <div class="form-group">
+            <div class="form-group half">
                 <label for="address">주소</label>
                 <input type="text" id="sample6_postcode" placeholder="우편번호">
-                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호찾기"><br>
                 <input type="text" name="address" id="sample6_address" placeholder="주소">
                 <!--- 주소검색 -->
                     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -192,11 +186,11 @@
                     </script>
                 <!--- end 주소검색 -->
             </div>
-            <div class="form-group">
+            <div class="form-group half">
                 <label for="perform_minutes">평균공연시간</label>
-                <input type="text" value="" id="perform_minutes" name="perform_minutes"/>
+                <input type="text" value="" id="perform_minutes" name="perform_minutes" placeholder="분 단위로 입력해주세요. ( 예 : 30 - 40 )"/>
             </div>
-            <div class="form-group">
+            <div class="form-group half">
                 <label for="cost">가격</label>
                 <input type="text" value="" id="cost" name="cost"/>
                 <input type="checkbox" id="cost_flag" name="cost_flag" value="N"/>
@@ -207,27 +201,24 @@
                 <input type="text" value="" id="video" name="video"/>
             </div>
             <div class="form-group">
+                <label for="intro">한줄소개</label>
+                <input type="text" value="" id="intro" name="intro"/>
+            </div>
+            <div class="form-group">
                 <label for="intro_detail">상세 소개</label>
-                <textarea id="intro_detail" name="intro_detail"></textarea>
+                <textarea id="intro_detail" rows="10" name="intro_detail"></textarea>
             </div>
             <div class="form-group">
                 <label for="career">경력 및 수상</label>
-                <textarea id="career" name="career"></textarea>
+                <textarea id="career" name="career" rows="10"></textarea>
             </div>
             <div class="form-group">
                 <label for="recent_perform">최근 공연 이력</label>
-                <textarea id="recent_perform" name="recent_perform"></textarea>
+                <textarea id="recent_perform" name="recent_perform" rows="10"></textarea>
             </div>
-            <div class="form-group">
-                <label for="profile-image">메인 프로필 사진</label>
-                <div id="container_image"></div> 
-                <!---<input type="file" id="profile-image" name="image[]" accept="image/*"/>-->
+            <div class="group">
+                <input type="submit"/>
             </div>
-            <div class="form-group">
-                <label for="detail-image">상세이미지(중복선택가능)</label>
-                <input type="file" id="detail-image" name="image[]" accept="image/*" multiple/>
-            </div>
-            <input type="submit"/>
         </form>
     </div>
     <!---이미지CROP-->
