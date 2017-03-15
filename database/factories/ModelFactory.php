@@ -23,3 +23,21 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Enter::class, function (Faker\Generator $faker) {
+
+    return [
+        'id' => 0,
+        'flag' => 0,
+        'link' => 0,
+        'email' => 0,
+        'password' => 0,
+        'name' => 0,
+        'nickname' => 0,
+        'nation' => 0,
+        'gukgi' => 0,
+        'code' => 0,
+        'phone' => 0,
+        'image' => 0,
+    ];
+});
+

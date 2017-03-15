@@ -5,17 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Enter_image;
-use Enter_job;
-use Enter_key;
-use Enter_main_image;
-use Enter_perform;
-use Enter_profile_video;
-use Enter_profile;
-use Enter;
-use Job_genre;
-use Job_howmany;
-use Perform_category;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
+use App\Enter_image;
+use App\Enter_job;
+use App\Enter_key;
+use App\Enter_main_image;
+use App\Enter_perform;
+use App\Enter_profile_video;
+use App\Enter_profile;
+use App\Enter;
+use App\Job_genre;
+use App\Job_howmany;
+use App\Perform_category;
 
 class JoinController extends Controller
 {
@@ -34,7 +36,7 @@ class JoinController extends Controller
     {
         $email = $request->input('email');
         $password = $request->input('password');
-        $password2 = $request->input('password2');
+        $password2 = $request->input('password-confirm');
         $name = $request->input('name');
         $nickname = $request->input('nickname');
         $phone = $request->input('phone');
@@ -52,7 +54,7 @@ class JoinController extends Controller
         $intro_detail = $request->input('intro_detail');
         $career = $request->input('career');
         $recent_perform = $request->input('recent_perform');
-        $main_image = $request->file('main');
+        // $main_image = $request->file('main');
         $images = $request->file('image[]');
 
         if( $password != $password2 ) {
@@ -69,7 +71,8 @@ class JoinController extends Controller
             $entertainer->gukgi = 2130837906; //
             $entertainer->code = 82; // 
             $entertainer->phone = $phone;
-            $entertainer->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
+            // $entertainer->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
+            $entertainer->image = '';
             $entertainer->save();
 
             $enter_id = Enter::where('email', $email)->first()->id;
@@ -115,10 +118,10 @@ class JoinController extends Controller
             $profile->engchal_cnt = 0;
             $profile->save();
 
-            $profile_main_image = new Enter_main_image;
-            $profile_main_image->enter_id = $enter_id;
-            $profile_main_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
-            $profile_main_image->save();
+            // $profile_main_image = new Enter_main_image;
+            // $profile_main_image->enter_id = $enter_id;
+            // $profile_main_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
+            // $profile_main_image->save();
 
             foreach( $images as $image ) {
                 $profile_image = new Enter_image;

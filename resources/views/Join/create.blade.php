@@ -3,6 +3,7 @@
 @section('content')
     <div class="page join-form">
         <form method="post" ENCTYPE="multipart/form-data" action="{{ url('join') }}">
+        {{ csrf_field() }}
             <div class="group user-group">
                 <div class="form-group">
                     <label for="email">이메일</label>
