@@ -38,10 +38,14 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div id="logo"><img src="img/logo.png" class="logo1" /><img src="img/logo2.png" class="logo2"/></div>
+        <div id="logo">
+            <a href="{{ url('/') }}">
+            <img src="{{ url('/img') . '/logo.png' }}" class="logo1" />
+            <img src="{{ url('/img') . '/logo2.png' }}" class="logo2"/>
+            </a>
+        </div>
 
         <div id="fullpage">
-            
             <div class="section" id="section_1">
                     <div class="contents">
                         <p>등록된 엔터테이너 <span class="counter">988</span>팀</p>
@@ -50,11 +54,10 @@
 
                         <div class="btn">
                             <a href="https://play.google.com/store/apps/details?id=com.platformstory.www.entertainment" target="_blank" class="download">Download App</a>
-                            <a href="join.html" class="profile">프로필 등록하기</a>
+                            <a href="{{ url('/join') }}" class="profile">프로필 등록하기</a>
                         </div>
                     </div><!--//contents-->
             </div>
-
             <div class="section" id="section_2">
                 <div class="contents">
                     <div class="info_1">
@@ -71,7 +74,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="section" id="section_3">
                 <div class="slide" id="slide_1">
                     <div class="contents">

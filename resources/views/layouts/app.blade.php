@@ -1,18 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>헤이캐스팅 Hey Casting - 전 세계 유일의 캐스팅 플랫폼</title>
+    <meta name="description" content="헤이캐스팅은 캐스팅이 필요한 일반회원과 헤이캐스팅의 엔터테이너 회원을 직접 연결시켜주는 캐스팅 플랫폼입니다.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!---css-->
+    <link rel="stylesheet" href="{{ url('/css/app.css') }}">
+    <!---js-->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.js"></script>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!--favicon-->
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    
+    <!--사이트소유확인을 위한 네이버 메타태그-->
+    <meta name="naver-site-verification" content="9825546416484eb76d4bd6d8b35a05cc4b41834b"/>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!--이미지 미리보기를 위한 네이버 메타태그-->
+    <meta property="og:title" content="헤이캐스팅 Hey Casting - 전 세계 유일의 캐스팅 플랫폼"/>
 
-    <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <meta property="og:type" content="website"/>
 
+    <meta property="og:url" content="http://heycasting.com"/>
+
+    <meta property="og:description" content="헤이캐스팅은 캐스팅이 필요한 일반회원과 헤이캐스팅의 엔터테이너 회원을 직접 연결시켜주는 캐스팅 플랫폼입니다."/>
+
+    <meta property="og:image" content="img/logo_pk.png"/>
+
+    <!--네이버 앱 등록을 위한 메타태그-->
+    <meta name="naver-site-verification" content="9825546416484eb76d4bd6d8b35a05cc4b41834b"/>
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -20,63 +39,18 @@
         ]); ?>
     </script>
 </head>
-<body>
+<body style="{{ Request::segment(2) == 'create' ? '' : '' }}">
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div id="logo">
+            <a href="{{ url('/') }}">
+            <img src="{{ url('/img') . '/logo.png' }}" class="logo1"/>
+            <img src="{{ url('/img') . '/logo2.png' }}" class="logo2"/>
+            </a>
+        </div>
 
         @yield('content')
     </div>

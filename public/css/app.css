@@ -77,6 +77,8 @@ abbr, acronym {
   background-size: cover;
   font-family: 'kopub';
   overflow: hidden;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .slide {
@@ -85,26 +87,26 @@ abbr, acronym {
 }
 
 #section_1 {
-  background-image: url(../img/section_1.jpg);
-}
-
-#section_2 {
-  background-image: url(../img/section_2.jpg);
-}
-
-#section_3 {
-  background-image: url(../img/section_3.jpg);
-}
-
-#section_4 {
-  background-image: url(../img/section_4.jpg);
-}
-
-#slide_1 {
+  width: 100%;
+  background: url(../img/section_1.jpg);
   background-size: cover;
 }
 
-#slide_2 {
+#section_2 {
+  width: 100%;
+  background: url(../img/section_2.jpg);
+  background-size: cover;
+}
+
+#section_3 {
+  width: 100%;
+  background: url(../img/section_3.jpg);
+  background-size: cover;
+}
+
+#section_4 {
+  width: 100%;
+  background: url(../img/section_4.jpg);
   background-size: cover;
 }
 
@@ -997,6 +999,59 @@ body {
   }
 }
 
+div.page {
+  width: 80%;
+  margin: 50px auto;
+  padding: 50px 3%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 450px) {
+  div.page {
+    width: 90%;
+  }
+}
+
+div.page.join-form {
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  overflow-y: scroll;
+}
+
+div.page.join-form div.group {
+  clear: both;
+}
+
+div.page.join-form div.form-group {
+  margin: 10px 0;
+  width: 100%;
+  float: left;
+}
+
+div.page.join-form div.form-group.half {
+  width: 40%;
+  margin-right: 7%;
+}
+
+div.page.join-form div.form-group label {
+  width: 100%;
+}
+
+div.page.join-form div.form-group input[type="text"], div.page.join-form div.form-group input[type="password"] {
+  width: 94%;
+  padding: 15px 20px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+  margin: 5px 0;
+}
+
+div.page div#container_image {
+  width: 90px;
+  height: 30px;
+  border: 1px solid #ddd;
+}
+
 /*!
  * fullPage 2.9.2
  * https://github.com/alvarotrigo/fullPage.js
@@ -1014,7 +1069,6 @@ html.fp-enabled,
 }
 
 #superContainer {
-  height: 100%;
   position: relative;
   /* Touch detection for Windows 8 */
   -ms-touch-action: none;
