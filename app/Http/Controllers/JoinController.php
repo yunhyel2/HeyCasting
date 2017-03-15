@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Enter_image;
@@ -12,6 +13,9 @@ use Enter_perform;
 use Enter_profile_video;
 use Enter_profile;
 use Enter;
+use Job_genre;
+use Job_howmany;
+use Perform_category;
 
 class JoinController extends Controller
 {
@@ -49,7 +53,7 @@ class JoinController extends Controller
         $career = $request->input('career');
         $recent_perform = $request->input('recent_perform');
         $main_image = $request->file('main');
-        $image = $request->file('image[]');
+        $images = $request->file('image[]');
 
         if( $password != $password2 ) {
             return back();
@@ -62,10 +66,10 @@ class JoinController extends Controller
             $entertainer->name = $name;
             $entertainer->nickname = $nickname;
             $entertainer->nation = 'KR'; //
-            $entertainer->gukgi = 2130837906;
-            $entertainer->code = 82;
+            $entertainer->gukgi = 2130837906; //
+            $entertainer->code = 82; // 
             $entertainer->phone = $phone;
-            $entertainer->image = ''; //?
+            $entertainer->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
             $entertainer->save();
 
             $enter_id = Enter::where('email', $email)->first()->id;
@@ -94,7 +98,8 @@ class JoinController extends Controller
             $profile->perform_hour = 0; 
             $profile->perform_minutes = $perform_minutes;
             $profile->address = $address;
-            $profile->region = 
+            $profile->region = ''; //안쓰는 column
+            $map = 'https://maps.google.com/maps/api/geocode/json?address=' . $address;
             $profile->latitude = 
             $profile->longtitude = 
             $profile->cost = $cost;
@@ -111,15 +116,40 @@ class JoinController extends Controller
             $profile->save();
 
             $profile_main_image = new Enter_main_image;
-            $profile_main_image = 
+            $profile_main_image->enter_id = $enter_id;
+            $profile_main_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
+            $profile_main_image->save();
 
-            $profile_image = new Enter_image;
-            
+            foreach( $images as $image ) {
+                $profile_image = new Enter_image;
+                $profile_image->enter_id = $enter_id;
+                $profile_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $image, 'public');
+                $profile_image->save();
+            }
 
+            $profile_video = new Enter_profile_video;
+            $profile_video->enter_id = $enter_id;
+            $profile_video->video = $video;
+            if( strpos( $video, 'www.youtube.com') ) {
+                $parse = strstr($video, 'watch?v=');
+                $profile_video->thumbnail = 'https://img.youtube.com/vi/' . $parse . '/0.jpg';
+            } else if( strpos( $video, 'youtu.be') ) {
+                $parse = strstr($video, 'youtu.be/');
+                $profile_video->thumbnail = 'https://img.youtube.com/vi/' . $parse . '/0.jpg';
+            } else {
+                $profile_video->thumbnail = 'https://img.youtube.com/vi//0.jpg';
+            }
+            $profile_video->save();
+
+            $user_key = new User_key;
+            $user_key->email = $email;
+            $user_key->session_id = Str::random(60);
+            $user_key->device_id = 0;
+            $user_key->push_state = 'Y';
+            $user_key->save();
         }
 
-        
-
+        return redirect('/');
     }
 
 }

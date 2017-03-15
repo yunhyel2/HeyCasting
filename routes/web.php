@@ -25,5 +25,6 @@ Route::get('/player/create', 'Joincontroller@create');
 Route::get('/dancer/create', 'Joincontroller@create');
 Route::get('/host/create', 'Joincontroller@create');
 Route::get('/model/create', 'Joincontroller@create');
+Route::post('/join', 'JoinController@store');
 
 
