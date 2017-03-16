@@ -70,8 +70,8 @@ $(function() {
     PcLoading = {
         show: function(c, a) {
             var b = $("<div id='dialog-UiConfirm' ></div>");
-            c = "undefined" == typeof c ? "Wait..." : c;
-            a = "undefined" == typeof a ? "Wait!" : a;
+            c = "undefined" == typeof c ? "잠시만 기다려주세요..." : c;
+            a = "undefined" == typeof a ? "프로필사진편집" : a;
             var d = $("<div></div>").css("margin", "15px"),
                 f = $("<img src='" + __IMAGE_LOADING + "' >").css({
                     "float": "left",
@@ -182,6 +182,7 @@ $(function() {
             Copyright (c) 2013 Tuyoshi Vinicius (tuyoshi_vinicius@hotmail.com))
             Version: 1.1
 ***********************************************************************************/
+
 (function($) {
     var methods = {
         clear: function(Options) {
@@ -218,9 +219,9 @@ $(function() {
                 ImageNameRandom: true,
                 EnableButton: false,
                 ImageButtonCSS: {
-                    border: "1px #CCC solid",
-                    width: 170,
-                    height: 150
+                    border: "1px #333 solid",
+                    width: 200,
+                    height: 200
                 },
                 CropModes: {
                     widescreen: true,
@@ -347,9 +348,9 @@ $(function() {
                             if (Options.CropModes.letterbox) ElemSelectProporcao.append($('<option value="box">4:3</option>'));
                             if (Options.CropModes.free) ElemSelectProporcao.append($('<option value="livre">Free</option>'));
                             if (Options.CropModes.widescreen || Options.CropModes.letterbox && (Options.CropOrientation)) {
-                                ElemSelectOrientacao.append('<option value="Horizontal">Landscape</option>').append('<option value="Vertical">Portrait</option>  ')
+                                ElemSelectOrientacao.append('<option value="Horizontal">가로</option>').append('<option value="Vertical">세로</option>  ')
                             } else {
-                                ElemSelectOrientacao.append('<option value="Horizontal" selected>Portrait</option>');
+                                ElemSelectOrientacao.append('<option value="Horizontal" selected>세로</option>');
                                 ElemSelectOrientacao.hide();
                                 ElemSelectOrientacao.parent().hide()
                             }; if (ElemSelectProporcao.find("option").size() > 0) {
@@ -525,9 +526,9 @@ $(function() {
                             }, "JSON")
                         })
                     };
-                    if (Options.CropWindowStyle == "jqueryui") PcDialog(Options.PluginFolderOnServer + CropWindowStyle[Options.CropWindowStyle], "JtuyoshiCrop", "Crop image", 900, 555, true, true, false, null, JpaneDialogCallBack);
-                    else if (Options.CropWindowStyle == "popstyle") JpaneDialogCrop(Options.PluginFolderOnServer + CropWindowStyle[Options.CropWindowStyle], "Crop image", 980, 555, true, false, false, null, JpaneDialogCallBack);
-                    else if (Options.CropWindowStyle == "bootstrap") PcDialog(Options.PluginFolderOnServer + CropWindowStyle[Options.CropWindowStyle], "JtuyoshiCrop", "Crop image", 900, 555, true, true, false, null, JpaneDialogCallBack)
+                    if (Options.CropWindowStyle == "jqueryui") PcDialog(Options.PluginFolderOnServer + CropWindowStyle[Options.CropWindowStyle], "JtuyoshiCrop", "프로필사진편집", 900, 555, true, true, false, null, JpaneDialogCallBack);
+                    else if (Options.CropWindowStyle == "popstyle") JpaneDialogCrop(Options.PluginFolderOnServer + CropWindowStyle[Options.CropWindowStyle], "프로필사진편집", 980, 555, true, false, false, null, JpaneDialogCallBack);
+                    else if (Options.CropWindowStyle == "bootstrap") PcDialog(Options.PluginFolderOnServer + CropWindowStyle[Options.CropWindowStyle], "JtuyoshiCrop", "프로필사진편집", 900, 555, true, true, false, null, JpaneDialogCallBack)
                 };
                 var Construir_Widget = function(element) {
                     element.css($.extend(Options.ImageButtonCSS, {

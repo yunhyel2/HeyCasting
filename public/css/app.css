@@ -1124,19 +1124,31 @@ div.page.join-form div.form-group input[type="button"]:active {
   background: #ccc;
 }
 
+div.page.join-form div.form-group div.jFiler-input {
+  width: 100%;
+}
+
 div.page.join-form div.form-group div#container_image {
   border: 1px solid #333;
 }
 
-div.page.join-form div.form-group div:not(#container_image):not(.secret) {
+div.page.join-form div.form-group div.genre {
   background: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   padding: 10px 10px;
   box-sizing: border-box;
 }
 
-div.page.join-form div.form-group div:not(#container_image):not(.secret) label {
+div.page.join-form div.form-group div.genre label {
   margin-left: 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+div.page.join-form div.form-group div.genre input[type="checkbox"] {
+  width: 12px;
+  position: relative;
+  top: 4px;
 }
 
 div.page.join-form div.form-group div.secret {

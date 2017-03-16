@@ -4,6 +4,17 @@
 #JtuyoshiCrop #SelecaoRecorte{position:absolute;background-color:#FFF;border:2px #333 dotted;opacity:0.5}
 #JtuyoshiCrop .row{
   padding: 0.5em 1em;
+  height:30px;
+}
+#JtuyoshiCrop .row > div{
+  margin:5px;
+  float:left;
+}
+#JtuyoshiCrop .row select{
+  padding:5px;
+}
+#JtuyoshiCrop #Principal{
+  clear:both;
 }
 .ui-dialog .ui-dialog-title{
 	font-weight: normal;
@@ -12,6 +23,17 @@
 span.ui-button-text{
   display:none;
 }
+div#Painel div.btn-group button{
+  border-radius:5px;
+  padding:5px 8px;
+  background:#333;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:bold;
+}
+
 </style>
 <script>
 
@@ -31,8 +53,8 @@ span.ui-button-text{
   </div>   
    <div class="col-xs-12 col-md-8">		
 		<div class="btn-group">
-			<button id="button_crop_recortar" class="btn btn-default">Crop</button>
-			<button id="button_crop_original" class="btn btn-default">Finish</button>
+			<button id="button_crop_recortar" class="btn btn-default">자르기</button>
+			<button id="button_crop_original" class="btn btn-default">편집완료</button>
 		</div>
    </div>
    
