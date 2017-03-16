@@ -58,9 +58,12 @@ class JoinController extends Controller
         // $main_image = $request->file('main');
         $images = $request->file('image');
 
+        Storage::disk('local')->delete('uploads/abb0d3dc.gif');
+
         if( $password != $password2 ) {
             return back();
         } else {
+
             $entertainer = new Enter;
             $entertainer->flag = 'E';
             $entertainer->link = 'A'; //App에서 등록한 경우 
@@ -91,31 +94,40 @@ class JoinController extends Controller
             $enter_perform->perform_id = $perform;
             $enter_perform->category_id = Perform_category::where('perform_id', $perform)->where('num', 0)->first()->id;
             $enter_perform->save();
-   
+
             $profile = new Enter_profile;
             $profile->enter_id = $enter_id;
             $profile->name = $nickname;
             $profile->howmany = Job_howmany::where('job_id', $job)->where('num', $howmany)->first()->id;
             $profile->intro = $intro;
+            $replace = array("\'", "\\", "\"");
+            $intro_detail = str_replace( $replace, '`', $intro_detail);
+            $career = str_replace( $replace, '`', $career);
+            $recent_perform = str_replace( $replace, '`', $recent_perform);
+            $intro_detail = str_replace('<br />', '<br>', nl2br($intro_detail));
+            $career = str_replace('<br />', '<br>', nl2br($career));
+            $recent_perform = str_replace('<br />', '<br>', nl2br($recent_perform));
+
             $profile->intro_detail = $intro_detail;
+            $profile->career = $career;
+            $profile->recent_perform = $recent_perform;
             $profile->contact = $phone;
             $profile->perform_hour = 0; 
             $profile->perform_minutes = $perform_minutes;
             $profile->address = $address;
             $profile->region = ''; //안쓰는 column
-            $address = urlencode($address);
+            $address = explode('(', $address); //괄호 안에 상세주소가 존재할 경우 에러 발생 
+            $address = urlencode($address[0]);
             $map = file_get_contents('https://maps.google.com/maps/api/geocode/json?address=' . $address . '&key=AIzaSyAOM1ShbybK3wFn8rdsojUlp0BuwBK_08w');
             $json = json_decode($map, true);
             $profile->latitude = $json['results'][0]['geometry']['location']['lat'];
             $profile->longitude = $json['results'][0]['geometry']['location']['lng'];
             $profile->cost = $cost;
-            if( $cost_flag == 'checked' ) { 
+            if( $cost_flag == 'N' ) { 
                 $profile->cost_flag = 'N';
             } else {
                 $profile->cost_flag = 'Y';
             }
-            $profile->career = $career;
-            $profile->recent_perform = $recent_perform;
             $profile->count = 0;
             $profile->bookmark_cnt = 0;
             $profile->engchal_cnt = 0;
@@ -153,7 +165,6 @@ class JoinController extends Controller
             $user_key->device_id = 0;
             $user_key->push_state = 'Y';
             $user_key->save();
-
         }
 
         return redirect('/');
