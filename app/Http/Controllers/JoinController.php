@@ -58,7 +58,7 @@ class JoinController extends Controller
         // $main_image = $request->file('main');
         $images = $request->file('image');
 
-        Storage::disk('local')->delete('uploads/abb0d3dc.gif');
+        Storage::delete('uploads/aa0fe711.png');
 
         if( $password != $password2 ) {
             return back();
@@ -120,8 +120,14 @@ class JoinController extends Controller
             $address = urlencode($address[0]);
             $map = file_get_contents('https://maps.google.com/maps/api/geocode/json?address=' . $address . '&key=AIzaSyAOM1ShbybK3wFn8rdsojUlp0BuwBK_08w');
             $json = json_decode($map, true);
-            $profile->latitude = $json['results'][0]['geometry']['location']['lat'];
-            $profile->longitude = $json['results'][0]['geometry']['location']['lng'];
+            if( $json['results'] == null ) {
+                $profile->latitude = 0;
+                $profile->longitude = 0;
+            } else {
+                $profile->latitude = $json['results'][0]['geometry']['location']['lat'];
+                $profile->longitude = $json['results'][0]['geometry']['location']['lng'];
+            }
+            
             $profile->cost = $cost;
             if( $cost_flag == 'N' ) { 
                 $profile->cost_flag = 'N';
