@@ -124,7 +124,8 @@ abbr,acronym { border: 0;
 /*section_1*/
 
 #section_1 .contents{
-	width: 30%;
+	width: 80%;
+	max-width:600px;
 	height: auto;
 	position: absolute;
     top:50%;
@@ -136,7 +137,7 @@ abbr,acronym { border: 0;
 	font-family: 'kopub';
 	margin-bottom: 50px;
 	border-radius: 10px;
-	 padding: 35px;
+	padding: 35px;
 }
 
 #section_1 .contents p{
@@ -181,7 +182,8 @@ abbr,acronym { border: 0;
 
 /*section_2*/
 #section_2 .contents{
-    width: 40%;
+    width: 60%;
+	max-width:800px;
     height: auto;
     background: rgba(0,0,0,0.7);
     border-radius: 10px;

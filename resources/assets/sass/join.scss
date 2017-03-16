@@ -100,7 +100,7 @@ body{
 }
 
 #wrap{
-    width: 50%;
+    width: 90%;
     height: auto;
     margin: 210px auto 0 auto;
     
@@ -116,7 +116,8 @@ body{
 
 #wrap .button{
     margin: 0 auto;
-    width: 90%;
+    width: 100%;
+    max-width:800px;
     text-align: center;
 }
 
@@ -162,15 +163,15 @@ body{
 /************************  반응형 420 ***************************************/
 @media screen and (max-width: 490px){
    
-   #logo img.logo1{
-        width: 45px;
-        height: 45px;
+   #logo{
+        width: 90%;
+        left:5%;
+        text-align:center;
     }
 
-    #logo img.logo2{
-        width: 121px;
-		height: 15px;
-        margin-bottom: 14px;
+   #logo img.logo2{
+        margin-top:20px;
+        margin-left:3px;
     }
 
    #wrap h1{
