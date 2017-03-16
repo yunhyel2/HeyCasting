@@ -51,11 +51,6 @@
                     <input type="text" value="" id="enter_name" name="enter_name" placeholder="엔터테이너로서의 이름을 입력해주세요."/>
                 </div>
                 <div class="form-group half">
-                <label for="profile-image">메인 프로필 사진</label>
-                <div id="container_image"></div> 
-                <!---<input type="file" id="profile-image" name="image[]" accept="image/*"/>-->
-                </div>
-                <div class="form-group half">
                     <label for="howmany">{{ Request::segment(1) == 'singer' || Request::segment(1) == 'player' || Request::segment(1) == 'dancer' ? '인원 및 성별' : '성별' }}</label>
                     <select id ="howmany" name="howmany">
                         @if( Request::segment(1) == 'singer' || Request::segment(1) == 'player' || Request::segment(1) == 'dancer' )
@@ -71,9 +66,20 @@
                     </select>
                 </div>
                 <div class="form-group half">
-                    <label for="detail-image">상세이미지(중복선택가능)</label>
-                    <input type="file" id="detail-image" name="image[]" accept="image/*" multiple/>
+                    <label for="profile-image">메인 프로필 사진</label>
+                    <div id="container_image" style="border:1px solid #333;"></div> 
                 </div>
+                <div class="form-group half">
+                    <label for="filer_input">상세이미지(중복선택가능)</label>
+                    <input type="file" id="filer_input" name="image[]" accept="image/*" multiple/>
+                </div>
+                <!---multiple이미지-->
+                    <script>
+                        $(document).ready(function() {
+                            $('#filer_input').filer();       
+                        });
+                    </script>
+                <!---end multiple이미지-->
                 <div class="form-group">
                     <label>분야(중복선택가능)</label>
                     <div class="genre">
@@ -261,5 +267,9 @@
             EnableCrop                  : true,
             CropWindowStyle             : "Bootstrap"
         });
+        $("#container_image").css('width', '100%');
+        $('input[name="file-image"]').css('width', '100%');
     </script>
+    <!---multiple이미지-->
+    <script src="/jQuery.filer.master/js/jquery.filer.js"></script>
 @endsection

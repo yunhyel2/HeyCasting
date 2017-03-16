@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!---css-->
     <link rel="stylesheet" href="{{ url('/css/app.css') }}">
+    <link href="/jQuery.filer.master/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+    <link href="/jQuery.filer.master/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+
     <!---js-->
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
