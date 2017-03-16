@@ -133,7 +133,8 @@ abbr, acronym {
 
 /*section_1*/
 #section_1 .contents {
-  width: 30%;
+  width: 80%;
+  max-width: 600px;
   height: auto;
   position: absolute;
   top: 50%;
@@ -190,7 +191,8 @@ abbr, acronym {
 
 /*section_2*/
 #section_2 .contents {
-  width: 40%;
+  width: 60%;
+  max-width: 800px;
   height: auto;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
@@ -902,7 +904,7 @@ body.back {
 }
 
 #wrap {
-  width: 50%;
+  width: 90%;
   height: auto;
   margin: 210px auto 0 auto;
 }
@@ -917,7 +919,8 @@ body.back {
 
 #wrap .button {
   margin: 0 auto;
-  width: 90%;
+  width: 100%;
+  max-width: 800px;
   text-align: center;
 }
 
@@ -955,14 +958,14 @@ body.back {
 
 /************************  반응형 420 ***************************************/
 @media screen and (max-width: 490px) {
-  #logo img.logo1 {
-    width: 45px;
-    height: 45px;
+  #logo {
+    width: 90%;
+    left: 5%;
+    text-align: center;
   }
   #logo img.logo2 {
-    width: 121px;
-    height: 15px;
-    margin-bottom: 14px;
+    margin-top: 20px;
+    margin-left: 3px;
   }
   #wrap h1 {
     font-size: 20px;
@@ -1003,11 +1006,23 @@ body.back {
   }
 }
 
+.hidden {
+  display: none;
+}
+
 @media (min-width: 851px) {
   div#logo.fixed {
     position: fixed;
     top: 50px;
     left: 10%;
+  }
+}
+
+@media (max-width: 850px) {
+  div#logo.fixed {
+    text-align: center;
+    width: 100%;
+    left: 0;
   }
 }
 
@@ -1023,6 +1038,50 @@ div.step {
     top: 110px;
     left: 15%;
   }
+}
+
+div.step a {
+  color: #fff;
+  line-height: 1.5;
+}
+
+div.step ul.select {
+  box-sizing: border-box;
+  width: 100px;
+  text-indent: 5px;
+  position: absolute;
+  left: 120px;
+  height: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+@media (min-width: 851px) {
+  div.step ul.select {
+    position: absolute;
+    left: 127px;
+  }
+}
+
+div.step ul.select.active-show {
+  height: 150px;
+}
+
+div.step ul.select li {
+  width: 100%;
+}
+
+div.step ul.select li a {
+  display: block;
+  width: 100%;
+}
+
+div.step ul.select li a:hover {
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.5);
+  color: hotpink;
 }
 
 div.page {
@@ -1089,7 +1148,7 @@ div.page.join-form div.form-group input[type="checkbox"] {
 div.page.join-form div.form-group input[type="text"], div.page.join-form div.form-group input[type="password"], div.page.join-form div.form-group select, div.page.join-form div.form-group textarea {
   width: 100%;
   box-sizing: border-box;
-  padding: 15px 10px;
+  padding: 13px 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 12px;
@@ -1109,6 +1168,10 @@ div.page.join-form div.form-group input[type="text"]#cost, div.page.join-form di
   div.page.join-form div.form-group input[type="text"]#cost, div.page.join-form div.form-group input[type="password"]#cost, div.page.join-form div.form-group select#cost, div.page.join-form div.form-group textarea#cost {
     width: 80%;
   }
+}
+
+div.page.join-form div.form-group select {
+  padding: 12px 10px;
 }
 
 div.page.join-form div.form-group input[type="button"] {
