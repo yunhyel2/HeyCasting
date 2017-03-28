@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/join', 'JoinController@index');
+Route::post('/join_check', 'JoinController@joinCheck');
+
 Route::get('/singer/create', 'Joincontroller@create');
 Route::get('/actor/create', 'Joincontroller@create');
 Route::get('/player/create', 'Joincontroller@create');
