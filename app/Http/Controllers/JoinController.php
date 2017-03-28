@@ -33,6 +33,14 @@ class JoinController extends Controller
         return view('Join.create');
     }
 
+    public function joinCheck(Request $request) 
+    {
+        $email = $request->input('user-email');
+        $email_count = Enter::where('email', $email)->count();
+    
+        echo $email_count;
+    }
+
     public function store(Request $request) 
     {
         $email = $request->input('email');
@@ -58,7 +66,7 @@ class JoinController extends Controller
         // $main_image = $request->file('main');
         $images = $request->file('image');
 
-        Storage::delete('uploads/aa0fe711.png');
+        // Storage::delete('uploads/aa0fe711.png');
 
         if( $password != $password2 ) {
             return back();
