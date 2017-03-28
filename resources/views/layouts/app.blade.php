@@ -50,8 +50,7 @@
 
         <div id="logo" class="{{ Request::segment(2) == 'create' ? 'fixed' : '' }}">
             <a href="{{ url('/') }}">
-            <img src="{{ url('/img') . '/logo.png' }}" class="logo1"/>
-            <img src="{{ url('/img') . '/logo2.png' }}" class="logo2"/>
+                
             </a>
         </div>
 
