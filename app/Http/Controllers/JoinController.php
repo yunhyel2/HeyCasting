@@ -35,16 +35,10 @@ class JoinController extends Controller
 
     public function joinCheck(Request $request) 
     {
-        $email = $request->input('email');
-        $nickname = $request->input('nickname');
+        $email = $request->input('user-email');
         $email_count = Enter::where('email', $email)->count();
-        $nickname_count = Enter::where('nickname', $nickname)->count();
-        $array = array(
-            'email_count' => $email_count,
-            'nickname_count' => $nickname_count
-        );
-
-        echo json_encode($array);
+    
+        echo $email_count;
     }
 
     public function store(Request $request) 
