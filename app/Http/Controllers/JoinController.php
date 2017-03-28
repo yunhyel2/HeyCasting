@@ -58,7 +58,7 @@ class JoinController extends Controller
         // $main_image = $request->file('main');
         $images = $request->file('image');
 
-        Storage::delete('uploads/aa0fe711.png');
+        // Storage::delete('uploads/aa0fe711.png');
 
         if( $password != $password2 ) {
             return back();
