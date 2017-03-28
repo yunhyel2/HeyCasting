@@ -1,224 +1,100 @@
-$breakpoints: (
-  'big' : (min-width: 851px),
-  'small': (max-width: 850px),
-  'too-small': (max-width: 500px),
-);
-/// 반응형 매니저
-/// @access public
-/// @param {String} $breakpoint - 브레이크포인트
-/// @requires $breakpoints
-@mixin respond-to($breakpoint) {
-  $raw-query: map-get($breakpoints, $breakpoint);
 
-  @if $raw-query {
-    $query: if(
-      type-of($raw-query) == 'string',
-      unquote($raw-query),
-      inspect($raw-query)
-    );
 
-    @media #{$query} {
-      @content;
-    }
-  } @else {
-    @error 'No value found for `#{$breakpoint}`. '
-         + 'Please make sure it is defined in `$breakpoints` map.';
-  }
-}
-
-.hidden{
-    display:none;
-}
-div#logo.fixed{
-    @include respond-to('big'){
-        position:fixed;
-        top:50px;
-        left:10%;
-    }
-    @include respond-to('small'){
-        text-align:center;
-        width:100%;
-        left:0;
-    }
-}
-div.step{
-    margin:10px;
+div.join-form{
+    width:90%;
+    max-width:450px;
+    margin:100px auto;
+    background:rgba(0,0,0,0.7);
     color:#fff;
-    @include respond-to('big'){
-        font-size:18px;
-        position:fixed;
-        top:110px;
-        left:15%;
-    }
-    a{
-        color:#fff;
-        line-height:1.5;
-    }
-    ul.select{
-        box-sizing:border-box;
-        width:100px;
-        text-indent:5px;
-        position:absolute;
-        left:120px;
-        height:0;
-        transition:all 0.5s;
-        overflow:hidden;
-        z-index:1001;
-        @include respond-to('big'){
-            position:absolute;
-            left:127px;
-        }
-        &.active-show{
-            height:150px;
-        }
+    nav.join-nav{
         li{
-            width:100%;
+            width:33.333333333333333333333333%;
+            float:left;
+            text-align:center;
+            padding:15px 0;
+            font-weight:normal;
+            font-size:15px;
+            opacity:0.6;
             a{
-                display:block;
+                color:#fff;
+            }
+            &.active{
+                opacity:1.0;
+            }
+        }
+    }
+    div#user-account{
+        padding-top:100px;
+    }
+    div.group{
+        width:100%;
+        padding:0 80px;
+        box-sizing:border-box;
+        clear:both;
+        &.button{
+            margin:50px 0;
+            text-align:center;
+            input[type="submit"]{
                 width:100%;
-                &:hover{
-                    font-weight:bold;
-                    background:rgba(255,255,255,0.5);
-                    color:hotpink;
+                height:50px;
+                border:1px solid #fff;
+                border-radius:25px;
+                background:none;
+                font-size:15px;
+                color:#fff;
+                opacity:0.8;
+                cursor:pointer;
+            }
+        }
+        &.quick-join{
+            height:200px;
+            li{
+                float:left;
+                width:25%;
+                text-align:center;
+                img{
+                    width:50px;
                 }
             }
         }
+    }
+    h2{
+        font-size:20px;
+        margin:30px 0;
+        color:#fff;
     }
 }
-div.page{
-    width:80%;
-    margin:50px auto;
-    padding:50px 0;
-    box-sizing:border-box;
-    @include respond-to('too-small'){
-        width:90%;
+div.form-group{
+    position:relative;
+    margin:10px 0;
+    label.icon{
+        position:absolute;
+        top:50%;
+        margin-top:-10px;
+        &[for="user-email"]{
+            margin-top:-5px;
+        }
     }
-    &.join-form{
-        width:50%;
-        margin-left:45%;
-        background:rgba(255,255,255,0.3);
-        border-radius:20px;
-        @include respond-to('small'){
-            width:90%;
-            margin:100px auto;
-        }
-        div.group{
-            clear:both;
-            margin:0 auto;
-        }
-        div.form-group{
-            padding:10px 5%;
-            width:90%;
-            float:left;
-            &.half{
-                width:42.5%;
-                padding:10px 0 10px 5%;
-                @include respond-to('too-small'){
-                    width:90%;
-                    padding:10px 5%;
-                }
-            }
-            > label{
-                display:inline-block;
-                width:100%;
-                line-height:2.0;
-            }
-            input[type="checkbox"]{
-                width:15px;
-                height:15px;
-            }
-            input[type="text"], input[type="password"], select, textarea{
-                width:100%;
-                box-sizing:border-box;
-                padding:13px 10px;
-                border-radius:8px;
-                border:1px solid #ccc;
-                font-size:12px;
-                &#sample6_postcode{
-                    width:50%;
-                    margin-bottom:10px;
-                }
-                &#cost{
-                    width:70%;
-                    float:left;
-                    @include respond-to('too-small'){
-                        width:80%;
-                    }
-                }
-            }
-            select{
-                padding:12px 10px;
-            }
-            input[type="button"]{
-                font-size:11px;
-                letter-spacing:-1px;
-                padding:10px;
-                border-radius:10px;
-                border:1px solid #ddd;
-                cursor:pointer;
-                &:active{
-                    background:#ccc;
-                    
-                }
-            }
-            div.jFiler-input{
-                width:100%;
-            }
-            div#container_image{
-                border:1px solid #333;
-            }
-            div.genre{
-                background:rgba(255,255,255,0.5);
-                border-radius:10px;
-                padding:10px 10px;
-                box-sizing:border-box;
-                label{
-                    margin-left:10px;
-                    font-size:13px;
-                    cursor:pointer;
-                }
-                input[type="checkbox"]{
-                    width:12px;
-                    position:relative;
-                    top:4px;
-                }
-            }
-            div.secret{
-                width:30%;
-                float:left;
-                box-sizing:border-box;
-                padding-left:10px;
-                @include respond-to('too-small'){
-                    width:20%;
-                }
-                label{
-                    display:inline-block;
-                    width:100%;
-                    font-size:14px;
-                    line-height:1.5;
-                }
-                input[type="checkbox"]{
-                    position:relative;
-                    left:12px;
-                }
-            }
-        }
-        input[type="submit"]{
-            display:block;
-            padding:10px 20px;
-            background:#333;
-            color:#fff;
-            border:none;
-            border-radius:10px;
-            letter-spacing:-2px;
-            font-size:15px;
-            font-weight:bold;
-            margin:50px auto 0 auto;
-            cursor:pointer;
-            transition:all 0.4s;
-            &:hover{
-                color:hotpink;
-            }
+    input{
+        background:none;
+        width:100%;
+        height:40px;
+        padding-left:30px;
+        font-size:15px;
+        box-sizing:border-box;
+        border:none;
+        border-bottom:1px solid #fff;
+        opacity:0.8;
+        outline:none;
+        color:#fff;
+    }
+}
+div.group.quick-join{
+    li{
+        float:left;
+        text-align:center;
+        img{
+            width:50px;
         }
     }
 }

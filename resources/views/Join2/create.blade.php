@@ -28,7 +28,8 @@
         </ul>
     </div>
     <script>
-        $('div.step > ul > li > a').on('click', function(){
+        $('div.step > ul > li > a').on('click', function(e){
+            e.preventDefault();
             $('ul.select').toggleClass('active-show');
         });
     </script>
