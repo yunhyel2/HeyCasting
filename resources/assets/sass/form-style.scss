@@ -109,7 +109,6 @@ div.form-group{
         background:none;
         width:100%;
         height:40px;
-        padding-left:30px;
         font-size:15px;
         box-sizing:border-box;
         border:none;
@@ -117,6 +116,12 @@ div.form-group{
         opacity:0.8;
         outline:none;
         color:#fff;
+        &:not([type="file"]){
+            padding-left:30px;
+        }
+        &.large-pad{
+            padding-left:50px;
+        }
         &.intro{
             padding-left:20px;
             border:1px solid #fff;
@@ -139,14 +144,55 @@ div.form-group{
         opacity:0.7;
         color:#fff;
         font-size:15px;
+        outline:none;
         option{
-            height:40px;
+            display:none;
+            outline:none;
         }
-        &.half{
-            width:48%;
-            margin-right:2%;
-            margin-bottom:10px;
-            float:left;
+        &.active{
+            border-radius:20px 20px 0 0;
+            background:rgba(50,150,200,0.7);
+        }
+        &[name="social_select"]{
+            display:block;
+            width:50%;
+            margin-top:20px;
+            & ~ ul.select{
+               width:50%; 
+            }
+        }
+    }
+    div.half{
+        width:49%;
+        margin-top:10px;
+        float:left;
+        &.left-mrg{
+            margin-left:2%;
+        }
+    }
+    ul.select{
+        background:none;
+        width:100%;
+        box-sizing:border-box;
+        overflow:hidden;
+        margin-top:-1px;
+        border:1px solid #aaa;
+        border-radius:0 0 20px 20px;
+        li{
+            color:#fff;
+            opacity:0.7;
+            width:100%;
+            height:40px;
+            line-height:40px;
+            padding:0 20px;
+            box-sizing:border-box;
+            cursor:pointer;
+            &:not(:last-child){
+                border-bottom:1px solid #fff;
+            }
+            &:hover{
+                background:rgba(255,255,255,0.3);
+            }
         }
     }
     input[type="radio"], input[name="cost-secret"]{
@@ -195,6 +241,31 @@ div.form-group{
     }
 }
 div.group{
+    a.add-items{
+        opacity:0.8;
+        color:#fff;
+        img{
+            margin-right:5px;
+        }
+    }
+    div.preview-items{
+        width:100%;
+        height:140px;
+        overflow:hidden;
+        overflow-x:'scroll';
+        ul{
+            width:1000px;
+            height:100%;
+        }
+        li{
+            width:150px;
+            height:100px;
+            margin:20px 5px;
+            box-sizing:border-box;
+            border:1px solid #aaa;
+            float:left;
+        }
+    }
     &.quick-join{
         li{
             float:left;
@@ -206,24 +277,7 @@ div.group{
     }
     &.video{
         position:relative;
-        div.preview-items{
-            width:100%;
-            height:140px;
-            overflow:hidden;
-            overflow-x:'scroll';
-            ul{
-                width:1000px;
-            }
-            li{
-                width:150px;
-                height:100px;
-                margin:20px 5px;
-                box-sizing:border-box;
-                border:1px solid #aaa;
-                float:left;
-            }
-        }
-        div.items{
+        div.bt-mrg{
             margin:5px 0;
             &:last-child{
                 margin-bottom:30px;
@@ -253,7 +307,6 @@ div.group{
             position:absolute;
             right:80px;
             bottom:20px;
-            opacity:0.8;
         }
     }
     &.main-profile{
@@ -335,6 +388,68 @@ div.group{
         label[for="cost-secret"]{
             float:right;
             top:-30px;
+        }
+    }
+    &.additional{
+        label.sub-title{
+            opacity:0.8;
+            width:100%;
+            display:inline-block;
+            margin:5px;
+            font-size:17px;
+        }
+        textarea{
+            background:none;
+            width:100%;
+            height:130px;
+            border-radius:20px;
+            border:1px solid #fff;
+            opacity:0.7;
+            color:#fff;
+            padding:10px 20px;
+            box-sizing:border-box;
+        }
+        table{
+            opacity:0.8;
+            th{
+                margin:0;
+                text-align:center;
+                height:40px;
+                line-height:40px;
+            }
+            input.intro{
+                margin:0;
+            }
+            td{
+                padding:0 5px;
+                box-sizing:border-box;
+                height:40px;
+                input{
+                    height:35px;
+                }
+                &.long{
+                    text-align:right;
+                }
+            }
+        }
+    }
+    &.sns{
+        div.form-group > div{
+            position:relative;
+            margin:5px 0;
+            label.icon{
+                position:absolute;
+            }
+            a.delete{
+                position:absolute;
+                top:10px;
+                right:10px;
+                width:17px;
+                img{
+                    width:100%;
+                    height:auto;
+                }
+            }
         }
     }
     span.left-mrg{
