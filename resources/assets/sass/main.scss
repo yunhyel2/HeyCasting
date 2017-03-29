@@ -42,7 +42,16 @@
 	}
 	abbr,acronym { border: 0;
 	}
-
+	.hidden{
+		display:none;
+	}
+	.dont-show{
+		width:0;
+		height:0;
+		overflow:hidden;
+		position:relative;
+		left:-9999px;
+	}
 
 /*웹폰트(kopub체) */
 	@font-face {
@@ -81,4 +90,26 @@
 			font-weight:normal;
 			//font-family:'kopubbold';
 		}
+	}
+	img.icon{
+		height:20px;
+		width:auto;
+		position:relative;
+		top:5px;
+	}
+//Scrollbar
+	::-webkit-scrollbar
+	{
+	width: 5px;  /* for vertical scrollbars */
+	height: 5px; /* for horizontal scrollbars */
+	}
+
+	::-webkit-scrollbar-track
+	{
+	background: rgba(255, 255, 255, 0.1);
+	}
+
+	::-webkit-scrollbar-thumb
+	{
+	background: rgba(255, 255, 255, 0.5);
 	}
