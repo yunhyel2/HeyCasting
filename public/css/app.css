@@ -145,6 +145,10 @@ div.form-group input:not([type="radio"]).large-pad {
   padding-left: 50px;
 }
 
+div.form-group input:not([type="radio"]).no-pad {
+  padding-left: 5px;
+}
+
 div.form-group input:not([type="radio"]).intro {
   padding-left: 20px;
   border: 1px solid #fff;
@@ -189,6 +193,7 @@ div.form-group select[name="social_select"] {
 
 div.form-group select[name="social_select"] ~ ul.select {
   width: 50%;
+  margin-bottom: 20px;
 }
 
 div.form-group div.half {
@@ -230,7 +235,7 @@ div.form-group ul.select li:hover {
   background: rgba(255, 255, 255, 0.3);
 }
 
-div.form-group input[type="radio"]:empty ~ label, div.form-group input[name="cost-secret"]:empty ~ label {
+div.form-group input[type="radio"]:empty ~ label, div.form-group input[name="cost-secret"]:empty ~ label, div.form-group input[name="agree"]:empty ~ label {
   cursor: pointer;
   position: relative;
   font-size: 17px;
@@ -243,7 +248,7 @@ div.form-group input[type="radio"]:empty ~ label, div.form-group input[name="cos
   user-select: none;
 }
 
-div.form-group input[type="radio"]:empty ~ label:before, div.form-group input[name="cost-secret"]:empty ~ label:before {
+div.form-group input[type="radio"]:empty ~ label:before, div.form-group input[name="cost-secret"]:empty ~ label:before, div.form-group input[name="agree"]:empty ~ label:before {
   position: absolute;
   top: 0;
   left: 0;
@@ -254,11 +259,11 @@ div.form-group input[type="radio"]:empty ~ label:before, div.form-group input[na
   background-size: cover;
 }
 
-div.form-group input[type="radio"]:checked ~ label, div.form-group input[name="cost-secret"]:checked ~ label {
+div.form-group input[type="radio"]:checked ~ label, div.form-group input[name="cost-secret"]:checked ~ label, div.form-group input[name="agree"]:checked ~ label {
   opacity: 1.0;
 }
 
-div.form-group input[type="radio"]:checked ~ label:before, div.form-group input[name="cost-secret"]:checked ~ label:before {
+div.form-group input[type="radio"]:checked ~ label:before, div.form-group input[name="cost-secret"]:checked ~ label:before, div.form-group input[name="agree"]:checked ~ label:before {
   position: absolute;
   top: 0;
   left: 0;
@@ -269,22 +274,26 @@ div.form-group input[type="radio"]:checked ~ label:before, div.form-group input[
   background-size: cover;
 }
 
-div.form-group input[type="radio"]:not(:checked) ~ label, div.form-group input[name="cost-secret"]:not(:checked) ~ label {
+div.form-group input[type="radio"]:not(:checked) ~ label, div.form-group input[name="cost-secret"]:not(:checked) ~ label, div.form-group input[name="agree"]:not(:checked) ~ label {
   opacity: 0.7;
 }
 
-div.form-group input[type="radio"]:not(:checked) ~ label:before, div.form-group input[name="cost-secret"]:not(:checked) ~ label:before {
+div.form-group input[type="radio"]:not(:checked) ~ label:before, div.form-group input[name="cost-secret"]:not(:checked) ~ label:before, div.form-group input[name="agree"]:not(:checked) ~ label:before {
   background: url("/img/icon_check_box_pressed_off.png") no-repeat;
   background-size: cover;
 }
 
-div.group a.add-items {
+div.group a.add-items, div.group a.toggle-folder {
   opacity: 0.8;
   color: #fff;
 }
 
-div.group a.add-items img {
+div.group a.add-items img, div.group a.add-items i, div.group a.toggle-folder img, div.group a.toggle-folder i {
   margin-right: 5px;
+}
+
+div.group a.add-items:active, div.group a.toggle-folder:active {
+  opacity: 1.0;
 }
 
 div.group div.preview-items {
@@ -451,13 +460,14 @@ div.group.cost label[for="cost-secret"] {
 
 div.group.additional label.sub-title {
   opacity: 0.8;
-  width: 100%;
+  width: 60%;
   display: inline-block;
   margin: 5px;
   font-size: 17px;
 }
 
 div.group.additional textarea {
+  margin: 20px 0;
   background: none;
   width: 100%;
   height: 130px;
@@ -471,6 +481,7 @@ div.group.additional textarea {
 
 div.group.additional table {
   opacity: 0.8;
+  margin: 20px 0;
 }
 
 div.group.additional table th {
@@ -517,6 +528,20 @@ div.group.sns div.form-group > div a.delete {
 div.group.sns div.form-group > div a.delete img {
   width: 100%;
   height: auto;
+}
+
+div.group.agree label {
+  display: inline-block;
+  width: 90%;
+  height: 20px;
+  font-size: 20px;
+  line-height: 1.8;
+  padding-left: 50px;
+  word-break: keep-all;
+}
+
+div.group.agree input[type="checkbox"]:empty ~ label:before, div.group.agree input[type="checkbox"]:empty ~ label:before {
+  top: 6px;
 }
 
 div.group span.left-mrg {
