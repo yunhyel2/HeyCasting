@@ -29,4 +29,12 @@ Route::get('/host/create', 'Joincontroller@create');
 Route::get('/model/create', 'Joincontroller@create');
 Route::post('/join', 'JoinController@store');
 
+Route::get('/join/naver', 'SocialController@redirectToNaver');
+Route::get('/join_naver', 'SocialController@callbackNaver');
+Route::get('/join/kakao', 'SocialController@redirectToKakao');
+Route::get('/join_kakao', 'SocialController@callbackKakao');
+Route::get('/join/facebook', 'SocialController@redirectToFacebook');
+Route::get('/join_facebook', 'SocialController@callbackFacebook');
+Route::get('/join/google', 'SocialController@redirectToGoogle');
+Route::get('/join_google', 'SocialController@callbackGoogle');
 

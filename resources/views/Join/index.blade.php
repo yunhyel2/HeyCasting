@@ -36,10 +36,10 @@
                 <div class="group quick-join">
                     <h2>간편 회원가입</h2>
                     <ul>
-                        <li><a href="#"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
-                        <li><a href="#"><img src="/img/social_google.png" alt="구글로가입하기"/></a></li>
-                        <li><a href="#"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
-                        <li><a href="#"><img src="/img/social_naver_line.png" alt="라인으로가입하기"/></a></li>
+                        <li><a href="/join/kakao"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
+                        <li><a href="/join/google"><img src="/img/social_google.png" alt="구글로가입하기"/></a></li>
+                        <li><a href="/join/facebook"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
+                        <li><a href="/join/naver"><img src="/img/social_naver_line.png" alt="라인으로가입하기"/></a></li>
                     </ul>
                 </div>
             </div>

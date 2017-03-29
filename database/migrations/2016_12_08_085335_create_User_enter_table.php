@@ -16,7 +16,7 @@ class CreateUserEnterTable extends Migration
         Schema::create('User_enter', function (Blueprint $table) {
             $table->increments('id');
             $table->string('flag')->default('E');
-            $table->string('link');
+            $table->string('link'); // naver, kakao, facebook ....
             $table->string('email');
             $table->string('password');
             $table->string('name');
