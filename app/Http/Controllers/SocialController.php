@@ -24,7 +24,7 @@ class SocialController extends Controller
         } else {
             //이미 가입된 아이디입니다. 자동 로그인
             // \Auth::login($userToJoin); 
-            return redirect('/');
+            return redirect('/login');
         }
     }
 
@@ -45,7 +45,7 @@ class SocialController extends Controller
         } else {
             //이미 가입된 아이디입니다. 자동 로그인 
             // \Auth::login($userToJoin); 
-            return redirect('/');
+            return redirect('/login');
             
         }
     }
@@ -67,7 +67,7 @@ class SocialController extends Controller
         } else {
             //이미 가입된 아이디입니다. 자동 로그인 
             // \Auth::login($userToJoin); 
-            return redirect('/');
+            return redirect('/login');
             
         }
     }
@@ -89,7 +89,7 @@ class SocialController extends Controller
         } else {
             //이미 가입된 아이디입니다. 자동 로그인 
             // \Auth::login($userToJoin); 
-            return redirect('/');
+            return redirect('/login');
             
         }
     }
