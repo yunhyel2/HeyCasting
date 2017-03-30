@@ -57,7 +57,83 @@
                 $(this).parents('tr').before('<tr class="items"><td><input type="text" name="spec-intro1[]" class="intro" placeholder="ex)2017"/></td><td><input type="text" name="spec-intro2[]" class="intro" placeholder="부산영화제"/></td><td><input type="text" name="spec-intro3[]" class="intro"/></td></tr>');
             }
         }
-        
+    });
+
+//Delete item
+    $(document).on('click', 'a.delete' , function(){
+        if( $(this).parent().parent().parent().hasClass('sns') ){
+            $(this).parent().addClass('hidden').children('input').removeClass('required');
+        }else{
+            console.log('onono');
+        }
+    });
+//Folder item
+    $('a.toggle-folder').on('click',function(){
+        $(this).next().toggleClass('hidden');
+        if( $(this).find('i').hasClass('fa-angle-down') ){
+            $(this).html('<i class="fa fa-angle-up" aria-hidden="true"></i>접기');
+        }else{
+            $(this).html('<i class="fa fa-angle-down" aria-hidden="true"></i>더보기');
+        }
+    });
+//Select
+    $('select').on('click', function(e){
+        e.preventDefault();
+        if( !$(this).hasClass('disable') ){
+            $(this).toggleClass('active').next('ul.select').toggleClass('hidden');
+        }
+    });
+    $('ul.select').on('click', 'li', function(){
+        $value = $(this).attr('name');
+        $(this).parent('ul.select').prev('select').find('option[value="'+$value+'"]').prop("selected", true);
+        $(this).parent('ul.select').addClass('hidden').prev('select').removeClass('active');
+        if( $(this).parent('ul.select').prev('select').attr('name') == 'user-job' ){
+            $('select[name="user-job2"], select[name="user-job3"]').removeClass('disable');
+            //jquery
+            $this = $('select[name="user-job"]');
+            jQuery.ajax({ 
+                type:"POST", 
+                url:"/php/detailJob.php", 
+                data:"Name="+$this.val(), 
+                success:function(msg){ 
+                    $('select[name="user-job2"]').html(msg);
+                }, error:function(){
+
+                }
+            });
+            jQuery.ajax({ 
+                type:"POST", 
+                url:"/php/detailJob2.php", 
+                data:"Name="+$this.val(), 
+                success:function(msg){ 
+                    $('select[name="user-job3"]').html(msg); 
+                }, error:function(){
+
+                }
+            }); 
+            jQuery.ajax({ 
+                type:"POST", 
+                url:"/php/detailJob_ul.php", 
+                data:"Name="+$this.val(), 
+                success:function(msg){ 
+                    $('select[name="user-job2"]').next('ul.select').html(msg); 
+                }, error:function(){
+
+                }
+            }); 
+            jQuery.ajax({ 
+                type:"POST", 
+                url:"/php/detailJob2_ul.php", 
+                data:"Name="+$this.val(), 
+                success:function(msg){ 
+                    $('select[name="user-job3"]').next('ul.select').html(msg); 
+                }, error:function(){
+
+                }
+            }); 
+        }else if( $(this).parent('ul.select').hasClass('sns') ){
+            $('div#social_'+$value).removeClass('hidden');
+        }
     });
 
 //메인프로필

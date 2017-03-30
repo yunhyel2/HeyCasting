@@ -60,11 +60,11 @@
                                 </ul>
                             </div>
                             <div class="items bt-mrg">
-                                <input type="text" name="videos[]" class="required" placeholder="영상 주소 입력"/>
+                                <input type="text" name="videos[]" class="required no-pad" placeholder="영상 주소 입력"/>
                                 <a href="#" class="preview">등록</a>
                             </div>
                             <div class="bt-mrg">
-                                <input type="text" name="videos[]" class="required" placeholder="영상 주소 입력"/>
+                                <input type="text" name="videos[]" class="required no-pad" placeholder="영상 주소 입력"/>
                                 <a href="#" class="preview">등록</a>
                             </div>
                         </div>
@@ -145,68 +145,7 @@
                                 </select>
                                 <ul class="select hidden half">
                                 </ul>
-                            </div>
-                            <script type="text/javascript"> 
-                                $(document).ready(function(){ 
-                                    $('select').on('click', function(e){
-                                        e.preventDefault();
-                                        if( !$(this).hasClass('disable') ){
-                                            $(this).toggleClass('active').next('ul.select').toggleClass('hidden');
-                                        }
-                                    });
-                                    $('ul.select').on('click', 'li', function(){
-                                        $value = $(this).attr('name');
-                                        console.log($value);
-                                        $(this).parent('ul.select').prev('select').find('option[value="'+$value+'"]').prop("selected", true);
-                                        $(this).parent('ul.select').addClass('hidden').prev('select').removeClass('active');
-                                        if( $(this).parent('ul.select').prev('select').attr('name') == 'user-job' ){
-                                            $('select[name="user-job2"], select[name="user-job3"]').removeClass('disable');
-                                            //jquery
-                                            $this = $('select[name="user-job"]');
-                                            jQuery.ajax({ 
-                                                type:"POST", 
-                                                url:"/php/detailJob.php", 
-                                                data:"Name="+$this.val(), 
-                                                success:function(msg){ 
-                                                    $('select[name="user-job2"]').html(msg);
-                                                }, error:function(){
-
-                                                }
-                                            });
-                                            jQuery.ajax({ 
-                                                type:"POST", 
-                                                url:"/php/detailJob2.php", 
-                                                data:"Name="+$this.val(), 
-                                                success:function(msg){ 
-                                                    $('select[name="user-job3"]').html(msg); 
-                                                }, error:function(){
-
-                                                }
-                                            }); 
-                                            jQuery.ajax({ 
-                                                type:"POST", 
-                                                url:"/php/detailJob_ul.php", 
-                                                data:"Name="+$this.val(), 
-                                                success:function(msg){ 
-                                                    $('select[name="user-job2"]').next('ul.select').html(msg); 
-                                                }, error:function(){
-
-                                                }
-                                            }); 
-                                            jQuery.ajax({ 
-                                                type:"POST", 
-                                                url:"/php/detailJob2_ul.php", 
-                                                data:"Name="+$this.val(), 
-                                                success:function(msg){ 
-                                                    $('select[name="user-job3"]').next('ul.select').html(msg); 
-                                                }, error:function(){
-
-                                                }
-                                            }); 
-                                        }
-                                    });
-                                }); 
-                            </script> 
+                            </div> 
                         </div>
                     </div>
                     <div class="group">
@@ -417,11 +356,13 @@
                         <h2>추가 작성</h2>
                         <div class="form-group">
                             <label for="detail-intro" class="sub-title">상세 소개</label>
-                            <textarea id="detail-intro" name="detail-intro" class="intro" placeholder="(100자 이내)" maxlength="100"></textarea>
+                            <a class="toggle-folder" href="#"><i class="fa fa-angle-down" aria-hidden="true"></i>더보기</a>
+                            <textarea id="detail-intro" name="detail-intro" class="intro hidden" placeholder="(100자 이내)" maxlength="100"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="spec-intro" class="sub-title">경력 및 수상 내역</label>
-                            <table>
+                            <a class="toggle-folder" href="#"><i class="fa fa-angle-down" aria-hidden="true"></i>더보기</a>
+                            <table class="hidden">
                                 <tr>
                                     <th>날짜</th>
                                     <th>주요내용</th>
@@ -448,32 +389,38 @@
                                 <option value="twitter">트위터</option>
                                 <option value="kakao">카카오스토리</option>
                             </select>
-                            <ul class="select hidden">
-                                <li name="social_instagram">인스타그램</li>
-                                <li name="social_facebook">페이스북</li>
-                                <li name="social_twitter">트위터</li>
-                                <li name="social_kakao">카카오스토리</li>
+                            <ul class="select hidden sns">
+                                <li name="instagram">인스타그램</li>
+                                <li name="facebook">페이스북</li>
+                                <li name="twitter">트위터</li>
+                                <li name="kakao">카카오스토리</li>
                             </ul>
-                            <div id="social_instagram">
+                            <div id="social_instagram" class="hidden">
                                 <label for="social_instagram" class="icon"><i class="fa fa-instagram" aria-hidden="true"></i></label>
                                 <input type="text" name="social_instagram" placeholder="인스타그램 주소를 입력하세요" class="url"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
-                            <div id="social_facebook">
+                            <div id="social_facebook" class="hidden">
                                 <label for="social_facebook" class="icon"><i class="fa fa-facebook" aria-hidden="true"></i></label>
                                 <input type="text" name="social_facebook" placeholder="페이스북 주소를 입력하세요" class="url"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
-                            <div id="social_twitter">
+                            <div id="social_twitter" class="hidden">
                                 <label for="social_twitter" class="icon"><i class="fa fa-twitter" aria-hidden="true"></i></label>
                                 <input type="text" name="social_twitter" placeholder="트위터 주소를 입력하세요" class="url"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
-                            <div id="social_kakao">
+                            <div id="social_kakao" class="hidden">
                                 <label for="social_kakao" class="icon"><i class="fa fa-star" aria-hidden="true"></i></label>
                                 <input type="text" name="social_kakao" placeholder="카카오스토리 주소를 입력하세요" class="url"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
+                        </div>
+                    </div>
+                    <div class="group agree">
+                        <div class="form-group">
+                            <input type="checkbox" name="agree" id="agree" class="required dont-show"/>
+                            <label for="agree">개인정보 취급방침, 서비스 이용약관, 개인정보 제공에 동의합니다.</label>
                         </div>
                     </div>
                     <div class="group button">
