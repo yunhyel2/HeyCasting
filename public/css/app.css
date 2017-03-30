@@ -22,7 +22,7 @@ div.join-form nav.join-nav li:not(:last-child) a {
 }
 
 div.join-form nav.join-nav li a {
-  color: #aaa;
+  color: #666;
   cursor: default;
   display: inline-block;
   width: 100%;
@@ -63,6 +63,7 @@ div.join-form div.group {
 }
 
 div.join-form div.group.button {
+  padding-top: 0;
   margin: 50px 0;
   text-align: center;
 }
@@ -80,6 +81,7 @@ div.join-form div.group.button input[type="submit"] {
 }
 
 div.join-form div.group.quick-join {
+  padding-top: 0;
   height: 200px;
 }
 
@@ -91,6 +93,13 @@ div.join-form div.group.quick-join li {
 
 div.join-form div.group.quick-join li img {
   width: 50px;
+}
+
+div.join-form div.group span.error {
+  display: block;
+  color: indianred;
+  position: relative;
+  top: -5px;
 }
 
 div.join-form h2, div.join-form label.title {
@@ -460,10 +469,16 @@ div.group.cost label[for="cost-secret"] {
 
 div.group.additional label.sub-title {
   opacity: 0.8;
-  width: 60%;
+  width: 100%;
   display: inline-block;
   margin: 5px;
   font-size: 17px;
+  position: relative;
+}
+
+div.group.additional label.sub-title a.toggle-folder {
+  position: absolute;
+  right: 0;
 }
 
 div.group.additional textarea {
@@ -535,13 +550,21 @@ div.group.agree label {
   width: 90%;
   height: 20px;
   font-size: 20px;
-  line-height: 1.8;
+  line-height: 1.5;
   padding-left: 50px;
   word-break: keep-all;
 }
 
+div.group.agree label a {
+  border-bottom: 1px solid #fff;
+  padding-bottom: 1px;
+  color: #fff;
+  position: relative;
+  top: -2px;
+}
+
 div.group.agree input[type="checkbox"]:empty ~ label:before, div.group.agree input[type="checkbox"]:empty ~ label:before {
-  top: 6px;
+  top: 2px;
 }
 
 div.group span.left-mrg {
@@ -1357,8 +1380,14 @@ abbr, acronym {
 body {
   font-family: 'kopub';
   width: 100%;
-  background: url("/img/back.jpg");
+  background: url("/img/background/01_back.jpg");
   background-size: cover;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+body.join {
+  background: url("/img/background/02_back.jpg");
 }
 
 body.fixed {

@@ -20,6 +20,7 @@ use App\Job_genre;
 use App\Job_howmany;
 use App\Perform_category;
 use App\User_key;
+use Illuminate\Support\Facades\DB;
 
 class JoinController extends Controller
 {
@@ -88,13 +89,16 @@ class JoinController extends Controller
             return back();
         } else {
 
-            DB::transaction(function () {
+            DB::beginTransaction();
+
+            try {
+
                 $entertainer = new Enter;
                 $entertainer->flag = 'E';
                 $entertainer->link = 'A'; //App에서 등록한 경우 
                 // $entertainer->link = $link;
-                $entertainer->email = $email; 
                 $entertainer->password = bcrypt($password);
+                $entertainer->email = $email; 
                 $entertainer->name = $name;
                 $entertainer->nickname = $name; // 다음에 변경가능하도록! 
                 $entertainer->nation = 'KR'; 
@@ -111,7 +115,8 @@ class JoinController extends Controller
                     $enter_job->enter_id = $enter_id;
                     $job_id = Job::where('job', $job)->first()->id;
                     $enter_job->job_id = $job_id;
-                    $enter_job->category_id = Job_genre::where('job_id', $job_id)->where('category', $job2)->first()->id;
+                    // $enter_job->category_id = Job_genre::where('job_id', $job_id)->where('category', $job2)->first()->id;
+                    $enter_job->category_id = 1;
                     $enter_job->save();
                 }
 
@@ -120,18 +125,19 @@ class JoinController extends Controller
                     $enter_job->enter_id = $enter_id;
                     $job_id = Job::where('job', $job)->first()->id;
                     $enter_job->job_id = $job_id;
-                    $enter_job->category_id = Job_genre::where('job_id', $job_id)->where('category', $job3)->first()->id;
+                    // $enter_job->category_id = Job_genre::where('job_id', $job_id)->where('category', $job3)->first()->id;
+                    $enter_job->category_id = 1;
                     $enter_job->save();
                 }
                 
-                foreach( $performs as $perform ) {
-                    $enter_perform = new Enter_perform;
-                    $enter_perform->enter_id = $enter_id;
-                    $category_id = Perform_category::where('category', $perform)->first()->id;
-                    // $enter_perform->perform_id = $perform;
-                    $enter_perform->category_id = $category_id;
-                    $enter_perform->save();
-                }
+                // foreach( $performs as $perform ) {
+                //     $enter_perform = new Enter_perform;
+                //     $enter_perform->enter_id = $enter_id;
+                //     $category_id = Perform_category::where('category', $perform)->first()->id;
+                //     // $enter_perform->perform_id = $perform;
+                //     $enter_perform->category_id = $category_id;
+                //     $enter_perform->save();
+                // }
                 
                 $profile = new Enter_profile;
                 $profile->enter_id = $enter_id;
@@ -145,14 +151,15 @@ class JoinController extends Controller
                     $profile->team = 1;
                 }
                 $profile->howmany = 0;
+                $profile->age = $age;
                 $profile->intro = $intro;
                 $replace = array("\'", "\\", "\"");
                 $intro_detail = str_replace( $replace, '`', $intro_detail);
-                $career = str_replace( $replace, '`', $career);
-                $recent_perform = str_replace( $replace, '`', $recent_perform);
+                // $career = str_replace( $replace, '`', $career);
+                // $recent_perform = str_replace( $replace, '`', $recent_perform);
                 $intro_detail = str_replace('<br />', '<br>', nl2br($intro_detail));
-                $career = str_replace('<br />', '<br>', nl2br($career));
-                $recent_perform = str_replace('<br />', '<br>', nl2br($recent_perform));
+                // $career = str_replace('<br />', '<br>', nl2br($career));
+                // $recent_perform = str_replace('<br />', '<br>', nl2br($recent_perform));
 
                 $profile->intro_detail = $intro_detail;
                 $spec = '';
@@ -165,6 +172,7 @@ class JoinController extends Controller
                         }
                     }
                 }
+                $profile->recent_perform = '';
                 $profile->career = $spec; 
                 $profile->contact = $phone;
                 $profile->perform_hour = 0; 
@@ -235,10 +243,17 @@ class JoinController extends Controller
                 $user_key->device_id = 0;
                 $user_key->push_state = 'Y';
                 $user_key->save();
-            });
+
+                DB::commit();
+                return redirect('/');
+
+            } catch(\Exception $e) {
+                DB::rollback();
+                return back();
+            }
         }
 
-        return redirect('/');
+        
     }
 
 }

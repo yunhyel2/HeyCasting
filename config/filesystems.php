@@ -59,7 +59,7 @@ return [
             'key' => 'AKIAJFVK55ZTWGT5NJ2Q',
             'secret' => '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',
             'region' => 'ap-northeast-2',
-            'bucket' => 'commoa',
+            'bucket' => 'heycasting',
         ],
 
     ],

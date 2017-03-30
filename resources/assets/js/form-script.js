@@ -22,28 +22,48 @@
 
                 });
                 if( confirm('다음 단계로 넘어가시겠습니까?') ){
-                    $('div.step-wrap').animate(
+                    $('div#user-contents').removeClass('hidden').parent().animate(
                         { 
                             left: '-100%'
+                        },{ 
+                            complete:function(){
+                                $('div#user-account').find('input.next').remove();
+                            }
                         }
                     );
+                    $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                    $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
                 }
             };
         }, 
         errorClass: 'error',
         errorElement: 'span',
         errorPlacement: function(error, element) {
-            element.closest('div.form-group').addClass('error');
+            if( element.closest('div.form-group').prev().is('h2') ){
+                error.insertAfter( element.closest('div.form-group').prev('h2') );
+            }else{
+                error.insertAfter( element.closest('div.form-group').find('label.title') );
+            }
         }
     });
-
+//Scroll에 따라 프로필작성ON
+    $('form[name="join-form"]').on('scroll', function(){
+        var $scroll = $("div#user-profile").offset().top;
+        if( $scroll < 200 ){
+            $('nav.join-nav').find('li:last-child').addClass('active').prev().removeClass('active');
+            $('body').css('background', 'url("/img/background/04_back.jpg") no-repeat').css('background-size', 'cover');
+        }else{
+            $('nav.join-nav').find('li:last-child').removeClass('active').prev().addClass('active');
+            $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+        }
+    });
 //Add items
     $('a.add-items').on('click', function(e){
         e.preventDefault();
         if( $(this).hasClass('video') ){
             $count = $('input[name="videos[]"]').length;
             if( $count < 3 ){
-                $(this).prev('div.form-group').append('<div class="items bt-mrg"><input type="text" name="videos[]" class="required" placeholder="영상 주소 입력"/><a href="#" class="preview">등록</a></div>');
+                $(this).prev('div.form-group').append('<div class="items bt-mrg"><input type="text" name="videos[]" class="required no-pad" placeholder="영상 주소 입력"/><a href="#" class="preview">등록</a></div>');
                 $('div.preview-items ul li').eq($count).removeClass('hidden');
             }
         }else if( $(this).hasClass('photo') ){
@@ -60,16 +80,19 @@
     });
 
 //Delete item
-    $(document).on('click', 'a.delete' , function(){
+    $(document).on('click', 'a.delete' , function(e){
+        e.preventDefault();
         if( $(this).parent().parent().parent().hasClass('sns') ){
-            $(this).parent().addClass('hidden').children('input').removeClass('required');
+            $(this).parent().addClass('hidden');
+            $name = $(this).prev().attr('name').replace('social_', '');
+            $('ul.select').find('li[name="'+$name+'"]').removeClass('hidden');
         }else{
             console.log('onono');
         }
     });
 //Folder item
     $('a.toggle-folder').on('click',function(){
-        $(this).next().toggleClass('hidden');
+        $(this).parent().next().toggleClass('hidden');
         if( $(this).find('i').hasClass('fa-angle-down') ){
             $(this).html('<i class="fa fa-angle-up" aria-hidden="true"></i>접기');
         }else{
@@ -85,54 +108,58 @@
     });
     $('ul.select').on('click', 'li', function(){
         $value = $(this).attr('name');
-        $(this).parent('ul.select').prev('select').find('option[value="'+$value+'"]').prop("selected", true);
-        $(this).parent('ul.select').addClass('hidden').prev('select').removeClass('active');
-        if( $(this).parent('ul.select').prev('select').attr('name') == 'user-job' ){
-            $('select[name="user-job2"], select[name="user-job3"]').removeClass('disable');
-            //jquery
-            $this = $('select[name="user-job"]');
-            jQuery.ajax({ 
-                type:"POST", 
-                url:"/php/detailJob.php", 
-                data:"Name="+$this.val(), 
-                success:function(msg){ 
-                    $('select[name="user-job2"]').html(msg);
-                }, error:function(){
-
-                }
-            });
-            jQuery.ajax({ 
-                type:"POST", 
-                url:"/php/detailJob2.php", 
-                data:"Name="+$this.val(), 
-                success:function(msg){ 
-                    $('select[name="user-job3"]').html(msg); 
-                }, error:function(){
-
-                }
-            }); 
-            jQuery.ajax({ 
-                type:"POST", 
-                url:"/php/detailJob_ul.php", 
-                data:"Name="+$this.val(), 
-                success:function(msg){ 
-                    $('select[name="user-job2"]').next('ul.select').html(msg); 
-                }, error:function(){
-
-                }
-            }); 
-            jQuery.ajax({ 
-                type:"POST", 
-                url:"/php/detailJob2_ul.php", 
-                data:"Name="+$this.val(), 
-                success:function(msg){ 
-                    $('select[name="user-job3"]').next('ul.select').html(msg); 
-                }, error:function(){
-
-                }
-            }); 
-        }else if( $(this).parent('ul.select').hasClass('sns') ){
+        if( $(this).parent('ul.select').hasClass('sns') ){
             $('div#social_'+$value).removeClass('hidden');
+            $(this).parent('ul.select').addClass('hidden').prev('select').removeClass('active');
+            $(this).parent('ul.select').find('li[name="'+$value+'"]').addClass('hidden');
+        }else{
+            $(this).parent('ul.select').prev('select').find('option[value="'+$value+'"]').prop("selected", true);
+            $(this).parent('ul.select').addClass('hidden').prev('select').removeClass('active');
+            if( $(this).parent('ul.select').prev('select').attr('name') == 'user-job' ){
+                $('select[name="user-job2"], select[name="user-job3"]').removeClass('disable');
+                //jquery
+                $this = $('select[name="user-job"]');
+                jQuery.ajax({ 
+                    type:"POST", 
+                    url:"/php/detailJob.php", 
+                    data:"Name="+$this.val(), 
+                    success:function(msg){ 
+                        $('select[name="user-job2"]').html(msg);
+                    }, error:function(){
+
+                    }
+                });
+                jQuery.ajax({ 
+                    type:"POST", 
+                    url:"/php/detailJob2.php", 
+                    data:"Name="+$this.val(), 
+                    success:function(msg){ 
+                        $('select[name="user-job3"]').html(msg); 
+                    }, error:function(){
+
+                    }
+                }); 
+                jQuery.ajax({ 
+                    type:"POST", 
+                    url:"/php/detailJob_ul.php", 
+                    data:"Name="+$this.val(), 
+                    success:function(msg){ 
+                        $('select[name="user-job2"]').next('ul.select').html(msg); 
+                    }, error:function(){
+
+                    }
+                }); 
+                jQuery.ajax({ 
+                    type:"POST", 
+                    url:"/php/detailJob2_ul.php", 
+                    data:"Name="+$this.val(), 
+                    success:function(msg){ 
+                        $('select[name="user-job3"]').next('ul.select').html(msg); 
+                    }, error:function(){
+
+                    }
+                }); 
+            }
         }
     });
 
@@ -151,7 +178,6 @@
                 return;
             }
             if( $(this).attr('name') == 'main-profile' ){
-                console.log('hihi');
                 var reader = new FileReader();
                 reader.onload = function (event) {
                     $('div.preview.button').attr('style', 'background:url('+event.target.result+') center no-repeat;background-size:cover;').html('');

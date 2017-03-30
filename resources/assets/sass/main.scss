@@ -81,8 +81,12 @@
 	body{
 		font-family:'kopub';
 		width:100%;
-		background:url('/img/back.jpg');
+		background:url('/img/background/01_back.jpg');
 		background-size:cover;
+		transition:all 1s;
+		&.join{
+			background:url('/img/background/02_back.jpg');
+		}
 		&.fixed{
 			position:fixed;
 		}

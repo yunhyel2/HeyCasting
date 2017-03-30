@@ -12,7 +12,7 @@
         <form method="POST" name="join-form" class="join-form validate" action="{{ url('join-in') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="step-wrap">
-                <div id="user-account" class="step hidden">
+                <div id="user-account" class="step">
                     <div class="group">
                         <h2>일반 회원가입</h2>
                         <div class="form-group">
@@ -43,11 +43,11 @@
                             <li><a href="/join/kakao"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
                             <li><a href="/join/google"><img src="/img/social_google.png" alt="구글로가입하기"/></a></li>
                             <li><a href="/join/facebook"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
-                            <li><a href="/join/naver"><img src="/img/social_naver_line.png" alt="라인으로가입하기"/></a></li>
+                            <li><a href="/join/naver"><img src="/img/social_naver_line.png" alt="네이버로가입하기"/></a></li>
                         </ul>
                     </div>
                 </div>
-                <div id="user-contents" class="step">
+                <div id="user-contents" class="step hidden">
                     <div class="group video">
                         <div class="form-group">
                             <label for="videos" class="title">활동 영상 첨부</label>
@@ -92,7 +92,9 @@
                                     <li class="hidden"></li>
                                 </ul>
                             </div>
+                            <div>
                             <input type="file" name="photos[]" class="required image items"/>
+                            </div>
                             <a href="#" class="btn add-items photo"><img src="/img/icon_plus_contents.png" class="icon" alt=""/></i>사진 추가하기</a>
                         </div>
                     </div>
@@ -162,7 +164,7 @@
                                 <label for="no-team">개인</label>
                             </span>
                             <span>
-                                <input type="radio" name="team" id="team" value="team" class="required dont-show"/>
+                                <input type="radio" name="isTeam" id="team" value="team" class="required dont-show"/>
                                 <label for="team">팀</label>       
                             </span>                 
                         </div>
@@ -355,13 +357,11 @@
                     <div class="group additional">
                         <h2>추가 작성</h2>
                         <div class="form-group">
-                            <label for="detail-intro" class="sub-title">상세 소개</label>
-                            <a class="toggle-folder" href="#"><i class="fa fa-angle-down" aria-hidden="true"></i>더보기</a>
+                            <label for="detail-intro" class="sub-title">상세 소개<a class="toggle-folder" href="#"><i class="fa fa-angle-down" aria-hidden="true"></i>더보기</a></label>
                             <textarea id="detail-intro" name="detail-intro" class="intro hidden" placeholder="(100자 이내)" maxlength="100"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="spec-intro" class="sub-title">경력 및 수상 내역</label>
-                            <a class="toggle-folder" href="#"><i class="fa fa-angle-down" aria-hidden="true"></i>더보기</a>
+                            <label for="spec-intro" class="sub-title">경력 및 수상 내역<a class="toggle-folder" href="#"><i class="fa fa-angle-down" aria-hidden="true"></i>더보기</a></label>
                             <table class="hidden">
                                 <tr>
                                     <th>날짜</th>
@@ -382,18 +382,18 @@
                     <div class="group sns">
                         <div class="form-group">
                             <label for="social_select" class="title">SNS 주소</label>
-                            <select class="required" name="social_select" id="social_select">
+                            <select name="social_select" id="social_select">
                                 <option selected value>SNS 추가</option>
                                 <option value="instagram">인스타그램</option>
                                 <option value="facebook">페이스북</option>
+                                <option value="blog">블로그</option>
                                 <option value="twitter">트위터</option>
-                                <option value="kakao">카카오스토리</option>
                             </select>
                             <ul class="select hidden sns">
                                 <li name="instagram">인스타그램</li>
                                 <li name="facebook">페이스북</li>
+                                <li name="blog">블로그</li>
                                 <li name="twitter">트위터</li>
-                                <li name="kakao">카카오스토리</li>
                             </ul>
                             <div id="social_instagram" class="hidden">
                                 <label for="social_instagram" class="icon"><i class="fa fa-instagram" aria-hidden="true"></i></label>
@@ -405,14 +405,14 @@
                                 <input type="text" name="social_facebook" placeholder="페이스북 주소를 입력하세요" class="url"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
+                            <div id="social_blog" class="hidden">
+                                <label for="social_blog" class="icon"><i class="fa fa-star" aria-hidden="true"></i></label>
+                                <input type="text" name="social_blog" placeholder="블로그 주소를 입력하세요" class="url"/>
+                                <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
+                            </div>
                             <div id="social_twitter" class="hidden">
                                 <label for="social_twitter" class="icon"><i class="fa fa-twitter" aria-hidden="true"></i></label>
                                 <input type="text" name="social_twitter" placeholder="트위터 주소를 입력하세요" class="url"/>
-                                <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
-                            </div>
-                            <div id="social_kakao" class="hidden">
-                                <label for="social_kakao" class="icon"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                <input type="text" name="social_kakao" placeholder="카카오스토리 주소를 입력하세요" class="url"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                         </div>
@@ -420,7 +420,7 @@
                     <div class="group agree">
                         <div class="form-group">
                             <input type="checkbox" name="agree" id="agree" class="required dont-show"/>
-                            <label for="agree">개인정보 취급방침, 서비스 이용약관, 개인정보 제공에 동의합니다.</label>
+                            <label for="agree"><a href="#">개인정보 취급방침</a>, <a href="#">서비스 이용약관</a>, 개인정보 제공에 동의합니다.</label>
                         </div>
                     </div>
                     <div class="group button">

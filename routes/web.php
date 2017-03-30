@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/enter-join', 'JoinController@index');
 Route::get('/join', 'JoinController@index');
 Route::post('/join_check', 'JoinController@joinCheck');
-Route::post('/join', 'JoinController@store');
+Route::post('/join-in', 'JoinController@store');
 
 // Route::get('/singer/create', 'Joincontroller@create');
 // Route::get('/actor/create', 'Joincontroller@create');

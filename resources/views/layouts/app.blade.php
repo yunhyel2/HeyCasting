@@ -42,7 +42,7 @@
         ]); ?>
     </script>
 </head>
-<body class="{{ Request::segment(1) == 'join' || Request::segment(2) == 'create' ? 'back' : '' }}">
+<body class="{{ Request::segment(1) == 'enter-join' || Request::segment(1) == 'join' ? 'join' : '' }}">
     <div id="app">
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
