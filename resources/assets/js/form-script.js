@@ -27,9 +27,16 @@
                     form.submit();
                 };
             }else if( $('nav.join-nav').find('li:first-child').hasClass('active') ){
-                dataArr = $('input[type="email"]')  
+                data = $('input#user-email').val();
                 $.ajax({
+                    type:'POST',
+                    url:'/join_check',
+                    data:data,
+                    success:function(){
 
+                    },error:function(){
+
+                    }
                 });
                 if( confirm('다음 단계로 넘어가시겠습니까?') ){
                     $('div#user-contents').removeClass('hidden').parent().animate(
