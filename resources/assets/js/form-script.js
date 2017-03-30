@@ -1,3 +1,13 @@
+//Device height에 맞추기
+    function sizeMatching(){
+        $winHeight = $(window).height();
+        $('body').css('height', $winHeight);
+        $marginTop = $('nav.join-nav').offset().top;
+        $('form[name="join-form"]').css('height', $winHeight-50-(2*$marginTop)+'px' );
+    };
+    sizeMatching();
+    $(window).on('resize', sizeMatching);
+    
 //Next button
     jQuery.validator.setDefaults({
         debug: true,
@@ -39,15 +49,18 @@
         errorClass: 'error',
         errorElement: 'span',
         errorPlacement: function(error, element) {
-            if( element.closest('div.form-group').prev().is('h2') ){
-                error.insertAfter( element.closest('div.form-group').prev('h2') );
+            if( !element.parents('form-group').find('label:first-child').hasClass('title') ){
+                element.closest('div.group').find('h2').append(error);
             }else{
-                error.insertAfter( element.closest('div.form-group').find('label.title') );
+                element.closest('div.form-group').find('label.title').append(error);
             }
         }
     });
-//Scroll에 따라 프로필작성ON
+//Scroll에 따라 프로필작성ON && 배경
     $('form[name="join-form"]').on('scroll', function(){
+        if( $('li[name="user-account"]').hasClass('active') ){
+            return false;
+        }
         var $scroll = $("div#user-profile").offset().top;
         if( $scroll < 200 ){
             $('nav.join-nav').find('li:last-child').addClass('active').prev().removeClass('active');
@@ -63,14 +76,9 @@
         if( $(this).hasClass('video') ){
             $count = $('input[name="videos[]"]').length;
             if( $count < 3 ){
-                $(this).prev('div.form-group').append('<div class="items bt-mrg"><input type="text" name="videos[]" class="required no-pad" placeholder="영상 주소 입력"/><a href="#" class="preview">등록</a></div>');
-                $('div.preview-items ul li').eq($count).removeClass('hidden');
-            }
-        }else if( $(this).hasClass('photo') ){
-            $count = $('input[name="photos[]"]').length;
-            if( $count < 6 ){
-                $(this).before('<input type="file" name="photos[]" class="required image items"/>');
-                $('ul.photos-preview li').eq($count).removeClass('hidden');
+                $(this).prev('div.form-group').append('<div class="items bt-mrg"><input type="text" name="videos[]" id="video'+($count+1)+'" class="required no-pad" placeholder="Youtube 주소 입력"/><a href="#" class="preview">등록</a></div>');
+                $(this).prev('div.form-group').find('ul.video').css('width', 160*($count+1)+'px');
+                $(this).prev('div.form-group').find('ul.video li').eq($count).removeClass('hidden');
             }
         }else if( $(this).hasClass('spec') ){
             if( $('input[name="spec-intro1[]"]').length < 5 ){
@@ -160,6 +168,16 @@
                     }
                 }); 
             }
+            if( $(this).parent('ul.select').prev('select').attr('name') == 'user-job2' ){
+                $selected = $(this).attr('name');
+                $('select[name="user-job3"]').next('ul.select').children('li').not('[name="'+$selected+'"]').removeClass('hidden');
+                $('select[name="user-job3"]').next('ul.select').find('li[name="'+$selected+'"]').addClass('hidden');
+            }
+            if( $(this).parent('ul.select').prev('select').attr('name') == 'user-job3' ){
+                $selected = $(this).attr('name');
+                $('select[name="user-job2"]').next('ul.select').children('li').not('[name="'+$selected+'"]').removeClass('hidden');
+                $('select[name="user-job2"]').next('ul.select').find('li[name="'+$selected+'"]').addClass('hidden');
+            }
         }
     });
 
@@ -200,7 +218,20 @@
             }
         }
     });
-
+    $(document).on('focusout', 'input[name="videos[]"]', function(){
+        $src = $(this).val().replace('=','/')
+        if( $src=='' ){
+            return false;
+        }
+        if( $src.indexOf('youtube') != -1 ){
+            $imgSrc = $src.split('/');
+            var i = $imgSrc.length;
+            $preview = 'http://img.youtube.com/vi/'+$imgSrc[i-1]+'/0.jpg';       
+            $('li[name="'+$(this).attr('id')+'"]').attr('style', 'background-image:url(\"'+$preview+'\"); background-size:cover;');
+        }else{
+            
+        }
+    });
 //경력경험선택
     $('div.group.career label:not(.strong)').on('click', function(e){
         if( $('input[name="career"]:checked').length < 5 ){
