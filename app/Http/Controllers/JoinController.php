@@ -41,7 +41,7 @@ class JoinController extends Controller
 
     public function joinCheck(Request $request) 
     {
-        $email = $request->input('user-email');
+        $email = $_POST['email'];
         $email_count = Enter::where('email', $email)->count();
     
         echo $email_count;

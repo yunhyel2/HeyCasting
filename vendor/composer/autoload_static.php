@@ -340,6 +340,7 @@ class ComposerStaticInitff488b093a8f53dec7755d3851da98c6
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Job' => __DIR__ . '/../..' . '/app/Job.php',
         'App\\Job_genre' => __DIR__ . '/../..' . '/app/Job_genre.php',
         'App\\Job_howmany' => __DIR__ . '/../..' . '/app/Job_howmany.php',
         'App\\Perform_category' => __DIR__ . '/../..' . '/app/Perform_category.php',

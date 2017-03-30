@@ -6,14 +6,22 @@ div.join-form{
     background:rgba(0,0,0,0.7);
     color:#fff;
     transition:all 1s;
+    &.enter{
+        input[type="text"]{
+        }
+    }
     nav.join-nav{
         li{
-            width:33.333333333333333333333333%;
+
+            width:50%;
             float:left;
             text-align:center;
             padding:15px 0;
             font-weight:normal;
             font-size:15px;
+            &.enter{
+                width:33.333333333333333333333333%;
+            }
             &:not(:last-child){
                 a{
                     border-right:1px solid #aaa;
@@ -89,9 +97,19 @@ div.join-form{
     }
     h2, label.title{
         font-size:23px;
-        margin:30px 0;
+        display:inline-block;
+        margin:30px 0 0 0;
         color:#fff;
         position:relative;
+        &:not(.inline){
+            width:100%;
+        }
+        &[for="user-team"]{
+            width:150px;
+        }
+        &[for="user-gender"]{
+            width:70px;
+        }
         span.error{
             position:absolute;
             right:0;
@@ -102,6 +120,8 @@ div.join-form{
         font-size:15px;
         padding:10px 0;
         opacity:0.7;
+        word-break:keep-all;
+        line-height:1.5;
     }
 }
 div.form-group{
@@ -115,7 +135,7 @@ div.form-group{
             margin-top:-5px;
         }
         &[for="user-name"]{
-            margin-top:20px;
+            margin-top:38px;
         }
     }
     input:not([type="radio"]){
@@ -168,6 +188,9 @@ div.form-group{
         &.active{
             border-radius:20px 20px 0 0;
             background:rgba(50,150,200,0.7);
+        }
+        &[name="user-job"]{
+            margin-top:10px;
         }
         &[name="social_select"]{
             display:block;
@@ -406,7 +429,7 @@ div.group{
         position:relative;
         span.label{
             position:absolute;
-            top:75px;
+            top:110px;
             &.left{
                 left:0;
             }
@@ -501,6 +524,7 @@ div.group{
             line-height:1.5;
             padding-left:50px;
             word-break:keep-all;
+            margin-left:10px;
             a{
                 border-bottom:1px solid #fff;
                 padding-bottom:1px;
@@ -508,11 +532,16 @@ div.group{
                 position:relative;
                 top:-2px;
             }
+            span.error{
+                margin-left:20px;
+                color:indianred;
+            }
         }
         input[type="checkbox"]{
             &:empty~label, &:empty~label{
                 &:before{
                     top:2px;
+                    left:-10px;
                 }
             }
         }

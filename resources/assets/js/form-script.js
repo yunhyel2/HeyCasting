@@ -27,40 +27,56 @@
                     form.submit();
                 };
             }else if( $('nav.join-nav').find('li:first-child').hasClass('active') ){
-                data = $('input#user-email').val();
+                var dataArr = { email : $('input#user-email').val() }
+                $.ajaxSetup({
+                        headers:{
+                            'X-CSRF-Token': $('input[name="_token"]').val()
+                        }
+                    });
                 $.ajax({
                     type:'POST',
                     url:'/join_check',
-                    data:data,
-                    success:function(){
-
+                    data:dataArr,
+                    success:function(data){
+                        if( data != 0 ){
+                            alert('이미 존재하는 이메일입니다!');
+                            return false;
+                        }else{
+                            console.log(data);
+                            if( confirm('다음 단계로 넘어가시겠습니까?') ){
+                                $('div#user-contents').removeClass('hidden').parent().animate(
+                                    { 
+                                        left: '-100%'
+                                    },{ 
+                                        complete:function(){
+                                            $('div#user-account').find('input.next').remove();
+                                        }
+                                    }
+                                );
+                                $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                            }
+                        }
                     },error:function(){
 
                     }
                 });
-                if( confirm('다음 단계로 넘어가시겠습니까?') ){
-                    $('div#user-contents').removeClass('hidden').parent().animate(
-                        { 
-                            left: '-100%'
-                        },{ 
-                            complete:function(){
-                                $('div#user-account').find('input.next').remove();
-                            }
-                        }
-                    );
-                    $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
-                    $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
-                }
             };
         }, 
         errorClass: 'error',
         errorElement: 'span',
         errorPlacement: function(error, element) {
-            if( !element.parents('form-group').find('label:first-child').hasClass('title') ){
+            if( !element.parents('div.form-group').find('label:first-child').hasClass('title') ){
                 element.closest('div.group').find('h2').append(error);
             }else{
                 element.closest('div.form-group').find('label.title').append(error);
-            }
+            };
+            if( element.attr('name') == 'agree' ){
+                element.next('label').append(error);
+            };
+            if( element.attr('name') == 'agree' ){
+                element.next('label').append(error);
+            };
         }
     });
 //Scroll에 따라 프로필작성ON && 배경
