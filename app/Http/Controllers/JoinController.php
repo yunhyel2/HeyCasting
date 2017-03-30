@@ -54,30 +54,29 @@ class JoinController extends Controller
         $images = $request->file('photos'); //배열 
 
         $name = $request->input('user-name');
-        // $nickname = $request->input('nickname');
         $phone = $request->input('user-phone');
         $job = $request->input('user-job');
         $job2 = $request->input('user-job2');
         $job3 = $request->input('user-job3');
         
+        $team_name = $request->input('team-name');
         $gender = $request->input('gender');
         $team = $request->input('team');
-        $age = $request->input('user-age');
+        $age = $request->input('user-age'); //db에 추가! 
         $performs = $request->input('career'); //배열 
         $cost = $request->input('casting-cost');
         $cost_flag = $request->input('cost-secret'); //value = "on"
         $intro = $request->input('user-intro');
 
-        $intro_detail = $request->input('intro_detail');
-        $recent_perform = $request->input('recent_perform');
+        $intro_detail = $request->input('intro');
+        $spec1 = $request->input('spec-intro1[]');
+        $spec2 = $request->input('spec-intro2[]');
+        $spec3 = $request->input('spec-intro3[]');
 
-        // $enter_name = $request->input('enter_name');
-        // $categories = $request->input('category');
-        // $perform = $request->input('perform');
-        // $howmany = $request->input('howmany');
-        // $address = $request->input('address');
-        // $perform_minutes = $request->input('perform_minutes');
-        
+        $sns_instagram = $request->input('social_instagram');
+        $sns_facebook = $request->input('social_facebook');
+        $sns_twitter = $request->input('social_twitter');
+        $sns_kakao = $request->input('social_kakao');        
 
         // Storage::delete('uploads/aa0fe711.png');
 
@@ -134,7 +133,7 @@ class JoinController extends Controller
             
             $profile = new Enter_profile;
             $profile->enter_id = $enter_id;
-            $profile->name = $nickname; //활동명 예명 팀명 입력 
+            $profile->name = $team_name; //활동명 예명 팀명 입력 
             // $profile->howmany = Job_howmany::where('job_id', $job)->where('num', $howmany)->first()->id;
             
             $profile->gender = $gender;
@@ -154,14 +153,23 @@ class JoinController extends Controller
             $recent_perform = str_replace('<br />', '<br>', nl2br($recent_perform));
 
             $profile->intro_detail = $intro_detail;
-            $profile->career = $career; // 3개까지 입력받은 수상내용 %%%%% 수정할 것!!!!  
-            // $profile->recent_perform = $recent_perform;
+            $spec = '';
+            for( $i=0; $i<3; $i++ ) {
+                if( $spec1[$i] ) {
+                    if( $i == 0 ) {
+                        $spec = $spec1[$i] . ' ' . $spec2[$i] . ' ' . $spec3[$i];
+                    } else {
+                        $spec = $spec . '<br>' . $spec1[$i] . ' ' . $spec2[$i] . ' ' . $spec3[$i];
+                    }
+                }
+            }
+            $profile->career = $spec; 
             $profile->contact = $phone;
             $profile->perform_hour = 0; 
             $profile->perform_minutes = 0;
             $profile->address = '';
-            $profile->region = ''; //안쓰는 column
-            /*
+            $profile->region = ''; //안쓰는 column/
+/*
             $address = explode('(', $address); //괄호 안에 상세주소가 존재할 경우 에러 발생 
             $address = urlencode($address[0]);
             $map = file_get_contents('https://maps.google.com/maps/api/geocode/json?address=' . $address . '&key=AIzaSyAOM1ShbybK3wFn8rdsojUlp0BuwBK_08w');
@@ -173,7 +181,7 @@ class JoinController extends Controller
                 $profile->latitude = $json['results'][0]['geometry']['location']['lat'];
                 $profile->longitude = $json['results'][0]['geometry']['location']['lng'];
             }
-            */
+*/
             $profile->latitude = 0;
             $profile->longitude = 0;
             $profile->cost = $cost;
@@ -182,6 +190,10 @@ class JoinController extends Controller
             } else {
                 $profile->cost_flag = 'Y';
             }
+            $profile->sns_instagram = $sns_instagram;
+            $profile->sns_facebook = $sns_facebook;
+            $profile->sns_twitter = $sns_twitter;
+            $profile->sns_kakao = $sns_kakao;
             $profile->count = 0;
             $profile->bookmark_cnt = 0;
             $profile->engchal_cnt = 0;
