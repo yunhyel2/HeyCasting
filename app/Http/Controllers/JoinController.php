@@ -28,9 +28,9 @@ class JoinController extends Controller
     public function index()
     {
         if( request()->segment(1) == 'enter-join' ) { 
-            return view('Join.index');
+            return view('Join.entertainer');
         } else {
-            return view('Join.index');
+            return view('Join.user');
         }
     }
 
@@ -89,9 +89,9 @@ class JoinController extends Controller
             return back();
         } else {
 
-            DB::beginTransaction();
+            // DB::beginTransaction();
 
-            try {
+            // try {
 
                 $entertainer = new Enter;
                 $entertainer->flag = 'E';
@@ -115,8 +115,8 @@ class JoinController extends Controller
                     $enter_job->enter_id = $enter_id;
                     $job_id = Job::where('job', $job)->first()->id;
                     $enter_job->job_id = $job_id;
-                    // $enter_job->category_id = Job_genre::where('job_id', $job_id)->where('category', $job2)->first()->id;
-                    $enter_job->category_id = 1;
+                    $enter_job->category_id = Job_genre::where('job_id', $job_id)->where('category', $job2)->first()->id;
+                    // $enter_job->category_id = 1;
                     $enter_job->save();
                 }
 
@@ -125,19 +125,19 @@ class JoinController extends Controller
                     $enter_job->enter_id = $enter_id;
                     $job_id = Job::where('job', $job)->first()->id;
                     $enter_job->job_id = $job_id;
-                    // $enter_job->category_id = Job_genre::where('job_id', $job_id)->where('category', $job3)->first()->id;
-                    $enter_job->category_id = 1;
+                    $enter_job->category_id = Job_genre::where('job_id', $job_id)->where('category', $job3)->first()->id;
+                    // $enter_job->category_id = 1;
                     $enter_job->save();
                 }
                 
-                // foreach( $performs as $perform ) {
-                //     $enter_perform = new Enter_perform;
-                //     $enter_perform->enter_id = $enter_id;
-                //     $category_id = Perform_category::where('category', $perform)->first()->id;
-                //     // $enter_perform->perform_id = $perform;
-                //     $enter_perform->category_id = $category_id;
-                //     $enter_perform->save();
-                // }
+                foreach( $performs as $perform ) {
+                    $enter_perform = new Enter_perform;
+                    $enter_perform->enter_id = $enter_id;
+                    $category_id = Perform_category::where('category', $perform)->first()->id;
+                    // $enter_perform->perform_id = $perform;
+                    $enter_perform->category_id = $category_id;
+                    $enter_perform->save();
+                }
                 
                 $profile = new Enter_profile;
                 $profile->enter_id = $enter_id;
@@ -244,13 +244,13 @@ class JoinController extends Controller
                 $user_key->push_state = 'Y';
                 $user_key->save();
 
-                DB::commit();
+                // DB::commit();
                 return redirect('/');
 
-            } catch(\Exception $e) {
-                DB::rollback();
-                return back();
-            }
+            // } catch(\Exception $e) {
+            //     DB::rollback();
+            //     return back();
+            // }
         }
 
         
