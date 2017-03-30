@@ -18,7 +18,7 @@ div.join-form{
                 }
             }
             a{
-                color:#aaa;
+                color:#666;
                 cursor:default;
                 display:inline-block;
                 width:100%;
@@ -54,6 +54,7 @@ div.join-form{
         box-sizing:border-box;
         clear:both;
         &.button{
+            padding-top:0;
             margin:50px 0;
             text-align:center;
             input[type="submit"]{
@@ -69,6 +70,7 @@ div.join-form{
             }
         }
         &.quick-join{
+            padding-top:0;
             height:200px;
             li{
                 float:left;
@@ -78,6 +80,12 @@ div.join-form{
                     width:50px;
                 }
             }
+        }
+        span.error{
+            display:block;
+            color:indianred;
+            position:relative;
+            top:-5px;
         }
     }
     h2, label.title{
@@ -400,10 +408,15 @@ div.group{
     &.additional{
         label.sub-title{
             opacity:0.8;
-            width:60%;
+            width:100%;
             display:inline-block;
             margin:5px;
             font-size:17px;
+            position:relative;
+            a.toggle-folder{
+                position:absolute;
+                right:0;
+            }
         }
         textarea{
             margin:20px 0;
@@ -467,14 +480,21 @@ div.group{
             width:90%;
             height:20px;
             font-size:20px;
-            line-height:1.8;
+            line-height:1.5;
             padding-left:50px;
             word-break:keep-all;
+            a{
+                border-bottom:1px solid #fff;
+                padding-bottom:1px;
+                color:#fff;
+                position:relative;
+                top:-2px;
+            }
         }
         input[type="checkbox"]{
             &:empty~label, &:empty~label{
                 &:before{
-                    top:6px;
+                    top:2px;
                 }
             }
         }
