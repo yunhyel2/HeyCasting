@@ -53,18 +53,18 @@
                             <label for="videos" class="title">활동 영상 첨부</label>
                             <p class="explanation">최소 2개 이상의 영상을 등록해주세요</p>
                             <div class="preview-items">
-                                <ul>
-                                    <li></li>
-                                    <li></li>
-                                    <li class="hidden"></li>
+                                <ul class="video">
+                                    <li name="video1"></li>
+                                    <li name="video2"></li>
+                                    <li name="video3" class="hidden"></li>
                                 </ul>
                             </div>
                             <div class="items bt-mrg">
-                                <input type="text" name="videos[]" class="required no-pad" placeholder="영상 주소 입력"/>
+                                <input type="text" name="videos[]" id="video1" class="required no-pad" placeholder="Youtube 주소 입력"/>
                                 <a href="#" class="preview">등록</a>
                             </div>
                             <div class="bt-mrg">
-                                <input type="text" name="videos[]" class="required no-pad" placeholder="영상 주소 입력"/>
+                                <input type="text" name="videos[]" id="video2" class="required no-pad" placeholder="Youtube 주소 입력"/>
                                 <a href="#" class="preview">등록</a>
                             </div>
                         </div>
@@ -84,18 +84,22 @@
                             <p class="explanation">최대 6개까지 등록 가능합니다</p>
                             <div class="preview-items">
                                 <ul class="photos-preview">
-                                    <li></li>
-                                    <li class="hidden"></li>
-                                    <li class="hidden"></li>
-                                    <li class="hidden"></li>
-                                    <li class="hidden"></li>
-                                    <li class="hidden"></li>
+                                    <li><label for="photo1"><i class="fa fa-plus" aria-hidden="true"></i></label></li>
+                                    <li><label for="photo2"><i class="fa fa-plus" aria-hidden="true"></i></label></li>
+                                    <li><label for="photo3"><i class="fa fa-plus" aria-hidden="true"></i></label></li>
+                                    <li><label for="photo4"><i class="fa fa-plus" aria-hidden="true"></i></label></li>
+                                    <li><label for="photo5"><i class="fa fa-plus" aria-hidden="true"></i></label></li>
+                                    <li><label for="photo6"><i class="fa fa-plus" aria-hidden="true"></i></label></li>
                                 </ul>
                             </div>
-                            <div>
-                            <input type="file" name="photos[]" class="required image items"/>
+                            <div class="dont-show">
+                                <input type="file" name="photos[]" id="photo1" class="image items dont-show"/>
+                                <input type="file" name="photos[]" id="photo2" class="image items dont-show"/>
+                                <input type="file" name="photos[]" id="photo3" class="image items dont-show"/>
+                                <input type="file" name="photos[]" id="photo4" class="image items dont-show"/>
+                                <input type="file" name="photos[]" id="photo5" class="image items dont-show"/>
+                                <input type="file" name="photos[]" id="photo6" class="image items dont-show"/>
                             </div>
-                            <a href="#" class="btn add-items photo"><img src="/img/icon_plus_contents.png" class="icon" alt=""/></i>사진 추가하기</a>
                         </div>
                     </div>
                     <div class="group user" id="user-profile">
@@ -142,7 +146,7 @@
                                 </ul>
                             </div>
                             <div class="half left-mrg">
-                                <select class="half disable required selectpicker" name="user-job3">
+                                <select class="half disable" name="user-job3">
                                     <option selected value>세부분야</option>
                                 </select>
                                 <ul class="select hidden half">
@@ -216,19 +220,19 @@
                                 </li>
                                 <li>
                                     <label for="busi01" class="lhsmall">신년회<br/>송년회</label>
-                                    <input type="checkbox" id="busi01" name="career" class="dont-show" value="1"/>
+                                    <input type="checkbox" id="busi01" name="career[]" class="dont-show" value="1"/>
                                 </li>
                                 <li>
                                     <label for="busi02" class="lhsmall">MT<br/>워크샵</label>
-                                    <input type="checkbox" id="busi02" name="career" class="dont-show" value="2"/>
+                                    <input type="checkbox" id="busi02" name="career[]" class="dont-show" value="2"/>
                                 </li>
                                 <li>
                                     <label for="busi03" class="lhsmall">기업내부<br/>행사</label>
-                                    <input type="checkbox" id="busi03" name="career" class="dont-show" value="3"/>
+                                    <input type="checkbox" id="busi03" name="career[]" class="dont-show" value="3"/>
                                 </li>
                                 <li class="no-right">
                                     <label for="busi04" class="lhsmall">기업대상<br/>강의</label>
-                                    <input type="checkbox" id="busi04" name="career" class="dont-show" value="4"/>
+                                    <input type="checkbox" id="busi04" name="career[]" class="dont-show" value="4"/>
                                 </li>
                             </ul>
                             <ul>
@@ -237,19 +241,19 @@
                                 </li>
                                 <li>
                                     <label for="school01" class="lhsmall">오리엔<br/>테이션</label>
-                                    <input type="checkbox" id="school01" name="career" class="dont-show" value="5"/>
+                                    <input type="checkbox" id="school01" name="career[]" class="dont-show" value="5"/>
                                 </li>
                                 <li>
                                     <label for="school02">축제</label>
-                                    <input type="checkbox" id="school02" name="career" class="dont-show" value="6"/>
+                                    <input type="checkbox" id="school02" name="career[]" class="dont-show" value="6"/>
                                 </li>
                                 <li>
                                     <label for="school03" class="lhsmall">입학<br/>졸업식</label>
-                                    <input type="checkbox" id="school03" name="career" class="dont-show" value="7"/>
+                                    <input type="checkbox" id="school03" name="career[]" class="dont-show" value="7"/>
                                 </li>
                                 <li class="no-right">
                                     <label for="school04" class="lhsmall">대학교<br/>강연</label>
-                                    <input type="checkbox" id="school04" name="career" class="dont-show" value="8"/>
+                                    <input type="checkbox" id="school04" name="career[]" class="dont-show" value="8"/>
                                 </li>
                             </ul>
                             <ul>
@@ -258,15 +262,15 @@
                                 </li>
                                 <li>
                                     <label for="family01">결혼식</label>
-                                    <input type="checkbox" id="family01" name="career" class="dont-show" value="9"/>
+                                    <input type="checkbox" id="family01" name="career[]" class="dont-show" value="9"/>
                                 </li>
                                 <li>
                                     <label for="family02" class="lhsmall">돌잔치<br/>백일</label>
-                                    <input type="checkbox" id="family02" name="career" class="dont-show" value="10"/>
+                                    <input type="checkbox" id="family02" name="career[]" class="dont-show" value="10"/>
                                 </li>
                                 <li>
                                     <label for="family03" class="lhsmall">환갑<br/>칠순잔치</label>
-                                    <input type="checkbox" id="family03" name="career" class="dont-show" value="11"/>
+                                    <input type="checkbox" id="family03" name="career[]" class="dont-show" value="11"/>
                                 </li>
                                 <li class="no-right no-pointer">
                                 </li>
@@ -277,19 +281,19 @@
                                 </li>
                                 <li>
                                     <label for="couple01">약혼식</label>
-                                    <input type="checkbox" id="couple01" name="career" class="dont-show" value="12"/>
+                                    <input type="checkbox" id="couple01" name="career[]" class="dont-show" value="12"/>
                                 </li>
                                 <li>
                                     <label for="couple02">프로포즈</label>
-                                    <input type="checkbox" id="couple02" name="career" class="dont-show" value="13"/>
+                                    <input type="checkbox" id="couple02" name="career[]" class="dont-show" value="13"/>
                                 </li>
                                 <li>
                                     <label for="couple03">이벤트</label>
-                                    <input type="checkbox" id="couple03" name="career" class="dont-show" value="14"/>
+                                    <input type="checkbox" id="couple03" name="career[]" class="dont-show" value="14"/>
                                 </li>
                                 <li class="no-right">
                                     <label for="couple04">피로연</label>
-                                    <input type="checkbox" id="couple04" name="career" class="dont-show" value="15"/>
+                                    <input type="checkbox" id="couple04" name="career[]" class="dont-show" value="15"/>
                                 </li>
                             </ul>
                             <ul>
@@ -298,41 +302,41 @@
                                 </li>
                                 <li>
                                     <label for="etc01" class="lhsmall">축제<br/>행사</label>
-                                    <input type="checkbox" id="etc01" name="career" class="dont-show" value="16"/>
+                                    <input type="checkbox" id="etc01" name="career[]" class="dont-show" value="16"/>
                                 </li>
                                 <li>
                                     <label for="etc02">파티</label>
-                                    <input type="checkbox" id="etc02" name="career" class="dont-show" value="21"/>
+                                    <input type="checkbox" id="etc02" name="career[]" class="dont-show" value="21"/>
                                 </li>
                                 <li>
                                     <label for="etc03">박람회</label>
-                                    <input type="checkbox" id="etc03" name="career" class="dont-show" value="17"/>
+                                    <input type="checkbox" id="etc03" name="career[]" class="dont-show" value="17"/>
                                 </li>
                                 <li class="no-right">
                                     <label for="etc04">화보</label>
-                                    <input type="checkbox" id="etc04" name="career" class="dont-show" value="22"/>
+                                    <input type="checkbox" id="etc04" name="career[]" class="dont-show" value="22"/>
                                 </li>
                             </ul>
                             <ul>
                                 <li class="no-left">
                                     <label for="etc05">모터쇼</label>
-                                    <input type="checkbox" id="etc05" name="career" class="dont-show" value="18"/>
+                                    <input type="checkbox" id="etc05" name="career[]" class="dont-show" value="18"/>
                                 </li>
                                 <li>
                                     <label for="etc06">사진전</label>
-                                    <input type="checkbox" id="etc06" name="career" class="dont-show" value="19"/>
+                                    <input type="checkbox" id="etc06" name="career[]" class="dont-show" value="19"/>
                                 </li>
                                 <li>
                                     <label for="etc07">홈쇼핑</label>
-                                    <input type="checkbox" id="etc07" name="career" class="dont-show" value="23"/>
+                                    <input type="checkbox" id="etc07" name="career[]" class="dont-show" value="23"/>
                                 </li>
                                 <li>
                                     <label for="etc08">시상식</label>
-                                    <input type="checkbox" id="etc08" name="career" class="dont-show" value="24"/>
+                                    <input type="checkbox" id="etc08" name="career[]" class="dont-show" value="24"/>
                                 </li>
                                 <li class="no-right">
                                     <label for="etc09">패션쇼</label>
-                                    <input type="checkbox" id="etc09" name="career" class="dont-show" value="20"/>
+                                    <input type="checkbox" id="etc09" name="career[]" class="dont-show" value="20"/>
                                 </li>
                             </ul>
                         </div>

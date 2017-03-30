@@ -23,13 +23,6 @@ Route::get('/join', 'JoinController@index');
 Route::post('/join_check', 'JoinController@joinCheck');
 Route::post('/join-in', 'JoinController@store');
 
-// Route::get('/singer/create', 'Joincontroller@create');
-// Route::get('/actor/create', 'Joincontroller@create');
-// Route::get('/player/create', 'Joincontroller@create');
-// Route::get('/dancer/create', 'Joincontroller@create');
-// Route::get('/host/create', 'Joincontroller@create');
-// Route::get('/model/create', 'Joincontroller@create');
-
 Route::get('/join/naver', 'SocialController@redirectToNaver');
 Route::get('/join_naver', 'SocialController@callbackNaver');
 Route::get('/join/kakao', 'SocialController@redirectToKakao');
