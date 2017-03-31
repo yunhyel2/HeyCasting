@@ -90,6 +90,12 @@
 			overflow:hidden;
 			transition:all 0.5s;
 		}
+		&.social{
+			background:url('/img/background/03_back.jpg');
+			background-size:cover;
+			overflow:hidden;
+			transition:all 0.5s;
+		}
 		&.fixed{
 			position:fixed;
 		}

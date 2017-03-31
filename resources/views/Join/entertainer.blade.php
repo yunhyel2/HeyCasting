@@ -4,20 +4,20 @@
     <div class="join-form enter">
         <nav class="join-nav">
             <ul>
-                <li class="active enter" name="user-account"><a href="#" onclick="return false;">계정 정보 입력</a></li>
-                <li class="enter" name="user-contents"><a href="#" onclick="return false;">컨텐츠 첨부</a></li>
+                <li class="enter {{ strpos( Request::segment(1) , 'social' ) ? '' : 'active' }}" name="user-account"><a href="#" onclick="return false;">계정 정보 입력</a></li>
+                <li class="enter {{ strpos( Request::segment(1) , 'social' ) ? 'active' : '' }}" name="user-contents"><a href="#" onclick="return false;">컨텐츠 첨부</a></li>
                 <li class="enter" name="user-profile"><a href="#" onclick="return false;">프로필 작성</a></li>
             </ul>
         </nav>
         <form method="POST" name="join-form" class="join-form validate" action="{{ url('join-in') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="step-wrap">
-                <div id="user-account" class="step">
+                <div id="user-account" class="step {{ strpos( Request::segment(1) , 'social' ) ? 'hidden' : '' }}">
                     <div class="group">
                         <h2>엔터테이너 회원가입</h2>
                         <div class="form-group">
                             <label for="user-email" class="icon"><img src="/img/icon_mail_address.png" alt="" width="20px" height="auto"/></label>
-                            <input type="email" name="user-email" id="user-email" class="required email" placeholder="이메일을 입력하세요"/>
+                            <input type="email" name="user-email" id="user-email" class="required email" placeholder="이메일을 입력하세요" autocomplete="Off"/>
                         </div>
                         <!---
                         <div class="form-group">
@@ -47,7 +47,11 @@
                         </ul>
                     </div>
                 </div>
-                <div id="user-contents" class="step hidden">
+                <div id="user-contents" class="step {{ strpos( Request::segment(1) , 'social' ) ? '' : 'hidden' }}">
+                    @if( strpos( Request::segment(1) , 'social' ) )
+                        <input type="hidden" name="user-email" value="{{ $user-email }}"/>
+                        <input type="hidden" name="link" value="{{ $link }}"/>
+                    @endif
                     <div class="group video">
                         <div class="form-group">
                             <label for="videos" class="title">활동 영상 첨부</label>
@@ -60,11 +64,11 @@
                                 </ul>
                             </div>
                             <div class="items bt-mrg">
-                                <input type="text" name="videos[]" id="video1" class="required no-pad" placeholder="Youtube 주소 입력"/>
+                                <input type="text" name="videos[]" id="video1" class="required no-pad" placeholder="Youtube 주소 입력" autocomplete="Off"/>
                                 <a href="#" class="preview">등록</a>
                             </div>
                             <div class="bt-mrg">
-                                <input type="text" name="videos[]" id="video2" class="required no-pad" placeholder="Youtube 주소 입력"/>
+                                <input type="text" name="videos[]" id="video2" class="required no-pad" placeholder="Youtube 주소 입력" autocomplete="Off"/>
                                 <a href="#" class="preview">등록</a>
                             </div>
                         </div>
@@ -107,11 +111,11 @@
                             <label for="user-info" class="title">개인정보</label>
                             <p class="explanation">실명과 핸드폰 번호를 적어주세요.</p>
                             <label for="user-name" class="icon">이름</label>
-                            <input type="text" name="user-name" id="user-name" class="required large-pad"/>
+                            <input type="text" name="user-name" id="user-name" class="required large-pad" autocomplete="Off"/>
                         </div>
                         <div class="form-group">
                             <label for="user-phone" class="icon">연락처</label>
-                            <input type="text" name="user-phone" id="user-phone" class="required large-pad"/>
+                            <input type="text" name="user-phone" id="user-phone" class="required large-pad" autocomplete="Off"/>
                         </div>
                     </div>
                     <div class="group">
@@ -157,7 +161,7 @@
                     <div class="group">
                         <div class="form-group">
                             <label for="team-name" class="title">활동 시 이름</label>
-                            <input type="text" name="team-name" id="team-name" placeholder="예명, 팀명 등을 입력해주세요" class="required intro"/>
+                            <input type="text" name="team-name" id="team-name" placeholder="예명, 팀명 등을 입력해주세요" class="required intro" autocomplete="Off"/>
                         </div>
                     </div>
                     <div class="group">
@@ -347,7 +351,7 @@
                             <p class="explanation">비용 기준을 공개하면 더 빠른 캐스팅에 도움이 됩니다</p>
                             <span class="left label">최소</span>
                             <span class="right label">만원 기준</span>
-                            <input type="text" id="casting-cost" maxlength="10" style="text-align:right" name="casting-cost" class="digits required"/>
+                            <input type="text" id="casting-cost" maxlength="10" style="text-align:right" name="casting-cost" class="digits required" autocomplete="Off"/>
                             <input type="checkbox" name="cost-secret" id="cost-secret" class="dont-show" value="on"/>
                             <label for="cost-secret">캐스팅 비용 비공개</label>
                         </div>
@@ -355,7 +359,7 @@
                     <div class="group">
                         <div class="form-group">
                             <label for="user-intro" class="title">한줄 소개</label>
-                            <input type="text" id="user-intro" maxlength="20" name="user-intro" placeholder="메인에 노출되는 대표 문구입니다(최대 20자)" class="required intro"/>
+                            <input type="text" id="user-intro" maxlength="20" name="user-intro" placeholder="메인에 노출되는 대표 문구입니다(최대 20자)" class="required intro" autocomplete="Off"/>
                         </div>
                     </div>
                     <div class="group additional">
@@ -373,9 +377,9 @@
                                     <th>내용</th>
                                 </tr>
                                 <tr class="items">
-                                    <td><input type="text" id="spec-intro" name="spec-intro1[]" class="intro digits" placeholder="ex)2017"/></td>
-                                    <td><input type="text" name="spec-intro2[]" class="intro" placeholder="부산영화제"/></td>
-                                    <td><input type="text" name="spec-intro3[]" class="intro"/></td>
+                                    <td><input type="text" id="spec-intro" name="spec-intro1[]" class="intro digits" placeholder="ex)2017" autocomplete="Off"/></td>
+                                    <td><input type="text" name="spec-intro2[]" class="intro" placeholder="부산영화제" autocomplete="Off"/></td>
+                                    <td><input type="text" name="spec-intro3[]" class="intro" autocomplete="Off"/></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" class="long"><a href="#" class="btn add-items spec"><img src="/img/icon_plus_contents.png" class="icon" alt=""/></i>수상/경력 추가하기</a></td>
@@ -401,22 +405,22 @@
                             </ul>
                             <div id="social_instagram" class="hidden">
                                 <label for="social_instagram" class="icon"><i class="fa fa-instagram" aria-hidden="true"></i></label>
-                                <input type="text" name="social_instagram" placeholder="인스타그램 주소를 입력하세요" class="url"/>
+                                <input type="text" name="social_instagram" placeholder="인스타그램 주소를 입력하세요" class="url" autocomplete="Off"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                             <div id="social_facebook" class="hidden">
                                 <label for="social_facebook" class="icon"><i class="fa fa-facebook" aria-hidden="true"></i></label>
-                                <input type="text" name="social_facebook" placeholder="페이스북 주소를 입력하세요" class="url"/>
+                                <input type="text" name="social_facebook" placeholder="페이스북 주소를 입력하세요" class="url" autocomplete="Off"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                             <div id="social_blog" class="hidden">
                                 <label for="social_blog" class="icon"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                <input type="text" name="social_blog" placeholder="블로그 주소를 입력하세요" class="url"/>
+                                <input type="text" name="social_blog" placeholder="블로그 주소를 입력하세요" class="url" autocomplete="Off"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                             <div id="social_twitter" class="hidden">
                                 <label for="social_twitter" class="icon"><i class="fa fa-twitter" aria-hidden="true"></i></label>
-                                <input type="text" name="social_twitter" placeholder="트위터 주소를 입력하세요" class="url"/>
+                                <input type="text" name="social_twitter" placeholder="트위터 주소를 입력하세요" class="url" autocomplete="Off"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                         </div>

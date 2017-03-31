@@ -103,6 +103,14 @@ body.join {
   transition: all 0.5s;
 }
 
+body.social {
+  background: url("/img/background/03_back.jpg");
+  background-size: cover;
+  overflow: hidden;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
 body.fixed {
   position: fixed;
 }
@@ -142,6 +150,22 @@ div.join-form {
   color: #fff;
   -webkit-transition: all 1s;
   transition: all 1s;
+}
+
+div.join-form:not(.enter) input[type="text"], div.join-form:not(.enter) input[type="email"], div.join-form:not(.enter) input[type="password"] {
+  color: #ff627d;
+  /* change [input cursor color] by this*/
+  text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.6);
+  /* change [input font] by this*/
+  -webkit-text-fill-color: transparent;
+}
+
+div.join-form.enter input[type="text"], div.join-form.enter input[type="email"], div.join-form.enter input[type="password"] {
+  color: cyan;
+  /* change [input cursor color] by this*/
+  text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.6);
+  /* change [input font] by this*/
+  -webkit-text-fill-color: transparent;
 }
 
 div.join-form nav.join-nav li {
@@ -229,6 +253,10 @@ div.join-form div.group.button input[type="submit"] {
 div.join-form div.group.quick-join {
   padding-top: 0;
   height: 200px;
+}
+
+div.join-form div.group.quick-join ul {
+  margin-top: 20px;
 }
 
 div.join-form div.group.quick-join li {
