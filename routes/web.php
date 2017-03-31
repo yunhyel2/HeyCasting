@@ -25,6 +25,7 @@ Route::get('/user-join', 'JoinController@index');
 Route::get('/user-social-join', 'JoinController@index');
 Route::post('/join_check', 'JoinController@joinCheck');
 Route::post('/join-in', 'JoinController@store');
+Route::get('/complete/{stat}', 'JoinController@complete');
 
 Route::get('/join/naver', 'SocialController@redirectToNaver');
 Route::get('/join_naver', 'SocialController@callbackNaver');

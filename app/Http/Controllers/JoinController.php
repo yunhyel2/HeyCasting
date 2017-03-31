@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Http\Request\EnterJoinRequest;
+use App\Http\Requests\EnterJoinRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
@@ -50,8 +50,7 @@ class JoinController extends Controller
 
     public function store(EnterJoinRequest $request) 
     {
-        // 간편 회원가입일 경우! link / user-email 넘겨주기 
-        // $link = $request->input('link'); 
+        $link = $request->input('link'); 
         $email = $request->input('user-email'); 
         $password = $request->input('password');
         $password2 = $request->input('passwordConf');
@@ -82,7 +81,7 @@ class JoinController extends Controller
 
         $sns_instagram = $request->input('social_instagram');
         $sns_facebook = $request->input('social_facebook');
-        $sns_twitter = $request->input('social_twitter');
+        $sns_blog = $request->input('social_blog');
         $sns_kakao = $request->input('social_kakao');        
 
         // Storage::delete('uploads/aa0fe711.png');
@@ -97,8 +96,12 @@ class JoinController extends Controller
 
                 $entertainer = new Enter;
                 $entertainer->flag = 'E';
-                $entertainer->link = 'A'; //App에서 등록한 경우 
-                // $entertainer->link = $link;
+                if( $link ) {
+                    $entertainer->link = $link; // kakao : 'K', google : 'G', facebook : 'F', naver : 'N'
+                } else {
+                    $entertainer->link = 'A'; 
+                }
+
                 $entertainer->password = bcrypt($password);
                 $entertainer->email = $email; 
                 $entertainer->name = $name;
@@ -190,7 +193,7 @@ class JoinController extends Controller
                 }
                 $profile->sns_instagram = $sns_instagram;
                 $profile->sns_facebook = $sns_facebook;
-                $profile->sns_twitter = $sns_twitter;
+                $profile->sns_blog = $sns_blog;
                 $profile->sns_kakao = $sns_kakao;
                 $profile->count = 0;
                 $profile->bookmark_cnt = 0;
@@ -234,17 +237,23 @@ class JoinController extends Controller
                 $user_key->device_id = 0;
                 $user_key->push_state = 'Y';
                 $user_key->save();
-
                 // DB::commit();
-                return redirect('/');
+
+                return redirect('/complete/enter');
 
             // } catch(\Exception $e) {
             //     DB::rollback();
             //     return back();
             // }
         }
-
-        
     }
 
+    public function complete($stat) {
+        if( $stat == 'enter' ) {
+            $user = '엔터테이너';    
+        } else {
+            $user = '일반';
+        }
+        return view('Join.complete')->with('user', $user);
+    }
 }

@@ -24,10 +24,10 @@ class EnterJoinRequest extends FormRequest
     public function rules()
     {
         return [
-            'user-email' =>'required|email|unique:user_enter',
+            'user-email' =>'required',
             'password' =>'required',
             'passwordConf' =>'required',
-            'videos[]' =>'required',
+            'videos' =>'required',
             'main-profile' =>'required',
             'user-name' =>'required',
             'user-phone' =>'required',
