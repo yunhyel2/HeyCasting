@@ -16,7 +16,7 @@
                         <h2>일반 회원가입</h2>
                         <div class="form-group">
                             <label for="user-email" class="icon"><img src="/img/icon_mail_address.png" alt="" width="20px" height="auto"/></label>
-                            <input type="email" name="user-email" id="user-email" class="required email" placeholder="이메일을 입력하세요"/>
+                            <input type="email" name="user-email" id="user-email" class="required email" placeholder="이메일을 입력하세요" autocomplete="Off"/>
                         </div>
                         <!---
                         <div class="form-group">
@@ -51,8 +51,8 @@
                         <div class="form-group">
                             <label for="user_name" class="title">연락처 입력</label>
                             <p class="explanation">이름과 연락처는 캐스팅 진행시 필요한 정보입니다. 정확히 입력해주세요.</p>
-                            <input type="text" id="user_name" name="user_name" class="required no-pad" placeholder="이름을 입력하세요"/>
-                            <input type="text" id="user_phone" name="user_phone" class="required no-pad digits" placeholder="연락처를 입력하세요."/>
+                            <input type="text" id="user_name" name="user_name" class="required no-pad" placeholder="이름을 입력하세요" autocomplete="Off"/>
+                            <input type="text" id="user_phone" name="user_phone" class="required no-pad digits" placeholder="연락처를 입력하세요." autocomplete="Off"/>
                         </div>
                     </div>
                     <div class="group agree">
