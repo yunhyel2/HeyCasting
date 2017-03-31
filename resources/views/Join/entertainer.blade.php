@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="join-form">
+    <div class="join-form enter">
         <nav class="join-nav">
             <ul>
-                <li class="active" name="user-account"><a href="#" onclick="return false;">계정 정보 입력</a></li>
-                <li name="user-contents"><a href="#" onclick="return false;">컨텐츠 첨부</a></li>
-                <li name="user-profile"><a href="#" onclick="return false;">프로필 작성</a></li>
+                <li class="active enter" name="user-account"><a href="#" onclick="return false;">계정 정보 입력</a></li>
+                <li class="enter" name="user-contents"><a href="#" onclick="return false;">컨텐츠 첨부</a></li>
+                <li class="enter" name="user-profile"><a href="#" onclick="return false;">프로필 작성</a></li>
             </ul>
         </nav>
         <form method="POST" name="join-form" class="join-form validate" action="{{ url('join-in') }}" enctype="multipart/form-data">
@@ -14,7 +14,7 @@
             <div class="step-wrap">
                 <div id="user-account" class="step">
                     <div class="group">
-                        <h2>일반 회원가입</h2>
+                        <h2>엔터테이너 회원가입</h2>
                         <div class="form-group">
                             <label for="user-email" class="icon"><img src="/img/icon_mail_address.png" alt="" width="20px" height="auto"/></label>
                             <input type="email" name="user-email" id="user-email" class="required email" placeholder="이메일을 입력하세요"/>
@@ -162,7 +162,7 @@
                     </div>
                     <div class="group">
                         <div class="form-group">
-                            <label for="user-team" class="title">팀 여부 선택</label>
+                            <label for="user-team" class="title inline">팀 여부 선택</label>
                             <span class="left-mrg">
                                 <input type="radio" name="isTeam" id="no-team" value="0" class="required dont-show"/>
                                 <label for="no-team">개인</label>
@@ -175,7 +175,7 @@
                     </div>
                     <div class="group">
                         <div class="form-group">
-                            <label for="user-gender" class="title">성별</label>
+                            <label for="user-gender" class="title inline">성별</label>
                             <span class="left-mrg">
                                 <input type="radio" name="gender" id="male" value="0" class="required dont-show"/>
                                 <label for="male">남</label>
@@ -347,7 +347,7 @@
                             <p class="explanation">비용 기준을 공개하면 더 빠른 캐스팅에 도움이 됩니다</p>
                             <span class="left label">최소</span>
                             <span class="right label">만원 기준</span>
-                            <input type="text" id="casting-cost" maxlength="10" style="text-align:right" name="casting-cost" class="digits"/>
+                            <input type="text" id="casting-cost" maxlength="10" style="text-align:right" name="casting-cost" class="digits required"/>
                             <input type="checkbox" name="cost-secret" id="cost-secret" class="dont-show" value="on"/>
                             <label for="cost-secret">캐스팅 비용 비공개</label>
                         </div>
@@ -373,7 +373,7 @@
                                     <th>내용</th>
                                 </tr>
                                 <tr class="items">
-                                    <td><input type="text" id="spec-intro" name="spec-intro1[]" class="intro" placeholder="ex)2017"/></td>
+                                    <td><input type="text" id="spec-intro" name="spec-intro1[]" class="intro digits" placeholder="ex)2017"/></td>
                                     <td><input type="text" name="spec-intro2[]" class="intro" placeholder="부산영화제"/></td>
                                     <td><input type="text" name="spec-intro3[]" class="intro"/></td>
                                 </tr>

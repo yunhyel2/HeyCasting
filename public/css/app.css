@@ -145,12 +145,16 @@ div.join-form {
 }
 
 div.join-form nav.join-nav li {
-  width: 33.333333333333333333333333%;
+  width: 50%;
   float: left;
   text-align: center;
   padding: 15px 0;
   font-weight: normal;
   font-size: 15px;
+}
+
+div.join-form nav.join-nav li.enter {
+  width: 33.333333333333333333333333%;
 }
 
 div.join-form nav.join-nav li:not(:last-child) a {
@@ -239,9 +243,22 @@ div.join-form div.group.quick-join li img {
 
 div.join-form h2, div.join-form label.title {
   font-size: 23px;
-  margin: 30px 0;
+  display: inline-block;
+  margin: 30px 0 0 0;
   color: #fff;
   position: relative;
+}
+
+div.join-form h2:not(.inline), div.join-form label.title:not(.inline) {
+  width: 100%;
+}
+
+div.join-form h2[for="user-team"], div.join-form label.title[for="user-team"] {
+  width: 150px;
+}
+
+div.join-form h2[for="user-gender"], div.join-form label.title[for="user-gender"] {
+  width: 70px;
 }
 
 div.join-form h2 span.error, div.join-form label.title span.error {
@@ -254,6 +271,8 @@ div.join-form p.explanation {
   font-size: 15px;
   padding: 10px 0;
   opacity: 0.7;
+  word-break: keep-all;
+  line-height: 1.5;
 }
 
 div.form-group {
@@ -272,7 +291,7 @@ div.form-group label.icon[for="user-email"] {
 }
 
 div.form-group label.icon[for="user-name"] {
-  margin-top: 20px;
+  margin-top: 38px;
 }
 
 div.form-group input:not([type="radio"]) {
@@ -334,6 +353,10 @@ div.form-group select option {
 div.form-group select.active {
   border-radius: 20px 20px 0 0;
   background: rgba(50, 150, 200, 0.7);
+}
+
+div.form-group select[name="user-job"] {
+  margin-top: 10px;
 }
 
 div.form-group select[name="social_select"] {
@@ -604,7 +627,7 @@ div.group.cost {
 
 div.group.cost span.label {
   position: absolute;
-  top: 75px;
+  top: 110px;
 }
 
 div.group.cost span.label.left {
@@ -711,6 +734,7 @@ div.group.agree label {
   line-height: 1.5;
   padding-left: 50px;
   word-break: keep-all;
+  margin-left: 10px;
 }
 
 div.group.agree label a {
@@ -721,8 +745,14 @@ div.group.agree label a {
   top: -2px;
 }
 
+div.group.agree label span.error {
+  margin-left: 20px;
+  color: indianred;
+}
+
 div.group.agree input[type="checkbox"]:empty ~ label:before, div.group.agree input[type="checkbox"]:empty ~ label:before {
   top: 2px;
+  left: -10px;
 }
 
 div.group span.left-mrg {
