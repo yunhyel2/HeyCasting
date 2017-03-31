@@ -103,6 +103,14 @@ body.join {
   transition: all 0.5s;
 }
 
+body.social {
+  background: url("/img/background/03_back.jpg");
+  background-size: cover;
+  overflow: hidden;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
 body.fixed {
   position: fixed;
 }

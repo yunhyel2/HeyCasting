@@ -47,7 +47,7 @@
                         </ul>
                     </div>
                 </div>
-                <div id="user-contents" class="step hidden">
+                <div id="user-contents" class="step {{ strpos( Request::segment(1) , 'social' ) ? '' : 'hidden' }}">
                     @if( strpos( Request::segment(1) , 'social' ) )
                         <input type="hidden" name="user-email" value="{{ $user-email }}"/>
                         <input type="hidden" name="link" value="{{ $link }}"/>
