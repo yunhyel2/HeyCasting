@@ -14,7 +14,7 @@
             <div class="step-wrap">
                 <div id="user-account" class="step {{ strpos( Request::segment(1) , 'social' ) ? 'hidden' : '' }}">
                     <div class="group">
-                        <h2>엔터테이너 회원가입</h2>
+                        <h2>엔터테이너 회원가입<span class="required"><img src="/img/required.png" alt="(필수)"></span></h2>
                         <div class="form-group">
                             <label for="user-email" class="icon"><img src="/img/icon_mail_address.png" alt="" width="20px" height="auto"/></label>
                             <input type="email" name="user-email" id="user-email" class="required email" placeholder="이메일을 입력하세요" autocomplete="Off"/>
@@ -76,8 +76,7 @@
                         <div class="form-group">
                             <label for="main-profile" class="title">메인 프로필 사진</label>
                             <p class="explanation">엔터테이너 리스트에 노출되는 대표 사진입니다</p>
-                            <div class="preview button">메인 사진 등록</div>
-                            <input type="file" name="main-profile" id="main-profile" class="required image dont-show"/>
+                            <div class="preview button" id="profile_image">메인 사진 등록</div>
                         </div>
                     </div>
                     <div class="group photos">
@@ -212,6 +211,69 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="group location">
+                        <h2>지역 선택</h2>
+                        <div class="form-group half">
+                            <label for="location1">거주지</label>
+                            <select name="location1" id="location1" class="required">
+                                <option value selected>선택하세요</option>
+                                <option value="1">한국 내</option>
+                                <option value="2">한국 외</option>
+                            </select>
+                            <ul class="select hidden">
+                                <li name="1">한국 내</li>
+                                <li name="2">한국 외</li>
+                            </ul>
+                        </div>
+                        <div class="form-group half">
+                            <label for="location2">본 국적</label>
+                            <select name="location2" id="location2" class="required">
+                                <option value selected>선택하세요</option>
+                                <option value="1">한국</option>
+                                <option value="2">중국</option>
+                                <option value="3">일본</option>
+                                <option value="4">아시아(그 외)</option>
+                                <option value="5">러시아</option>
+                                <option value="6">미국</option>
+                                <option value="7">유럽</option>
+                                <option value="8">기타</option>
+                            </select>
+                            <ul class="select hidden">
+                                <li name="1">한국</li>
+                                <li name="2">중국</li>
+                                <li name="3">일본</li>
+                                <li name="4">아시아(그 외)</li>
+                                <li name="5">러시아</li>
+                                <li name="6">미국</li>
+                                <li name="7">유럽</li>
+                                <li name="8">기타</li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <label for="location3">캐스팅 선호 지역</label>
+                            <select name="location3" id="location3" class="required">
+                                <option value selected>선택하세요</option>
+                                <option value="1">국내 외 전체</option>
+                                <option value="2">국내 전체</option>
+                                <option value="3">서울·수도권</option>
+                                <option value="4">강원</option>
+                                <option value="5">경상</option>
+                                <option value="6">전라</option>
+                                <option value="7">충청</option>
+                                <option value="8">제주</option>
+                            </select>
+                            <ul class="select hidden">
+                                <li name="1">국내 외 전체</li>
+                                <li name="2">국내 전체</li>
+                                <li name="3">서울·수도권</li>
+                                <li name="4">강원</li>
+                                <li name="5">경상</li>
+                                <li name="6">전라</li>
+                                <li name="7">충청</li>
+                                <li name="8">제주</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="group career">
                         <h2>경력 경험 선택</h2>
                         <p class="explanation">선택사항이며, 최대 5개까지 선택 가능합니다</p>
@@ -246,12 +308,12 @@
                                     <input type="checkbox" id="school01" name="career[]" class="dont-show" value="5"/>
                                 </li>
                                 <li>
-                                    <label for="school02">축제</label>
-                                    <input type="checkbox" id="school02" name="career[]" class="dont-show" value="6"/>
-                                </li>
-                                <li>
                                     <label for="school03" class="lhsmall">입학<br/>졸업식</label>
                                     <input type="checkbox" id="school03" name="career[]" class="dont-show" value="7"/>
+                                </li>
+                                <li>
+                                    <label for="school02">대학축제</label>
+                                    <input type="checkbox" id="school02" name="career[]" class="dont-show" value="6"/>
                                 </li>
                                 <li class="no-right">
                                     <label for="school04" class="lhsmall">대학교<br/>강연</label>
@@ -267,7 +329,7 @@
                                     <input type="checkbox" id="family01" name="career[]" class="dont-show" value="9"/>
                                 </li>
                                 <li>
-                                    <label for="family02" class="lhsmall">돌잔치<br/>백일</label>
+                                    <label for="family02" class="lhsmall">백일<br/>돌잔치</label>
                                     <input type="checkbox" id="family02" name="career[]" class="dont-show" value="10"/>
                                 </li>
                                 <li>
@@ -282,16 +344,16 @@
                                     <label class="strong">커플</label>
                                 </li>
                                 <li>
-                                    <label for="couple01">약혼식</label>
-                                    <input type="checkbox" id="couple01" name="career[]" class="dont-show" value="12"/>
+                                    <label for="couple03">이벤트</label>
+                                    <input type="checkbox" id="couple03" name="career[]" class="dont-show" value="14"/>
                                 </li>
                                 <li>
                                     <label for="couple02">프로포즈</label>
                                     <input type="checkbox" id="couple02" name="career[]" class="dont-show" value="13"/>
                                 </li>
                                 <li>
-                                    <label for="couple03">이벤트</label>
-                                    <input type="checkbox" id="couple03" name="career[]" class="dont-show" value="14"/>
+                                    <label for="couple01">약혼식</label>
+                                    <input type="checkbox" id="couple01" name="career[]" class="dont-show" value="12"/>
                                 </li>
                                 <li class="no-right">
                                     <label for="couple04">피로연</label>
@@ -310,13 +372,13 @@
                                     <label for="etc02">파티</label>
                                     <input type="checkbox" id="etc02" name="career[]" class="dont-show" value="21"/>
                                 </li>
-                                <li>
-                                    <label for="etc03">박람회</label>
-                                    <input type="checkbox" id="etc03" name="career[]" class="dont-show" value="17"/>
-                                </li>
                                 <li class="no-right">
                                     <label for="etc04">화보</label>
                                     <input type="checkbox" id="etc04" name="career[]" class="dont-show" value="22"/>
+                                </li>
+                                <li class="no-right">
+                                    <label for="etc09">패션쇼</label>
+                                    <input type="checkbox" id="etc09" name="career[]" class="dont-show" value="20"/>
                                 </li>
                             </ul>
                             <ul>
@@ -325,20 +387,20 @@
                                     <input type="checkbox" id="etc05" name="career[]" class="dont-show" value="18"/>
                                 </li>
                                 <li>
+                                    <label for="etc08">시상식</label>
+                                    <input type="checkbox" id="etc08" name="career[]" class="dont-show" value="24"/>
+                                </li>
+                                <li>
                                     <label for="etc06">사진전</label>
                                     <input type="checkbox" id="etc06" name="career[]" class="dont-show" value="19"/>
                                 </li>
                                 <li>
-                                    <label for="etc07">홈쇼핑</label>
-                                    <input type="checkbox" id="etc07" name="career[]" class="dont-show" value="23"/>
+                                    <label for="etc03">박람회</label>
+                                    <input type="checkbox" id="etc03" name="career[]" class="dont-show" value="17"/>
                                 </li>
                                 <li>
-                                    <label for="etc08">시상식</label>
-                                    <input type="checkbox" id="etc08" name="career[]" class="dont-show" value="24"/>
-                                </li>
-                                <li class="no-right">
-                                    <label for="etc09">패션쇼</label>
-                                    <input type="checkbox" id="etc09" name="career[]" class="dont-show" value="20"/>
+                                    <label for="etc07">홈쇼핑</label>
+                                    <input type="checkbox" id="etc07" name="career[]" class="dont-show" value="23"/>
                                 </li>
                             </ul>
                         </div>
@@ -459,4 +521,15 @@
     <script type="text/javascript" src="/jquery.validation.1.15.0/additional-methods.js"></script>
     <script type="text/javascript" src="/jquery.validation.1.15.0/messages_ko.min.js"></script>
     <script type="text/javascript" src="/js/form-script.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="jquery.picture.cut/src/jquery.picture.cut.js"></script>
+    <script>
+        $('div#profile_image').PictureCut({
+            InputOfImageDirectory       : "image",
+            PluginFolderOnServer        : "/jquery.picture.cut/",
+            FolderOnServer              : "/uploads/",
+            EnableCrop                  : true,
+            CropWindowStyle             : "Bootstrap"
+        });
+    </script> 
 @endsection

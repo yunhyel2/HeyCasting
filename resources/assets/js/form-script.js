@@ -234,11 +234,6 @@
         }
     });
 
-//메인프로필
-    $('div.preview.button').on('click', function(){
-        $(this).next().click();
-    });
-
 //이미지Preview
     $(document).on('change', 'input[type="file"].image', function(e){
         if ($(this).val()!="") {
