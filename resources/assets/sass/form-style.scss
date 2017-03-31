@@ -354,8 +354,8 @@ div.group{
             }
         }
         input{
-            width:70%;
-            padding:0;
+            width:100%;
+            padding:0 50px 0 0;
             margin:0;
         }
         a.preview{
@@ -439,25 +439,43 @@ div.group{
             }
         }
     }
-    &.cost{
-        position:relative;
-        span.label{
+    &.cost{        
+        label{
+            margin-bottom:15px;
+        }
+        p{
+            text-align:center;
+        }
+    }
+    &.sns{
+        label.icon{
             position:absolute;
-            top:110px;
-            &.left{
-                left:0;
-            }
-            &.right{
-                right:0;
+            margin-top:-9px;
+            span{
+                font-size: 13px;
+                position: relative;
+                bottom: 2px;
+                left:3px;
+                opacity:0.7;
             }
         }
         input[type="text"]{
-            padding-right:80px;
-            text-align:right;
-        }
-        label[for="cost-secret"]{
-            float:right;
-            top:-30px;
+            padding-right:40px;
+            &[name="social_instagram"]{
+                padding-left:198px;
+            }
+            &[name="social_facebook"]{
+                padding-left:188px;
+            }
+            &[name="social_blog"]{
+                padding-left:160px;
+            }
+            &[name="social_twitter"]{
+                padding-left:145px;
+            }
+            &[name="social_youtube"]{
+                padding-left:240px;
+            }
         }
     }
     &.additional{
@@ -497,35 +515,31 @@ div.group{
             input.intro{
                 margin:0;
             }
+            tr{
+                margin-bottom:2px;
+            }
             td{
                 padding:0 5px;
                 box-sizing:border-box;
                 height:40px;
+                text-align:right;
                 input{
                     height:35px;
                 }
                 &.long{
                     text-align:right;
                 }
-            }
-        }
-    }
-    &.sns{
-        div.form-group > div{
-            position:relative;
-            margin:5px 0;
-            label.icon{
-                position:absolute;
-            }
-            a.delete{
-                position:absolute;
-                top:10px;
-                right:10px;
-                width:17px;
-                img{
-                    width:100%;
-                    height:auto;
-                }
+                a.delete {
+                    margin-left:10px;
+                    color:#fff;
+                    img{
+                        position:relative;
+                        top:5px;
+                        width:auto;
+                        height:20px;
+                        margin-right:5px;
+                    }   
+                }                                
             }
         }
     }
@@ -562,6 +576,20 @@ div.group{
     }
     span.left-mrg{
         margin-left:20px;
+    }
+    div.form-group > div{
+        position:relative;
+        margin:5px 0;
+        a.delete{
+            position:absolute;
+            top:10px;
+            right:10px;
+            width:17px;
+            img{
+                width:100%;
+                height:auto;
+            }
+        }
     }
 }
 

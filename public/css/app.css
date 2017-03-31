@@ -93,30 +93,28 @@ body {
   height: 100%;
   background: url("/img/background/01_back.jpg");
   background-size: cover;
-  -webkit-transition: background 0.5s;
-  transition: background 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 body.join {
   background: url("/img/background/02_back.jpg");
   background-size: cover;
   overflow: hidden;
-  -webkit-transition: background 0.5s;
-  transition: background 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 body.social {
   background: url("/img/background/03_back.jpg");
   background-size: cover;
   overflow: hidden;
-  -webkit-transition: background 0.5s;
-  transition: background 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 body.fixed {
   position: fixed;
-  -webkit-transition: background 0.5s;
-  transition: background 0.5s;
 }
 
 body h1, body h2, body h3, body h4, body strong, body b {
@@ -563,8 +561,8 @@ div.group.video div.bt-mrg:last-child {
 }
 
 div.group.video input {
-  width: 70%;
-  padding: 0;
+  width: 100%;
+  padding: 0 50px 0 0;
   margin: 0;
 }
 
@@ -655,31 +653,49 @@ div.group.career ul li label.lhsmall {
   line-height: 20px;
 }
 
-div.group.cost {
-  position: relative;
+div.group.cost label {
+  margin-bottom: 15px;
 }
 
-div.group.cost span.label {
+div.group.cost p {
+  text-align: center;
+}
+
+div.group.sns label.icon {
   position: absolute;
-  top: 110px;
+  margin-top: -9px;
 }
 
-div.group.cost span.label.left {
-  left: 0;
+div.group.sns label.icon span {
+  font-size: 13px;
+  position: relative;
+  bottom: 2px;
+  left: 3px;
+  opacity: 0.7;
 }
 
-div.group.cost span.label.right {
-  right: 0;
+div.group.sns input[type="text"] {
+  padding-right: 40px;
 }
 
-div.group.cost input[type="text"] {
-  padding-right: 80px;
-  text-align: right;
+div.group.sns input[type="text"][name="social_instagram"] {
+  padding-left: 198px;
 }
 
-div.group.cost label[for="cost-secret"] {
-  float: right;
-  top: -30px;
+div.group.sns input[type="text"][name="social_facebook"] {
+  padding-left: 188px;
+}
+
+div.group.sns input[type="text"][name="social_blog"] {
+  padding-left: 160px;
+}
+
+div.group.sns input[type="text"][name="social_twitter"] {
+  padding-left: 145px;
+}
+
+div.group.sns input[type="text"][name="social_youtube"] {
+  padding-left: 240px;
 }
 
 div.group.additional label.sub-title {
@@ -725,10 +741,15 @@ div.group.additional table input.intro {
   margin: 0;
 }
 
+div.group.additional table tr {
+  margin-bottom: 2px;
+}
+
 div.group.additional table td {
   padding: 0 5px;
   box-sizing: border-box;
   height: 40px;
+  text-align: right;
 }
 
 div.group.additional table td input {
@@ -739,25 +760,17 @@ div.group.additional table td.long {
   text-align: right;
 }
 
-div.group.sns div.form-group > div {
+div.group.additional table td a.delete {
+  margin-left: 10px;
+  color: #fff;
+}
+
+div.group.additional table td a.delete img {
   position: relative;
-  margin: 5px 0;
-}
-
-div.group.sns div.form-group > div label.icon {
-  position: absolute;
-}
-
-div.group.sns div.form-group > div a.delete {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 17px;
-}
-
-div.group.sns div.form-group > div a.delete img {
-  width: 100%;
-  height: auto;
+  top: 5px;
+  width: auto;
+  height: 20px;
+  margin-right: 5px;
 }
 
 div.group.agree label {
@@ -791,6 +804,23 @@ div.group.agree input[type="checkbox"]:empty ~ label:before, div.group.agree inp
 
 div.group span.left-mrg {
   margin-left: 20px;
+}
+
+div.group div.form-group > div {
+  position: relative;
+  margin: 5px 0;
+}
+
+div.group div.form-group > div a.delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 17px;
+}
+
+div.group div.form-group > div a.delete img {
+  width: 100%;
+  height: auto;
 }
 
 form[name="join-form"].complete div.complete-wrap {

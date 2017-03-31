@@ -50,7 +50,6 @@
                             alert('이미 존재하는 이메일입니다!');
                             return false;
                         }else{
-                            console.log(data);
                             if( confirm('다음 단계로 넘어가시겠습니까?') ){
                                 $('div#user-contents').removeClass('hidden').parent().animate(
                                     { 
@@ -58,11 +57,12 @@
                                     },{ 
                                         complete:function(){
                                             $('div#user-account').find('input.next').remove();
+                                            $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
                                         }
                                     }
                                 );
-                                $('body.join').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
                                 $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                
                             }
                         }
                     },error:function(){
@@ -107,13 +107,13 @@
         if( $(this).hasClass('video') ){
             $count = $('input[name="videos[]"]').length;
             if( $count < 3 ){
-                $(this).prev('div.form-group').append('<div class="items bt-mrg"><input type="text" name="videos[]" id="video'+($count+1)+'" class="required no-pad" placeholder="Youtube 주소 입력"/><a href="#" class="preview">등록</a></div>');
+                $(this).prev('div.form-group').append('<div class="items bt-mrg"><input type="text" name="videos[]" id="video'+($count+1)+'" class="required no-pad" placeholder="Youtube 주소 입력"/><a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a></div>');
                 $(this).prev('div.form-group').find('ul.video').css('width', 160*($count+1)+'px');
                 $(this).prev('div.form-group').find('ul.video li').eq($count).removeClass('hidden');
             }
         }else if( $(this).hasClass('spec') ){
             if( $('input[name="spec-intro1[]"]').length < 5 ){
-                $(this).parents('tr').before('<tr class="items"><td><input type="text" name="spec-intro1[]" class="intro" placeholder="ex)2017"/></td><td><input type="text" name="spec-intro2[]" class="intro" placeholder="부산영화제"/></td><td><input type="text" name="spec-intro3[]" class="intro"/></td></tr>');
+                $(this).parents('tr').before('<tr class="items"><td><input type="text" id="spec-intro" name="spec-intro1[]" class="intro digits spec" placeholder="ex)2017" autocomplete="Off"/></td><td><input type="text" name="spec-intro2[]" class="intro spec" placeholder="부산영화제" autocomplete="Off"/></td><td><input type="text" name="spec-intro3[]" class="intro spec" autocomplete="Off"/></td></tr>');
             }
         }
     });
@@ -122,20 +122,37 @@
     $(document).on('click', 'a.delete' , function(e){
         e.preventDefault();
         if( $(this).parent().parent().parent().hasClass('sns') ){
-            $(this).parent().addClass('hidden');
+            $(this).parent().addClass('hidden').find('input').val('');
             $name = $(this).prev().attr('name').replace('social_', '');
             $('ul.select').find('li[name="'+$name+'"]').removeClass('hidden');
+        }else if( $(this).parent().parent().parent().hasClass('video') ){
+            $count = $('input[name="videos[]"]').length;
+            $(this).closest('div.form-group').find('ul.video').css('width', 160*($count-1)+'px');
+            $(this).closest('div.form-group').find('ul.video li').eq($count).addClass('hidden');
+            $(this).parent().remove();
         }else{
-            console.log('onono');
+            if( $('input[name="spec-intro1[]"]').length > 1 ){
+                $(this).closest('tr').prev().remove();
+            }
         }
     });
 //Folder item
     $('a.toggle-folder').on('click',function(){
         $(this).parent().next().toggleClass('hidden');
         if( $(this).find('i').hasClass('fa-angle-down') ){
-            $(this).html('<i class="fa fa-angle-up" aria-hidden="true"></i>접기');
+            $(this).html('<i class="fa fa-angle-up" aria-hidden="true"></i>취소');
+            if( $(this).parent().next().is('textarea') ){
+                $(this).parent().next().empty().removeAttr('disabled');
+            }else{
+                $('input.spec').removeAttr('disabled');
+            }
         }else{
-            $(this).html('<i class="fa fa-angle-down" aria-hidden="true"></i>더보기');
+            $(this).html('<i class="fa fa-angle-down" aria-hidden="true"></i>작성');
+            if( $(this).parent().next().is('textarea') ){
+                $(this).parent().next().attr('disabled','disabled');
+            }else{
+                $('input.spec').attr('disabled','disabled');
+            }
         }
     });
 //Select
@@ -155,7 +172,12 @@
             $(this).parent('ul.select').prev('select').find('option[value="'+$value+'"]').prop("selected", true);
             $(this).parent('ul.select').addClass('hidden').prev('select').removeClass('active');
             if( $(this).parent('ul.select').prev('select').attr('name') == 'user-job' ){
-                $('select[name="user-job2"], select[name="user-job3"]').removeClass('disable');
+                if( $(this).attr('name') !== '기타 아티스트' ){
+                    $('select[name="user-job2"], select[name="user-job3"]').removeClass('disable');
+                }else{
+                    $('select[name="user-job2"]').removeClass('disable');
+                    $('select[name="user-job3"]').addClass('disable');
+                }
                 //jquery
                 $this = $('select[name="user-job"]');
                 jQuery.ajax({ 

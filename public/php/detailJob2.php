@@ -16,7 +16,7 @@ $cnt = count($zipfile);
 echo "<option value disabled selected>세부분야</option>"; 
 for($i=0; $i < $cnt; $i++){ 
     if(preg_match("/".$_POST['Name']."/",$zipfile[$i])){ 
-        $joso_ex = explode(" ",$zipfile[$i]); 
+        $joso_ex = explode("#",$zipfile[$i]); 
         echo "<option value=\"".$joso_ex[1]."\">".$joso_ex[1]."</option>"; 
     } 
 } 

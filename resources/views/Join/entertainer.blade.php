@@ -65,11 +65,9 @@
                             </div>
                             <div class="items bt-mrg">
                                 <input type="text" name="videos[]" id="video1" class="required no-pad" placeholder="Youtube 주소 입력" autocomplete="Off"/>
-                                <a href="#" class="preview">등록</a>
                             </div>
                             <div class="bt-mrg">
                                 <input type="text" name="videos[]" id="video2" class="required no-pad" placeholder="Youtube 주소 입력" autocomplete="Off"/>
-                                <a href="#" class="preview">등록</a>
                             </div>
                         </div>
                         <a href="#" class="btn add-items video"><img src="/img/icon_plus_contents.png" class="icon" alt=""/></i>영상 추가 하기</a>
@@ -130,7 +128,7 @@
                                 <option value="퍼포먼스">퍼포먼스</option>
                                 <option value="모델">모델</option>
                                 <option value="크리에이터">크리에이터</option>
-                                <option value="기타아티스트">기타아티스트</option>
+                                <option value="기타 아티스트">기타 아티스트</option>
                             </select>
                             <ul class="select hidden">
                                 <li name="사회자">MC/사회자</li>
@@ -140,7 +138,7 @@
                                 <li name="퍼포먼스">퍼포먼스</li>
                                 <li name="모델">모델</li>
                                 <li name="크리에이터">크리에이터</li>
-                                <li name="기타아티스트">기타아티스트</li>
+                                <li name="기타 아티스트">기타 아티스트</li>
                             </ul>
                             <div class="half">
                                 <select class="half disable required" name="user-job2">
@@ -347,13 +345,25 @@
                     </div>
                     <div class="group cost">
                         <div class="form-group">
-                            <label for="casting-cost" class="title">캐스팅 비용</label>
-                            <p class="explanation">비용 기준을 공개하면 더 빠른 캐스팅에 도움이 됩니다</p>
-                            <span class="left label">최소</span>
-                            <span class="right label">만원 기준</span>
-                            <input type="text" id="casting-cost" maxlength="10" style="text-align:right" name="casting-cost" class="digits required" autocomplete="Off"/>
-                            <input type="checkbox" name="cost-secret" id="cost-secret" class="dont-show" value="on"/>
-                            <label for="cost-secret">캐스팅 비용 비공개</label>
+                            <label for="casting-cost" class="title">평균 캐스팅 비용</label>
+                            <select class="required" name="casting-cost" id="casting-cost">
+                                <option selected value>비용 선택(건당)</option>
+                                <option value="cost1">0 ~ 30만원</option>
+                                <option value="cost2">30 ~ 50만원</option>
+                                <option value="cost3">50 ~ 100만원</option>
+                                <option value="cost4">100 ~ 200만원</option>
+                                <option value="cost5">200 ~ 500만원</option>
+                                <option value="cost6">500만원 이상</option>
+                            </select>
+                            <ul class="select hidden">
+                                <li name="cost1">0 ~ 30만원</li>
+                                <li name="cost2">30 ~ 50만원</li>
+                                <li name="cost3">50 ~ 100만원</li>
+                                <li name="cost4">100 ~ 200만원</li>
+                                <li name="cost5">200 ~ 500만원</li>
+                                <li name="cost6">500만원 이상</li>
+                            </ul>
+                            <p class="explanation">캐스팅 비용은 헤이캐스팅 내의 참고 정보로 활용되며, 프로필에는 노출되지 않습니다.(수정 가능)</p>
                         </div>
                     </div>
                     <div class="group">
@@ -365,11 +375,11 @@
                     <div class="group additional">
                         <h2>추가 작성</h2>
                         <div class="form-group">
-                            <label for="detail-intro" class="sub-title">상세 소개<a class="toggle-folder" href="#"><i class="fa fa-angle-down" aria-hidden="true"></i>더보기</a></label>
+                            <label for="detail-intro" class="sub-title">상세 소개<a class="toggle-folder" href="#"><i class="fa fa-angle-down" aria-hidden="true"></i>작성</a></label>
                             <textarea id="detail-intro" name="detail-intro" class="intro hidden" placeholder="(100자 이내)" maxlength="100"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="spec-intro" class="sub-title">경력 및 수상 내역<a class="toggle-folder" href="#"><i class="fa fa-angle-down" aria-hidden="true"></i>더보기</a></label>
+                            <label for="spec-intro" class="sub-title">경력 및 수상 내역<a class="toggle-folder" href="#"><i class="fa fa-angle-down" aria-hidden="true"></i>작성</a></label>
                             <table class="hidden">
                                 <tr>
                                     <th>날짜</th>
@@ -377,12 +387,12 @@
                                     <th>내용</th>
                                 </tr>
                                 <tr class="items">
-                                    <td><input type="text" id="spec-intro" name="spec-intro1[]" class="intro digits" placeholder="ex)2017" autocomplete="Off"/></td>
-                                    <td><input type="text" name="spec-intro2[]" class="intro" placeholder="부산영화제" autocomplete="Off"/></td>
-                                    <td><input type="text" name="spec-intro3[]" class="intro" autocomplete="Off"/></td>
+                                    <td><input type="text" id="spec-intro" name="spec-intro1[]" class="intro digits spec" placeholder="ex)2017" disabled autocomplete="Off"/></td>
+                                    <td><input type="text" name="spec-intro2[]" class="intro spec" placeholder="부산영화제" disabled autocomplete="Off"/></td>
+                                    <td><input type="text" name="spec-intro3[]" class="intro spec" disabled autocomplete="Off"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3" class="long"><a href="#" class="btn add-items spec"><img src="/img/icon_plus_contents.png" class="icon" alt=""/></i>수상/경력 추가하기</a></td>
+                                    <td colspan="3" class="long"><a href="#" class="btn add-items spec"><img src="/img/icon_plus_contents.png" class="icon" alt=""/></i>수상/경력 추가하기</a><a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/>삭제</a></td>
                                 </tr>
                             </table>
                         </div>
@@ -396,31 +406,38 @@
                                 <option value="facebook">페이스북</option>
                                 <option value="blog">블로그</option>
                                 <option value="twitter">트위터</option>
+                                <option value="youtube">유투브</option>
                             </select>
                             <ul class="select hidden sns">
                                 <li name="instagram">인스타그램</li>
                                 <li name="facebook">페이스북</li>
                                 <li name="blog">블로그</li>
                                 <li name="twitter">트위터</li>
+                                <li name="youtube">유투브</li>
                             </ul>
                             <div id="social_instagram" class="hidden">
-                                <label for="social_instagram" class="icon"><i class="fa fa-instagram" aria-hidden="true"></i></label>
-                                <input type="text" name="social_instagram" placeholder="인스타그램 주소를 입력하세요" class="url" autocomplete="Off"/>
+                                <label for="social_instagram" class="icon"><i class="fa fa-instagram" aria-hidden="true"></i> <span>https://www.instagram.com/</span></label>
+                                <input type="text" name="social_instagram" autocomplete="Off"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                             <div id="social_facebook" class="hidden">
-                                <label for="social_facebook" class="icon"><i class="fa fa-facebook" aria-hidden="true"></i></label>
-                                <input type="text" name="social_facebook" placeholder="페이스북 주소를 입력하세요" class="url" autocomplete="Off"/>
+                                <label for="social_facebook" class="icon"><i class="fa fa-facebook" aria-hidden="true"></i> <span>https://www.facebook.com/</span></label>
+                                <input type="text" name="social_facebook" autocomplete="Off"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                             <div id="social_blog" class="hidden">
-                                <label for="social_blog" class="icon"><i class="fa fa-star" aria-hidden="true"></i></label>
-                                <input type="text" name="social_blog" placeholder="블로그 주소를 입력하세요" class="url" autocomplete="Off"/>
+                                <label for="social_blog" class="icon"><i class="fa fa-star" aria-hidden="true"></i> <span>http://blog.naver.com/</span></label>
+                                <input type="text" name="social_blog" autocomplete="Off"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                             <div id="social_twitter" class="hidden">
-                                <label for="social_twitter" class="icon"><i class="fa fa-twitter" aria-hidden="true"></i></label>
-                                <input type="text" name="social_twitter" placeholder="트위터 주소를 입력하세요" class="url" autocomplete="Off"/>
+                                <label for="social_twitter" class="icon"><i class="fa fa-twitter" aria-hidden="true"></i> <span>https://twitter.com/</span></label>
+                                <input type="text" name="social_twitter" autocomplete="Off"/>
+                                <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
+                            </div>
+                            <div id="social_youtube" class="hidden">
+                                <label for="social_youtube" class="icon"><i class="fa fa-youtube-play" aria-hidden="true"></i> <span>https://www.youtube.com/channel/</span></label>
+                                <input type="text" name="social_youtube" autocomplete="Off"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                         </div>
