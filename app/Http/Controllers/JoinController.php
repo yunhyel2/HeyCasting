@@ -28,7 +28,7 @@ class JoinController extends Controller
 
     public function index()
     {
-        if( request()->segment(1) == 'enter-join' ) { 
+        if( request()->segment(1) == 'enter-join' || request()->segment(1) == 'enter-social-join' ) { 
             return view('Join.entertainer');
         } else {
             return view('Join.user');

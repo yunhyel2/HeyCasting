@@ -14,14 +14,15 @@ class SocialController extends Controller
     public function callbackNaver() {
         $link = 'N';
         $user = Socialite::with('naver')->user();
+        $user_email = $user->getEmail();
         $userToJoin = Enter::where([
             'link' => 'N',
-            'email' => $user->getId(),
+            'email' => $user_email,
         ])->first();
-
+        
         // 앱에 가입되지 않은 아이디라면! 
         if(!$userToJoin) {
-            return redirect('/enter-join')->with('user', $user)->with('link', $link);
+            return redirect('/enter-social-join')->with('user-email', $user_email)->with('link', $link);
         } else {
             //이미 가입된 아이디입니다. 자동 로그인
             // \Auth::login($userToJoin); 
@@ -36,14 +37,15 @@ class SocialController extends Controller
     public function callbackKakao() {
         $link = 'K';
         $user = Socialite::with('kakao')->user();
+        $user_email = $user->getEmail();
         $userToJoin = Enter::where([
             'link' => 'K',
-            'email' => $user->getId(),
+            'email' => $user_email,
         ])->first();
 
         // 앱에 가입되지 않은 아이디라면! 
         if(!$userToJoin) {
-            return redirect('/enter-join')->with('user', $user)->with('link', $link);
+            return redirect('/enter-social-join')->with('user-email', $user_email)->with('link', $link);
         } else {
             //이미 가입된 아이디입니다. 자동 로그인 
             // \Auth::login($userToJoin); 
@@ -59,14 +61,15 @@ class SocialController extends Controller
     public function callbackFacebook() {
         $link = 'F';
         $user = Socialite::with('facebook')->user();
+        $user_email = $user->getEmail();
         $userToJoin = Enter::where([
             'link' => 'F',
-            'email' => $user->getId(),
+            'email' => $user_email,
         ])->first();
 
         // 앱에 가입되지 않은 아이디라면! 
         if(!$userToJoin) {
-            return redirect('/enter-join')->with('user', $user)->with('link', $link);
+            return redirect('/enter-social-join')->with('user-email', $user_email)->with('link', $link);
         } else {
             //이미 가입된 아이디입니다. 자동 로그인 
             // \Auth::login($userToJoin); 
@@ -82,14 +85,15 @@ class SocialController extends Controller
     public function callbackGoogle() {
         $link = 'G';
         $user = Socialite::with('google')->user();
+        $user_email = $user->getEmail();
         $userToJoin = Enter::where([
             'link' => 'G',
-            'email' => $user->getId(),
+            'email' => $user_email,
         ])->first();
 
         // 앱에 가입되지 않은 아이디라면! 
         if(!$userToJoin) {
-            return redirect('/enter-join')->with('user', $user)->with('link', $link);
+            return redirect('/enter-social-join')->with('user-email', $user_email)->with('link', $link);
         } else {
             //이미 가입된 아이디입니다. 자동 로그인 
             // \Auth::login($userToJoin); 
