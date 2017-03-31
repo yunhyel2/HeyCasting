@@ -168,11 +168,11 @@
                         <div class="form-group">
                             <label for="user-team" class="title inline">팀 여부 선택</label>
                             <span class="left-mrg">
-                                <input type="radio" name="isTeam" id="no-team" value="no-team" class="required dont-show"/>
+                                <input type="radio" name="isTeam" id="no-team" value="0" class="required dont-show"/>
                                 <label for="no-team">개인</label>
                             </span>
                             <span>
-                                <input type="radio" name="isTeam" id="team" value="team" class="required dont-show"/>
+                                <input type="radio" name="isTeam" id="team" value="1" class="required dont-show"/>
                                 <label for="team">팀</label>       
                             </span>                 
                         </div>
@@ -181,15 +181,15 @@
                         <div class="form-group">
                             <label for="user-gender" class="title inline">성별</label>
                             <span class="left-mrg">
-                                <input type="radio" name="gender" id="male" value="male" class="required dont-show"/>
+                                <input type="radio" name="gender" id="male" value="0" class="required dont-show"/>
                                 <label for="male">남</label>
                             </span>
                             <span>
-                                <input type="radio" name="gender" id="female" value="female" class="required dont-show"/>
+                                <input type="radio" name="gender" id="female" value="1" class="required dont-show"/>
                                 <label for="female">여</label>
                             </span>
                             <span>
-                                <input type="radio" name="gender" id="all" value="all" class="required dont-show"/>
+                                <input type="radio" name="gender" id="all" value="2" class="required dont-show"/>
                                 <label for="all">남여모두</label>
                             </span>
                         </div>
@@ -199,18 +199,18 @@
                         <div class="form-group">
                             <select name="user-age" id="user-age" class="required">
                                 <option value selected>선택하세요</option>
-                                <option value="10s">~ 10대</option>
-                                <option value="20s">20대</option>
-                                <option value="30s">30대</option>
-                                <option value="40s">40대</option>
-                                <option value="50s">50대 ~</option>
+                                <option value="10">~ 10대</option>
+                                <option value="20">20대</option>
+                                <option value="30">30대</option>
+                                <option value="40">40대</option>
+                                <option value="50">50대 ~</option>
                             </select>
                             <ul class="select hidden">
-                                <li name="10s">~ 10대</li>
-                                <li name="20s">20대</li>
-                                <li name="30s">30대</li>
-                                <li name="40s">40대</li>
-                                <li name="50s">50대 ~</li>
+                                <li name="10">~ 10대</li>
+                                <li name="20">20대</li>
+                                <li name="30">30대</li>
+                                <li name="40">40대</li>
+                                <li name="50">50대 ~</li>
                             </ul>
                         </div>
                     </div>

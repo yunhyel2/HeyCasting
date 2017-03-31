@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Http\Request\EnterJoinRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
@@ -27,7 +28,7 @@ class JoinController extends Controller
 
     public function index()
     {
-        if( request()->segment(1) == 'enter-join' ) { 
+        if( request()->segment(1) == 'enter-join' || request()->segment(1) == 'enter-social-join' ) { 
             return view('Join.entertainer');
         } else {
             return view('Join.user');
@@ -47,16 +48,17 @@ class JoinController extends Controller
         echo $email_count;
     }
 
-    public function store(Request $request) 
+    public function store(EnterJoinRequest $request) 
     {
-        // $link = $request->input('link'); // 앱로그인, 카카오톡, 페이스북, 구글 ... hide로
-        $email = $request->input('user-email'); // 앱 연동일 경우 처리 
+        // 간편 회원가입일 경우! link / user-email 넘겨주기 
+        // $link = $request->input('link'); 
+        $email = $request->input('user-email'); 
         $password = $request->input('password');
         $password2 = $request->input('passwordConf');
 
-        $videos = $request->input('videos'); //배열 
+        $videos = $request->input('videos'); 
         $main_image = $request->file('main-profile');
-        $images = $request->file('photos'); //배열 
+        $images = $request->file('photos'); 
 
         $name = $request->input('user-name');
         $phone = $request->input('user-phone');
@@ -67,16 +69,16 @@ class JoinController extends Controller
         $team_name = $request->input('team-name');
         $gender = $request->input('gender');
         $team = $request->input('isTeam');
-        $age = $request->input('user-age'); //db에 추가! 
-        $performs = $request->input('career'); //배열 
+        $age = $request->input('user-age'); 
+        $performs = $request->input('career'); 
         $cost = $request->input('casting-cost');
-        $cost_flag = $request->input('cost-secret'); //value = "on"
+        $cost_flag = $request->input('cost-secret');
         $intro = $request->input('user-intro');
 
         $intro_detail = $request->input('intro');
-        $spec1 = $request->input('spec-intro1[]');
-        $spec2 = $request->input('spec-intro2[]');
-        $spec3 = $request->input('spec-intro3[]');
+        $spec1 = $request->input('spec-intro1');
+        $spec2 = $request->input('spec-intro2');
+        $spec3 = $request->input('spec-intro3');
 
         $sns_instagram = $request->input('social_instagram');
         $sns_facebook = $request->input('social_facebook');
@@ -100,7 +102,7 @@ class JoinController extends Controller
                 $entertainer->password = bcrypt($password);
                 $entertainer->email = $email; 
                 $entertainer->name = $name;
-                $entertainer->nickname = $name; // 다음에 변경가능하도록! 
+                $entertainer->nickname = $name;
                 $entertainer->nation = 'KR'; 
                 $entertainer->gukgi = 2130837906; 
                 $entertainer->code = 82; 
@@ -110,15 +112,13 @@ class JoinController extends Controller
 
                 $enter_id = Enter::where('email', $email)->first()->id;
 
-                if( $job2 ) {
-                    $enter_job = new Enter_job;
-                    $enter_job->enter_id = $enter_id;
-                    $job_id = Job::where('job', $job)->first()->id;
-                    $enter_job->job_id = $job_id;
-                    $enter_job->category_id = Job_genre::where('job_id', $job_id)->where('category', $job2)->first()->id;
-                    // $enter_job->category_id = 1;
-                    $enter_job->save();
-                }
+                $enter_job = new Enter_job;
+                $enter_job->enter_id = $enter_id;
+                $job_id = Job::where('job', $job)->first()->id;
+                $enter_job->job_id = $job_id;
+                $enter_job->category_id = Job_genre::where('job_id', $job_id)->where('category', $job2)->first()->id;
+                $enter_job->save();
+                
 
                 if( $job3 ) {
                     $enter_job = new Enter_job;
@@ -126,50 +126,38 @@ class JoinController extends Controller
                     $job_id = Job::where('job', $job)->first()->id;
                     $enter_job->job_id = $job_id;
                     $enter_job->category_id = Job_genre::where('job_id', $job_id)->where('category', $job3)->first()->id;
-                    // $enter_job->category_id = 1;
                     $enter_job->save();
                 }
-                
-                foreach( $performs as $perform ) {
-                    $enter_perform = new Enter_perform;
-                    $enter_perform->enter_id = $enter_id;
-                    $category_id = Perform_category::where('category', $perform)->first()->id;
-                    // $enter_perform->perform_id = $perform;
-                    $enter_perform->category_id = $category_id;
-                    $enter_perform->save();
+                if( $performs ){
+                    foreach( $performs as $perform ) {
+                        $enter_perform = new Enter_perform;
+                        $enter_perform->enter_id = $enter_id;
+                        $category_id = Perform_category::where('id', $perform)->first()->id;
+                        $enter_perform->category_id = $category_id;
+                        $enter_perform->save();
+                    }
                 }
                 
                 $profile = new Enter_profile;
                 $profile->enter_id = $enter_id;
-                $profile->name = $team_name; //활동명 예명 팀명 입력 
-                // $profile->howmany = Job_howmany::where('job_id', $job)->where('num', $howmany)->first()->id;
-                
+                $profile->name = $team_name; 
                 $profile->gender = $gender;
-                if( $team == 'no-team' ) {
-                    $profile->team = 0;
-                } else {
-                    $profile->team = 1;
-                }
+                $profile->team = $team;
+               
                 $profile->howmany = 0;
                 $profile->age = $age;
                 $profile->intro = $intro;
                 $replace = array("\'", "\\", "\"");
                 $intro_detail = str_replace( $replace, '`', $intro_detail);
-                // $career = str_replace( $replace, '`', $career);
-                // $recent_perform = str_replace( $replace, '`', $recent_perform);
                 $intro_detail = str_replace('<br />', '<br>', nl2br($intro_detail));
-                // $career = str_replace('<br />', '<br>', nl2br($career));
-                // $recent_perform = str_replace('<br />', '<br>', nl2br($recent_perform));
 
                 $profile->intro_detail = $intro_detail;
                 $spec = '';
-                for( $i=0; $i<3; $i++ ) {
-                    if( $spec1[$i] ) {
-                        if( $i == 0 ) {
-                            $spec = $spec1[$i] . ' ' . $spec2[$i] . ' ' . $spec3[$i];
-                        } else {
-                            $spec = $spec . '<br>' . $spec1[$i] . ' ' . $spec2[$i] . ' ' . $spec3[$i];
-                        }
+                for( $i=0; $i<count($spec1); $i++ ) {
+                    if( $i == 0 ) {
+                        $spec = $spec1[$i] . ' ' . $spec2[$i] . ' ' . $spec3[$i];
+                    } else {
+                        $spec = $spec . '<br>' . $spec1[$i] . ' ' . $spec2[$i] . ' ' . $spec3[$i];
                     }
                 }
                 $profile->recent_perform = '';
@@ -178,7 +166,7 @@ class JoinController extends Controller
                 $profile->perform_hour = 0; 
                 $profile->perform_minutes = 0;
                 $profile->address = '';
-                $profile->region = ''; //안쓰는 column/
+                $profile->region = ''; 
     /*
                 $address = explode('(', $address); //괄호 안에 상세주소가 존재할 경우 에러 발생 
                 $address = urlencode($address[0]);
@@ -214,12 +202,15 @@ class JoinController extends Controller
                 $profile_main_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
                 $profile_main_image->save();
 
-                foreach( $images as $image ) {
-                    $profile_image = new Enter_image;
-                    $profile_image->enter_id = $enter_id;
-                    $profile_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $image, 'public');
-                    $profile_image->save();
+                if( $images ) { 
+                    foreach( $images as $image ) {
+                        $profile_image = new Enter_image;
+                        $profile_image->enter_id = $enter_id;
+                        $profile_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $image, 'public');
+                        $profile_image->save();
+                    }
                 }
+                
                 
                 foreach( $videos as $video ) {
                     $profile_video = new Enter_profile_video;
