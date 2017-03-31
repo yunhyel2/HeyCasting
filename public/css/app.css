@@ -93,26 +93,30 @@ body {
   height: 100%;
   background: url("/img/background/01_back.jpg");
   background-size: cover;
+  -webkit-transition: background 0.5s;
+  transition: background 0.5s;
 }
 
 body.join {
   background: url("/img/background/02_back.jpg");
   background-size: cover;
   overflow: hidden;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition: background 0.5s;
+  transition: background 0.5s;
 }
 
 body.social {
   background: url("/img/background/03_back.jpg");
   background-size: cover;
   overflow: hidden;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition: background 0.5s;
+  transition: background 0.5s;
 }
 
 body.fixed {
   position: fixed;
+  -webkit-transition: background 0.5s;
+  transition: background 0.5s;
 }
 
 body h1, body h2, body h3, body h4, body strong, body b {
@@ -144,6 +148,8 @@ img.icon {
 div.join-form {
   width: 90%;
   max-width: 500px;
+  height: 100%;
+  max-height: 800px;
   box-sizing: border-box;
   margin: 5% auto;
   background: rgba(0, 0, 0, 0.7);
@@ -198,7 +204,7 @@ div.join-form nav.join-nav li.active a {
 
 div.join-form form.join-form {
   clear: both;
-  height: 700px;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -785,6 +791,40 @@ div.group.agree input[type="checkbox"]:empty ~ label:before, div.group.agree inp
 
 div.group span.left-mrg {
   margin-left: 20px;
+}
+
+form[name="join-form"].complete div.complete-wrap {
+  box-sizing: border-box;
+  padding: 200px 80px;
+  width: 100%;
+  height: 100%;
+  max-height: 800px;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+form[name="join-form"].complete div.complete-wrap img {
+  width: 65%;
+  margin: 0 17.5%;
+}
+
+form[name="join-form"].complete div.complete-wrap p {
+  font-size: 18px;
+  text-align: center;
+  margin: 80px 0;
+}
+
+form[name="join-form"].complete div.complete-wrap a.button {
+  font-size: 18px;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  opacity: 0.8;
+  display: block;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  margin: 20px 0;
 }
 
 .section {

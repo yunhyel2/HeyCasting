@@ -8,7 +8,7 @@
                 <li name="user-profile"><a href="#" onclick="return false;">프로필 작성</a></li>
             </ul>
         </nav>
-        <form method="POST" name="join-form" class="join-form validate" action="{{ url('join-in') }}" enctype="multipart/form-data">
+        <form method="POST" name="join-form" class="join-form validate" action="{{ url('join-in-user') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="step-wrap">
                 <div id="user-account" class="step">
