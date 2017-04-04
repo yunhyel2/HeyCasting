@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!---css-->
     <link rel="stylesheet" href="{{ url('/css/app.css') }}">
-    <link href="/jQuery.filer.master/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-    <link href="/jQuery.filer.master/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+    <!---Cropit-->
+    <link rel="stylesheet" href="/croppic/assets/css/main.css"/>
+    <link rel="stylesheet" href="/croppic/assets/css/croppic.css">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!---js-->
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>

@@ -54,7 +54,7 @@
                     @endif
                     <div class="group video">
                         <div class="form-group">
-                            <label for="videos" class="title">활동 영상 첨부</label>
+                            <label for="videos" class="title">활동 영상 첨부<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
                             <p class="explanation">최소 2개 이상의 영상을 등록해주세요</p>
                             <div class="preview-items">
                                 <ul class="video">
@@ -70,19 +70,19 @@
                                 <input type="text" name="videos[]" id="video2" class="required no-pad" placeholder="Youtube 주소 입력" autocomplete="Off"/>
                             </div>
                         </div>
-                        <a href="#" class="btn add-items video"><img src="/img/icon_plus_contents.png" class="icon" alt=""/></i>영상 추가 하기</a>
+                        <a href="#" class="add-btn add-items video"><img src="/img/icon_plus_contents.png" class="icon" alt=""/></i>영상 추가 하기</a>
                     </div>
                     <div class="group main-profile">
                         <div class="form-group">
-                            <label for="main-profile" class="title">메인 프로필 사진</label>
+                            <label for="main-profile" class="title">메인 프로필 사진<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
                             <p class="explanation">엔터테이너 리스트에 노출되는 대표 사진입니다</p>
                             <div class="preview button" id="profile_image">메인 사진 등록</div>
                         </div>
                     </div>
                     <div class="group photos">
                         <div class="form-group">
-                            <label for="photos" class="title">추가 프로필 사진</label>
-                            <p class="explanation">최대 6개까지 등록 가능합니다</p>
+                            <label for="photos" class="title">추가 프로필 사진<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
+                            <p class="explanation">최소 2개 ~ 최대 6개까지 등록 가능합니다</p>
                             <div class="preview-items">
                                 <ul class="photos-preview">
                                     <li><label for="photo1"><i class="fa fa-plus" aria-hidden="true"></i></label></li>
@@ -94,8 +94,8 @@
                                 </ul>
                             </div>
                             <div class="dont-show">
-                                <input type="file" name="photos[]" id="photo1" class="image items dont-show"/>
-                                <input type="file" name="photos[]" id="photo2" class="image items dont-show"/>
+                                <input type="file" name="photos[]" id="photo1" class="required image items dont-show"/>
+                                <input type="file" name="photos[]" id="photo2" class="required image items dont-show"/>
                                 <input type="file" name="photos[]" id="photo3" class="image items dont-show"/>
                                 <input type="file" name="photos[]" id="photo4" class="image items dont-show"/>
                                 <input type="file" name="photos[]" id="photo5" class="image items dont-show"/>
@@ -105,7 +105,7 @@
                     </div>
                     <div class="group user" id="user-profile">
                         <div class="form-group">
-                            <label for="user-info" class="title">개인정보</label>
+                            <label for="user-info" class="title">개인정보<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
                             <p class="explanation">실명과 핸드폰 번호를 적어주세요.</p>
                             <label for="user-name" class="icon">이름</label>
                             <input type="text" name="user-name" id="user-name" class="required large-pad" autocomplete="Off"/>
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                     <div class="group">
-                        <h2>직군선택</h2>
+                        <h2>직군선택<span class="required"><img src="/img/required.png" alt="(필수)"></span></h2>
                         <div class="form-group">
                             <select class="required" name="user-job" id="user-job">
                                 <option selected value>선택하세요</option>
@@ -157,13 +157,13 @@
                     </div>
                     <div class="group">
                         <div class="form-group">
-                            <label for="team-name" class="title">활동 시 이름</label>
+                            <label for="team-name" class="title">활동 시 이름<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
                             <input type="text" name="team-name" id="team-name" placeholder="예명, 팀명 등을 입력해주세요" class="required intro" autocomplete="Off"/>
                         </div>
                     </div>
                     <div class="group">
                         <div class="form-group">
-                            <label for="user-team" class="title inline">팀 여부 선택</label>
+                            <label for="user-team" class="title inline">팀 여부 선택<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
                             <span class="left-mrg">
                                 <input type="radio" name="isTeam" id="no-team" value="0" class="required dont-show"/>
                                 <label for="no-team">개인</label>
@@ -176,7 +176,7 @@
                     </div>
                     <div class="group">
                         <div class="form-group">
-                            <label for="user-gender" class="title inline">성별</label>
+                            <label for="user-gender" class="title inline">성별<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
                             <span class="left-mrg">
                                 <input type="radio" name="gender" id="male" value="0" class="required dont-show"/>
                                 <label for="male">남</label>
@@ -192,7 +192,7 @@
                         </div>
                     </div>
                     <div class="group">
-                        <h2>나이대 (평균)</h2>
+                        <h2>나이대 (평균)<span class="required"><img src="/img/required.png" alt="(필수)"></span></h2>
                         <div class="form-group">
                             <select name="user-age" id="user-age" class="required">
                                 <option value selected>선택하세요</option>
@@ -212,7 +212,7 @@
                         </div>
                     </div>
                     <div class="group location">
-                        <h2>지역 선택</h2>
+                        <h2>지역 선택<span class="required"><img src="/img/required.png" alt="(필수)"></span></h2>
                         <div class="form-group half">
                             <label for="location1">거주지</label>
                             <select name="location1" id="location1" class="required">
@@ -407,7 +407,7 @@
                     </div>
                     <div class="group cost">
                         <div class="form-group">
-                            <label for="casting-cost" class="title">평균 캐스팅 비용</label>
+                            <label for="casting-cost" class="title">평균 캐스팅 비용<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
                             <select class="required" name="casting-cost" id="casting-cost">
                                 <option selected value>비용 선택(건당)</option>
                                 <option value="cost1">0 ~ 30만원</option>
@@ -430,7 +430,7 @@
                     </div>
                     <div class="group">
                         <div class="form-group">
-                            <label for="user-intro" class="title">한줄 소개</label>
+                            <label for="user-intro" class="title">한줄 소개<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
                             <input type="text" id="user-intro" maxlength="20" name="user-intro" placeholder="메인에 노출되는 대표 문구입니다(최대 20자)" class="required intro" autocomplete="Off"/>
                         </div>
                     </div>
@@ -454,7 +454,7 @@
                                     <td><input type="text" name="spec-intro3[]" class="intro spec" disabled autocomplete="Off"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3" class="long"><a href="#" class="btn add-items spec"><img src="/img/icon_plus_contents.png" class="icon" alt=""/></i>수상/경력 추가하기</a><a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/>삭제</a></td>
+                                    <td colspan="3" class="long"><a href="#" class="add-btn add-items spec"><img src="/img/icon_plus_contents.png" class="icon" alt=""/></i>수상/경력 추가하기</a><a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/>삭제</a></td>
                                 </tr>
                             </table>
                         </div>
@@ -507,7 +507,7 @@
                     <div class="group agree">
                         <div class="form-group">
                             <input type="checkbox" name="agree" id="agree" class="required dont-show"/>
-                            <label for="agree"><a href="#">개인정보 취급방침</a>, <a href="#">서비스 이용약관</a>, 개인정보 제공에 동의합니다.</label>
+                            <label for="agree"><a href="#">개인정보 취급방침</a>, <a href="#">서비스 이용약관</a>, 개인정보 제공에 동의합니다.<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
                         </div>
                     </div>
                     <div class="group button">
@@ -521,15 +521,18 @@
     <script type="text/javascript" src="/jquery.validation.1.15.0/additional-methods.js"></script>
     <script type="text/javascript" src="/jquery.validation.1.15.0/messages_ko.min.js"></script>
     <script type="text/javascript" src="/js/form-script.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script src="jquery.picture.cut/src/jquery.picture.cut.js"></script>
+    <script src="/croppic/croppic.js"></script>
     <script>
-        $('div#profile_image').PictureCut({
-            InputOfImageDirectory       : "image",
-            PluginFolderOnServer        : "/jquery.picture.cut/",
-            FolderOnServer              : "/uploads/",
-            EnableCrop                  : true,
-            CropWindowStyle             : "Bootstrap"
-        });
+        var target = $('#profile_image');
+        var croppedOptions = {
+            outputUrlId:'profile_image',
+            uploadUrl: 'upload',
+            cropUrl: 'crop',
+            cropData:{
+                'width' : target.width(),
+                'height': target.height()
+            }
+        };
+        var cropperBox = new Croppic('profile_image', croppedOptions);
     </script> 
 @endsection

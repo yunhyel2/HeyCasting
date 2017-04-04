@@ -36,3 +36,5 @@ Route::get('/join_facebook', 'SocialController@callbackFacebook');
 Route::get('/join/google', 'SocialController@redirectToGoogle');
 Route::get('/join_google', 'SocialController@callbackGoogle');
 
+Route::post('/upload', 'CropController@upload');
+Route::post('/crop', 'CropController@crop');

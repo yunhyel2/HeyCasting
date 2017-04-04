@@ -18,7 +18,7 @@ div.join-form{
     &.enter{
         input[type="text"], input[type="email"], input[type="password"]{
             color: cyan;  /* change [input cursor color] by this*/
-            text-shadow: 0px 0px 0px rgba(255,255,255, 0.6); /* change [input font] by this*/
+            text-shadow: 0px 0px 0px rgba(255,255,255, 0.7); /* change [input font] by this*/
             -webkit-text-fill-color: transparent;
         }
     }
@@ -120,7 +120,7 @@ div.join-form{
             top:-10px;
             left:3px;
             img{
-                width:12px;
+                width:10px;
                 height:auto;
             }
         }
@@ -128,13 +128,14 @@ div.join-form{
             width:100%;
         }
         &[for="user-team"]{
-            width:150px;
+            width:160px;
         }
         &[for="user-gender"]{
-            width:70px;
+            width:85px;
         }
         span.error{
             position:absolute;
+            top:-8px;
             right:0;
             color:indianred;
         }
@@ -152,14 +153,9 @@ div.form-group{
     margin:10px 0;
     label.icon{
         position:absolute;
-        top:50%;
-        margin-top:-10px;
-        &[for="user-email"]{
-            margin-top:-5px;
-        }
-        &[for="user-name"]{
-            margin-top:38px;
-        }
+        height:40px;
+        line-height:40px;
+        margin-top:2px;
     }
     input:not([type="radio"]){
         background:none;
@@ -204,6 +200,12 @@ div.form-group{
         color:#fff;
         font-size:15px;
         outline:none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        background:url(/img/select_arrow_down.png) no-repeat;
+        background-size:10px auto;
+        background-position: right 10px top 15px;
         option{
             display:none;
             outline:none;
@@ -211,6 +213,9 @@ div.form-group{
         &.active{
             border-radius:20px 20px 0 0;
             background:rgba(50,150,200,0.7);
+            background:url(/img/select_arrow_up.png) no-repeat;
+            background-size:10px auto;
+            background-position: right 10px top 15px;
         }
         &[name="user-job"]{
             margin-top:10px;
@@ -391,17 +396,24 @@ div.group{
     &.main-profile{
         div.button{
             border:1px solid #aaa;
-            width:100%;
+            width:300px;
             height:200px;
             line-height:200px;
             text-align:center;
             cursor:pointer;
             margin:10px 0;
+            position:relative;
+            div.cropImgWrapper{
+                top:0;
+            }
         }
     }
     &.user{
         input{
             padding-left:60px;
+        }
+        label.icon{
+            margin-top:0;
         }
     }
     &.location{
@@ -479,13 +491,32 @@ div.group{
     &.sns{
         label.icon{
             position:absolute;
-            margin-top:-9px;
+            top:0;
             span{
                 font-size: 13px;
                 position: relative;
-                bottom: 2px;
-                left:3px;
+                bottom:2px;
                 opacity:0.7;
+            }
+            i{
+                margin:5px 2px;
+                opacity:0.8;
+                &.fa-instagram{
+                    color:mediumpurple;
+                }
+                &.fa-star{
+                    color:yellow;
+                }
+                &.fa-facebook{
+                    color:dodgerblue;
+                    margin:5px;
+                }
+                &.fa-twitter{
+                    color:cyan;
+                }
+                &.fa-youtube-play{
+                    color:red;
+                }
             }
         }
         input[type="text"]{
@@ -518,6 +549,10 @@ div.group{
             a.toggle-folder{
                 position:absolute;
                 right:0;
+                top:0;
+                i{
+                    margin:0 5px;
+                }
             }
         }
         textarea{
@@ -600,6 +635,14 @@ div.group{
                     top:2px;
                     left:-10px;
                 }
+            }
+        }
+        span.required{
+            position:relative;
+            top:-5px;
+            img{
+                width:10px;
+                height:auto;
             }
         }
     }

@@ -11,7 +11,8 @@
         "socialiteproviders/naver": "^3.0",
         "socialiteproviders/kakao": "^3.0",
         "laravel/socialite": "^3.0",
-        "socialiteproviders/google": "^3.0"
+        "socialiteproviders/google": "^3.0",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
