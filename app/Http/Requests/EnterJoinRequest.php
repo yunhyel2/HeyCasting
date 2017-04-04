@@ -28,7 +28,7 @@ class EnterJoinRequest extends FormRequest
             'password' =>'required',
             'passwordConf' =>'required',
             'videos' =>'required',
-            'main-profile' =>'required',
+            // 'main-profile' =>'required',
             'user-name' =>'required',
             'user-phone' =>'required',
             'user-job' =>'required',

@@ -347,7 +347,10 @@ class ComposerStaticInitff488b093a8f53dec7755d3851da98c6
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\EnterJoinRequest' => __DIR__ . '/../..' . '/app/Http/Requests/EnterJoinRequest.php',
+<<<<<<< HEAD
         'App\\Image' => __DIR__ . '/../..' . '/app/Image.php',
+=======
+>>>>>>> 1ed15fa441bb9a9e1d019792748fe31aa88a3dc0
         'App\\Job' => __DIR__ . '/../..' . '/app/Job.php',
         'App\\Job_genre' => __DIR__ . '/../..' . '/app/Job_genre.php',
         'App\\Job_howmany' => __DIR__ . '/../..' . '/app/Job_howmany.php',

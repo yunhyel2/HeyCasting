@@ -521,6 +521,7 @@
     <script type="text/javascript" src="/jquery.validation.1.15.0/additional-methods.js"></script>
     <script type="text/javascript" src="/jquery.validation.1.15.0/messages_ko.min.js"></script>
     <script type="text/javascript" src="/js/form-script.js"></script>
+<<<<<<< HEAD
     <script src="/croppic/croppic.js"></script>
     <script>
         var target = $('#profile_image');
@@ -535,4 +536,17 @@
         };
         var cropperBox = new Croppic('profile_image', croppedOptions);
     </script> 
+=======
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="jquery.picture.cut/src/jquery.picture.cut.js"></script>
+    <!--<script>
+        $('div#profile_image').PictureCut({
+            InputOfImageDirectory       : "image",
+            PluginFolderOnServer        : "/jquery.picture.cut/",
+            FolderOnServer              : "/uploads/",
+            EnableCrop                  : true,
+            CropWindowStyle             : "Bootstrap"
+        });
+    </script> -->
+>>>>>>> 1ed15fa441bb9a9e1d019792748fe31aa88a3dc0
 @endsection
