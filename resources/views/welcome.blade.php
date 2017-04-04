@@ -54,7 +54,7 @@
 
                         <div class="btn">
                             <a href="https://play.google.com/store/apps/details?id=com.platformstory.www.entertainment" target="_blank" class="download">Download App</a>
-                            <a href="{{ url('/join') }}" class="profile">프로필 등록하기</a>
+                            <a href="{{ url('/enter-join') }}" class="profile">엔터테이너 회원가입</a>
                         </div>
                     </div><!--//contents-->
             </div>

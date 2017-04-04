@@ -19,7 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/enter-join', 'JoinController@index');
-Route::get('/enter-join', 'JoinController@index');
 Route::get('/enter-social-join', 'JoinController@index');
 Route::get('/user-join', 'JoinController@index');
 Route::get('/user-social-join', 'JoinController@index');
