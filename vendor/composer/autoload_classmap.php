@@ -30,10 +30,7 @@ return array(
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Requests\\EnterJoinRequest' => $baseDir . '/app/Http/Requests/EnterJoinRequest.php',
-<<<<<<< HEAD
     'App\\Image' => $baseDir . '/app/Image.php',
-=======
->>>>>>> 1ed15fa441bb9a9e1d019792748fe31aa88a3dc0
     'App\\Job' => $baseDir . '/app/Job.php',
     'App\\Job_genre' => $baseDir . '/app/Job_genre.php',
     'App\\Job_howmany' => $baseDir . '/app/Job_howmany.php',

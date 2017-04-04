@@ -89,7 +89,7 @@ class CropController extends Controller
         //크롭저장
         $image->resize($imgW, $imgH)
             ->rotate(-$angle)
-            ->crop($cropW, $cropH, $imgX1, $imgY1)
+            ->crop(1080, 674, $imgX1, $imgY1)
             ->save(env('UPLOAD_PATH') . 'cropped-' . $filename);
 
         if( !$image) {

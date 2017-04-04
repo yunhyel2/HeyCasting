@@ -13,6 +13,7 @@ div.join-form{
             color: #ff627d;  /* change [input cursor color] by this*/
             text-shadow: 0px 0px 0px rgba(255,255,255, 0.6); /* change [input font] by this*/
             -webkit-text-fill-color: transparent;
+            -ms-text-fill-color: transparent;
         }
     }
     &.enter{
@@ -396,9 +397,9 @@ div.group{
     &.main-profile{
         div.button{
             border:1px solid #aaa;
-            width:300px;
-            height:200px;
-            line-height:200px;
+            width:324px;
+            height:202.2px;
+            line-height:202.2px;
             text-align:center;
             cursor:pointer;
             margin:10px 0;
