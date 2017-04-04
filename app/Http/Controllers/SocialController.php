@@ -85,7 +85,7 @@ class SocialController extends Controller
     public function callbackGoogle() {
         $link = 'G';
         $user = Socialite::with('google')->user();
-        $user_email = $user->getEmail();
+        $user_email = $user->getId();
         $userToJoin = Enter::where([
             'link' => 'G',
             'email' => $user_email,

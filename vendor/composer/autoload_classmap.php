@@ -28,6 +28,7 @@ return array(
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Http\\Requests\\EnterJoinRequest' => $baseDir . '/app/Http/Requests/EnterJoinRequest.php',
     'App\\Job' => $baseDir . '/app/Job.php',
     'App\\Job_genre' => $baseDir . '/app/Job_genre.php',
     'App\\Job_howmany' => $baseDir . '/app/Job_howmany.php',

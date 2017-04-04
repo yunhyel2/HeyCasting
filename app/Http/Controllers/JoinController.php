@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\EnterJoinRequest;
+use App\Http\Requests\UserJoinRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
@@ -21,6 +22,7 @@ use App\Job_genre;
 use App\Job_howmany;
 use App\Perform_category;
 use App\User_key;
+use App\User;
 use Illuminate\Support\Facades\DB;
 
 class JoinController extends Controller
@@ -48,8 +50,9 @@ class JoinController extends Controller
         echo $email_count;
     }
 
-    public function store(EnterJoinRequest $request) 
+    public function enterStore(EnterJoinRequest $request) 
     {
+        $flag = 'E';
         $link = $request->input('link'); 
         $email = $request->input('user-email'); 
         $password = $request->input('password');
@@ -68,10 +71,12 @@ class JoinController extends Controller
         $team_name = $request->input('team-name');
         $gender = $request->input('gender');
         $team = $request->input('isTeam');
-        $age = $request->input('user-age'); 
+        $age = $request->input('user-age');
+        $residence = $request->input('location1'); //view에서 코드 변경 
+        $nation = $request->input('location2');
+        $prefer_area = $request->input('location3'); 
         $performs = $request->input('career'); 
         $cost = $request->input('casting-cost');
-        $cost_flag = $request->input('cost-secret');
         $intro = $request->input('user-intro');
 
         $intro_detail = $request->input('intro');
@@ -82,22 +87,22 @@ class JoinController extends Controller
         $sns_instagram = $request->input('social_instagram');
         $sns_facebook = $request->input('social_facebook');
         $sns_blog = $request->input('social_blog');
-        $sns_kakao = $request->input('social_kakao');        
-
-        // Storage::delete('uploads/aa0fe711.png');
+        $sns_twitter = $request->input('social_twitter');      
+        $sns_youtube = $request->input('social_youtube');  
 
         if( $password != $password2 ) {
             return back();
         } else {
 
-            // DB::beginTransaction();
+            DB::beginTransaction();
 
-            // try {
+            try {
 
                 $entertainer = new Enter;
-                $entertainer->flag = 'E';
+                $entertainer->flag = $flag;
                 if( $link ) {
-                    $entertainer->link = $link; // kakao : 'K', google : 'G', facebook : 'F', naver : 'N'
+                    $entertainer->link = $link; 
+                    // kakao : 'K', google : 'G', facebook : 'F', naver : 'N'
                 } else {
                     $entertainer->link = 'A'; 
                 }
@@ -106,7 +111,7 @@ class JoinController extends Controller
                 $entertainer->email = $email; 
                 $entertainer->name = $name;
                 $entertainer->nickname = $name;
-                $entertainer->nation = 'KR'; 
+                $entertainer->nation = $nation; 
                 $entertainer->gukgi = 2130837906; 
                 $entertainer->code = 82; 
                 $entertainer->phone = $phone;
@@ -146,6 +151,8 @@ class JoinController extends Controller
                 $profile->name = $team_name; 
                 $profile->gender = $gender;
                 $profile->team = $team;
+                $profile->prefer_area = $prefer_area;
+                $profile->residence = $residence;
                
                 $profile->howmany = 0;
                 $profile->age = $age;
@@ -186,15 +193,23 @@ class JoinController extends Controller
                 $profile->latitude = 0;
                 $profile->longitude = 0;
                 $profile->cost = $cost;
-                if( $cost_flag == 'on' ) { 
-                    $profile->cost_flag = 'N';
-                } else {
-                    $profile->cost_flag = 'Y';
+
+                $profile->cost_flag = 'N';
+                if( $sns_instagram ) {
+                    $profile->sns_instagram = 'https://www.instagram.com/'.$sns_instagram;
+                } 
+                if( $sns_facebook ) {
+                    $profile->sns_facebook = 'https://www.facebook.com/'.$sns_facebook;
                 }
-                $profile->sns_instagram = $sns_instagram;
-                $profile->sns_facebook = $sns_facebook;
-                $profile->sns_blog = $sns_blog;
-                $profile->sns_kakao = $sns_kakao;
+                if( $sns_blog ) {
+                    $profile->sns_blog = 'http://blog.naver.com/'.$sns_blog;
+                }
+                if( $sns_youtube ) {
+                    $profile->sns_youtube = 'https://www.youtube.com/channel/'.$sns_youtube;
+                }
+                if( $sns_twitter ) {
+                    $profile->sns_twitter = 'https://twitter.com/'.$sns_twitter;
+                }
                 $profile->count = 0;
                 $profile->bookmark_cnt = 0;
                 $profile->engchal_cnt = 0;
@@ -202,7 +217,8 @@ class JoinController extends Controller
 
                 $profile_main_image = new Enter_main_image;
                 $profile_main_image->enter_id = $enter_id;
-                $profile_main_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
+                // $profile_main_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
+                $profile_main_image->image = '';
                 $profile_main_image->save();
 
                 if( $images ) { 
@@ -237,14 +253,59 @@ class JoinController extends Controller
                 $user_key->device_id = 0;
                 $user_key->push_state = 'Y';
                 $user_key->save();
-                // DB::commit();
+                DB::commit();
 
-                return redirect('/complete/enter');
+            } catch(\Exception $e) {
+                DB::rollback();
+                return redirect('/');
+            }
+            return redirect('/complete/enter');
+        }
+    }
 
-            // } catch(\Exception $e) {
-            //     DB::rollback();
-            //     return back();
-            // }
+    public function userStore(UserJoinRequest $request) 
+    {
+        $flag = 'N';
+        $link = $request->input('link'); 
+        $email = $request->input('user-email'); 
+        $password = $request->input('password');
+        $password2 = $request->input('passwordConf');
+        $name = $request->input('user_name');
+        $phone = $request->input('user_phone');
+
+        if( $password != $password2 ) {
+            return back();
+        } else {
+
+            DB::beginTransaction();
+
+            try {
+                $user = new User;
+                $user->flag = $flag;
+                if( $link ) {
+                    $user->link = $link;
+                } else {
+                    $user->link = 'A';
+                }
+                
+                $user->email = $email;
+                $user->password = bcrypt($password);
+                $user->name = $name;
+                $user->nickname = $name;
+                $user->nation = 'KR';
+                $user->gukgi = 2130837906; 
+                $user->code = 82; 
+                $user->phone = $phone;
+                $user->image = '';
+                $user->save();
+
+                DB::commit();
+
+            } catch(\Exception $e) {
+                DB::rollback();
+                return view('/');         
+            }
+            return redirect('/complete/user');
         }
     }
 

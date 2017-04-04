@@ -523,7 +523,7 @@
     <script type="text/javascript" src="/js/form-script.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="jquery.picture.cut/src/jquery.picture.cut.js"></script>
-    <script>
+    <!--<script>
         $('div#profile_image').PictureCut({
             InputOfImageDirectory       : "image",
             PluginFolderOnServer        : "/jquery.picture.cut/",
@@ -531,5 +531,5 @@
             EnableCrop                  : true,
             CropWindowStyle             : "Bootstrap"
         });
-    </script> 
+    </script> -->
 @endsection
