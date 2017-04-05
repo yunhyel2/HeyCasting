@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class CropController extends Controller
 {
@@ -38,10 +39,14 @@ class CropController extends Controller
         $filename_ext = $allowed_filename .'.jpg';
 
         $manager = new ImageManager();
-        //저장
-        $image = $manager->make( $photo )->encode('jpg')->save(env('UPLOAD_PATH') . $filename_ext );
+        //local저장
+        // $image = $manager->make( $photo )->encode('jpg')->save(env('UPLOAD_PATH') . $filename_ext );
 
-        if( !$image) {
+        // $before_image = Image::make($photo)->stream('jpg');
+
+        $url = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/' . Storage::disk('s3')->put('main_image', $photo, 'public');
+
+        if( !$url) {
 
             return Response::json([
                 'status' => 'error',
@@ -50,16 +55,22 @@ class CropController extends Controller
 
         }
 
+        //db저장 
         $database_image = new Image;
         $database_image->filename      = $allowed_filename;
         $database_image->original_name = $original_name;
+        $database_image->crop = $url;
         $database_image->save();
 
+            // 'url'       => env('URL') . 'uploads/' . $filename_ext,
+            // 'width'     => $image->width(),
+            // 'height'    => $image->height(),
+            
         return Response::json([
             'status'    => 'success',
-            'url'       => env('URL') . 'uploads/' . $filename_ext,
-            'width'     => $image->width(),
-            'height'    => $image->height()
+            'url' => $url, 
+            'width'     => $photo->width(),
+            'height'    => $photo->height()
         ], 200);
     }
 
@@ -87,10 +98,21 @@ class CropController extends Controller
         $image = $manager->make( $image_url );
         
         //크롭저장
-        $image->resize($imgW, $imgH)
+        // $image->resize($imgW, $imgH)
+        //     ->rotate(-$angle)
+        //     ->crop(1080, 674, $imgX1, $imgY1)
+        //     ->save(env('UPLOAD_PATH') . 'cropped-' . $filename);
+
+        $crop = $image->resize($imgW, $imgH)
             ->rotate(-$angle)
-            ->crop(1080, 674, $imgX1, $imgY1)
-            ->save(env('UPLOAD_PATH') . 'cropped-' . $filename);
+            ->crop(1080, 674, $imgX1, $imgY1)->stream();
+
+        $imageDB = Image::where('original_name', $filename)->first();
+        $url = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/' . Storage::disk('s3')->put('main_image', $crop->__toString(), 'public');
+        $imageDB->crop = $url;
+        $imageDB->save();
+           
+            
 
         if( !$image) {
 
@@ -101,9 +123,11 @@ class CropController extends Controller
 
         }
 
+        //view crop image 
         return Response::json([
             'status' => 'success',
-            'url' => env('URL') . 'uploads/cropped-' . $filename
+            // 'url' => env('URL') . 'uploads/cropped-' . $filename
+            'url' => $url
         ], 200);
     }
 
