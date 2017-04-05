@@ -65,8 +65,8 @@
                                 
                             }
                         }
-                    },error:function(){
-
+                    },error:function(request,status,error){
+                        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                     }
                 });
             };
@@ -297,3 +297,12 @@
         };
         
     })
+//이용약관
+    $('label[for="agree"] a').on('click', function(){
+        $name = $(this).attr('name');
+        $('div#'+$name).removeClass('hidden').siblings('div.cover').removeClass('hidden');
+    });
+    $('div.cover, a.close').on('click', function(){
+        $('div.document').addClass('hidden');
+        $('div.cover').addClass('hidden');
+    });
