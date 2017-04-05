@@ -677,8 +677,9 @@
 					contentType: false,
 					processData: false,
 					type: 'POST',
-					success:function(){
-						console.log();
+					success:function(data){
+						//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!modify!!!!
+						$('input#main-profile').val(data.url);
 					},error:function(request,status,error){
 						console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 					}				

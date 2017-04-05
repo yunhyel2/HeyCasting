@@ -545,7 +545,7 @@
             cropData:{
                 'width' : target.width(),
                 'height': target.height()
-            }
+            },
         };
         var cropperBox = new Croppic('profile_image', croppedOptions);
     </script> 
