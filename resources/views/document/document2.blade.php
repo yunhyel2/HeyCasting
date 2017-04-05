@@ -1,4 +1,3 @@
-<a class="close" href="#"><i class="fa fa-window-close" aria-hidden="true"></i></a>
 <h2>서비스 이용약관</h2>
 <p class="contents">본 약관은 “헤이 캐스팅”서비스의 이용자 또는 회원님들께 원활한 시스템을 제공하기 위한 운영 정책으로 관련 제반 서비스의 이용과 이에 필요한 사항들을 규정합니다.</p>
 

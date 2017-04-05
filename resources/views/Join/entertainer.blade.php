@@ -77,6 +77,7 @@
                             <label for="main-profile" class="title">메인 프로필 사진<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
                             <p class="explanation">엔터테이너 리스트에 노출되는 대표 사진입니다</p>
                             <div class="preview button" id="profile_image">메인 사진 등록</div>
+                            <input type="text" name="main-profile" id="main-profile" class="dont-show required">
                         </div>
                     </div>
                     <div class="group photos">
@@ -398,7 +399,7 @@
                                     <label for="etc03">박람회</label>
                                     <input type="checkbox" id="etc03" name="career[]" class="dont-show" value="17"/>
                                 </li>
-                                <li>
+                                <li class="no-right">
                                     <label for="etc07">홈쇼핑</label>
                                     <input type="checkbox" id="etc07" name="career[]" class="dont-show" value="23"/>
                                 </li>
@@ -478,27 +479,27 @@
                                 <li name="youtube">유투브</li>
                             </ul>
                             <div id="social_instagram" class="hidden">
-                                <label for="social_instagram" class="icon"><i class="fa fa-instagram" aria-hidden="true"></i> <span>https://www.instagram.com/</span></label>
+                                <label for="social_instagram" class="icon"><i class="fa fa-instagram" aria-hidden="true"></i> <span>instagram.com/</span></label>
                                 <input type="text" name="social_instagram" autocomplete="Off"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                             <div id="social_facebook" class="hidden">
-                                <label for="social_facebook" class="icon"><i class="fa fa-facebook" aria-hidden="true"></i> <span>https://www.facebook.com/</span></label>
+                                <label for="social_facebook" class="icon"><i class="fa fa-facebook" aria-hidden="true"></i> <span>facebook.com/</span></label>
                                 <input type="text" name="social_facebook" autocomplete="Off"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                             <div id="social_blog" class="hidden">
-                                <label for="social_blog" class="icon"><i class="fa fa-star" aria-hidden="true"></i> <span>http://blog.naver.com/</span></label>
+                                <label for="social_blog" class="icon"><i class="fa fa-star" aria-hidden="true"></i> <span>blog.naver.com/</span></label>
                                 <input type="text" name="social_blog" autocomplete="Off"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                             <div id="social_twitter" class="hidden">
-                                <label for="social_twitter" class="icon"><i class="fa fa-twitter" aria-hidden="true"></i> <span>https://twitter.com/</span></label>
+                                <label for="social_twitter" class="icon"><i class="fa fa-twitter" aria-hidden="true"></i> <span>twitter.com/</span></label>
                                 <input type="text" name="social_twitter" autocomplete="Off"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                             <div id="social_youtube" class="hidden">
-                                <label for="social_youtube" class="icon"><i class="fa fa-youtube-play" aria-hidden="true"></i> <span>https://www.youtube.com/channel/</span></label>
+                                <label for="social_youtube" class="icon"><i class="fa fa-youtube-play" aria-hidden="true"></i> <span>youtube.com/channel/</span></label>
                                 <input type="text" name="social_youtube" autocomplete="Off"/>
                                 <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
@@ -518,11 +519,17 @@
         </form>
     </div>
     <div class="cover hidden"></div>
-    <div id="document1" class="document hidden">
-        @include('document.document1')
+    <div id="document1" class="docu-wrap hidden">
+        <a class="close" href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+        <div class="document">
+            @include('document.document1')
+        </div>
     </div>
-    <div id="document2" class="document hidden">
-        @include('document.document2')
+    <div id="document2" class="docu-wrap hidden">
+        <a class="close" href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+        <div class="document">
+            @include('document.document2')
+        </div>
     </div>
     <script type="text/javascript" src="/jquery.validation.1.15.0/jquery.validate.js"></script>
     <script type="text/javascript" src="/jquery.validation.1.15.0/additional-methods.js"></script>

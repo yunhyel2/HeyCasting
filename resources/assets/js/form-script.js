@@ -6,11 +6,13 @@
             $('div.join-form').css('margin', '0 auto');
             $('form[name="join-form"]').not('.complete').css('height', $winHeight-47+'px' );
             $('form[name="join-form"].complete').css('height', $winHeight+5+'px' );
+            $('div.docu-wrap').css('margin-top', 0).css('top', '0').find('a.close').addClass('inner');
         }else{
             $('div.join-form').css('margin', '5% auto');  
             $marginTop = $('form[name="join-form"]').offset().top;
             $('form[name="join-form"]').not('.complete').css('height', $winHeight-(2*$marginTop)+47+'px' );
             $('form[name="join-form"].complete').css('height', $winHeight-(2*$marginTop)+'px' );
+            $('div.docu-wrap').css('margin-top', '-400px').css('top', '50%').find('a.close').removeClass('inner');
         }
     };
     sizeMatching();
@@ -27,7 +29,7 @@
             passwordConf: {
                 equalTo: "#password"
             }
-        },
+        },   
         submitHandler: function(form) {
             // do other things for a valid form
             if( $('nav.join-nav').find('li[name="user-profile"]').hasClass('active') ){
@@ -303,6 +305,6 @@
         $('div#'+$name).removeClass('hidden').siblings('div.cover').removeClass('hidden');
     });
     $('div.cover, a.close').on('click', function(){
-        $('div.document').addClass('hidden');
+        $('div.docu-wrap').scrollTop(0).addClass('hidden');
         $('div.cover').addClass('hidden');
     });

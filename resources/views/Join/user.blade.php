@@ -58,7 +58,7 @@
                     <div class="group agree">
                         <div class="form-group">
                             <input type="checkbox" name="agree" id="agree" class="required dont-show"/>
-                            <label for="agree"><a href="#">개인정보 취급방침</a>, <a href="#">서비스 이용약관</a>, 개인정보 제공에 동의합니다.</label>
+                            <label for="agree"><a href="#" name="document1">개인정보 취급방침</a>, <a href="#" name="document2">서비스 이용약관</a>, 개인정보 제공에 동의합니다.</label>
                         </div>
                     </div>
                     <div class="group button">
@@ -67,6 +67,19 @@
                 </div>
             </div>
         </form>
+    </div>
+    <div class="cover hidden"></div>
+    <div id="document1" class="docu-wrap hidden">
+        <a class="close" href="#">닫기</a>
+        <div class="document">
+            @include('document.document1')
+        </div>
+    </div>
+    <div id="document2" class="docu-wrap hidden">
+        <a class="close" href="#">닫기</a>
+        <div class="document">
+            @include('document.document2')
+        </div>
     </div>
     <script type="text/javascript" src="/jquery.validation.1.15.0/jquery.validate.js"></script>
     <script type="text/javascript" src="/jquery.validation.1.15.0/additional-methods.js"></script>

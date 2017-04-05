@@ -121,11 +121,28 @@ body h1, body h2, body h3, body h4, body strong, body b {
   font-weight: normal;
 }
 
+body p {
+  font-size: 15px;
+}
+
+@media (max-width: 385px) {
+  body p {
+    font-size: 13px;
+  }
+}
+
 img.icon {
   height: 20px;
   width: auto;
   position: relative;
   top: 5px;
+}
+
+@media (max-width: 385px) {
+  img.icon {
+    height: 18px;
+    width: auto;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -150,10 +167,23 @@ div.join-form {
   max-height: 800px;
   box-sizing: border-box;
   margin: 5% auto;
-  background: rgba(0, 0, 0, 0.7);
   color: #fff;
   -webkit-transition: all 1s;
   transition: all 1s;
+  font-size: 15px;
+}
+
+@media (max-width: 475px) {
+  div.join-form {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 385px) {
+  div.join-form {
+    width: 100%;
+    font-size: 13px;
+  }
 }
 
 div.join-form:not(.enter) input[type="text"], div.join-form:not(.enter) input[type="email"], div.join-form:not(.enter) input[type="password"] {
@@ -174,12 +204,12 @@ div.join-form.enter input[type="text"], div.join-form.enter input[type="email"],
 }
 
 div.join-form nav.join-nav li {
+  background: rgba(0, 0, 0, 0.7);
   width: 50%;
   float: left;
   text-align: center;
   padding: 15px 0;
   font-weight: normal;
-  font-size: 15px;
 }
 
 div.join-form nav.join-nav li.enter {
@@ -206,6 +236,7 @@ div.join-form form.join-form {
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+  background: rgba(0, 0, 0, 0.7);
 }
 
 div.join-form div.step-wrap {
@@ -224,6 +255,12 @@ div.join-form div.step-wrap div.step {
   float: left;
 }
 
+@media (max-width: 385px) {
+  div.join-form div.step-wrap div.step {
+    padding-top: 30px;
+  }
+}
+
 div.join-form div.group {
   width: 100%;
   padding: 20px 80px;
@@ -231,9 +268,15 @@ div.join-form div.group {
   clear: both;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   div.join-form div.group {
-    padding: 20px 30px;
+    padding: 20px 50px;
+  }
+}
+
+@media (max-width: 385px) {
+  div.join-form div.group {
+    padding: 20px 20px;
   }
 }
 
@@ -246,13 +289,25 @@ div.join-form div.group.button {
 div.join-form div.group.button input[type="submit"] {
   width: 100%;
   height: 50px;
+  font-size: 15px;
   border: 1px solid #fff;
   border-radius: 25px;
   background: none;
-  font-size: 15px;
   color: #fff;
   opacity: 0.8;
   cursor: pointer;
+}
+
+@media (max-width: 475px) {
+  div.join-form div.group.button input[type="submit"] {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 385px) {
+  div.join-form div.group.button input[type="submit"] {
+    font-size: 13px;
+  }
 }
 
 div.join-form div.group.quick-join {
@@ -282,6 +337,18 @@ div.join-form h2, div.join-form label.title {
   position: relative;
 }
 
+@media (max-width: 550px) {
+  div.join-form h2, div.join-form label.title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 385px) {
+  div.join-form h2, div.join-form label.title {
+    font-size: 18px;
+  }
+}
+
 div.join-form h2 span.required, div.join-form label.title span.required {
   position: relative;
   top: -10px;
@@ -301,8 +368,22 @@ div.join-form h2[for="user-team"], div.join-form label.title[for="user-team"] {
   width: 160px;
 }
 
+@media (max-width: 550px) {
+  div.join-form h2[for="user-team"], div.join-form label.title[for="user-team"] {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
 div.join-form h2[for="user-gender"], div.join-form label.title[for="user-gender"] {
   width: 85px;
+}
+
+@media (max-width: 550px) {
+  div.join-form h2[for="user-gender"], div.join-form label.title[for="user-gender"] {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 
 div.join-form h2 span.error, div.join-form label.title span.error {
@@ -313,11 +394,11 @@ div.join-form h2 span.error, div.join-form label.title span.error {
 }
 
 div.join-form p.explanation {
-  font-size: 15px;
   padding: 10px 0;
   opacity: 0.7;
   word-break: keep-all;
   line-height: 1.5;
+  margin-bottom: 0;
 }
 
 div.form-group {
@@ -343,6 +424,18 @@ div.form-group input:not([type="radio"]) {
   opacity: 0.8;
   outline: none;
   color: #fff;
+}
+
+@media (max-width: 475px) {
+  div.form-group input:not([type="radio"]) {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 385px) {
+  div.form-group input:not([type="radio"]) {
+    font-size: 13px;
+  }
 }
 
 div.form-group input:not([type="radio"]):not([type="file"]) {
@@ -387,6 +480,19 @@ div.form-group select {
   background: url(/img/select_arrow_down.png) no-repeat;
   background-size: 10px auto;
   background-position: right 10px top 15px;
+}
+
+@media (max-width: 475px) {
+  div.form-group select {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 385px) {
+  div.form-group select {
+    font-size: 13px;
+    padding: 0 10px;
+  }
 }
 
 div.form-group select option {
@@ -448,6 +554,12 @@ div.form-group ul.select li {
   cursor: pointer;
 }
 
+@media (max-width: 385px) {
+  div.form-group ul.select li {
+    padding: 0 10px;
+  }
+}
+
 div.form-group ul.select li:not(:last-child) {
   border-bottom: 1px solid #fff;
 }
@@ -459,7 +571,7 @@ div.form-group ul.select li:hover {
 div.form-group input[type="radio"]:empty ~ label, div.form-group input[name="cost-secret"]:empty ~ label, div.form-group input[name="agree"]:empty ~ label {
   cursor: pointer;
   position: relative;
-  font-size: 17px;
+  font-size: 15px;
   padding-left: 25px;
   margin: 5px;
   opacity: 0.7;
@@ -587,7 +699,6 @@ div.group.video a.preview {
   height: 30px;
   box-sizing: border-box;
   color: #fff;
-  font-size: 15px;
   border-radius: 15px;
   border: 1px solid #fff;
   text-align: center;
@@ -612,6 +723,8 @@ div.group.main-profile div.button {
   cursor: pointer;
   margin: 10px 0;
   position: relative;
+  left: 50%;
+  margin-left: -162px;
 }
 
 div.group.main-profile div.button div.cropImgWrapper {
@@ -688,7 +801,6 @@ div.group.career ul li label {
   height: 40px;
   line-height: 40px;
   word-wrap: normal;
-  font-size: 15px;
 }
 
 div.group.career ul li label.strong {
@@ -711,10 +823,10 @@ div.group.cost p {
 div.group.sns label.icon {
   position: absolute;
   top: 0;
+  font-size: 13px;
 }
 
 div.group.sns label.icon span {
-  font-size: 13px;
   position: relative;
   bottom: 2px;
   opacity: 0.7;
@@ -751,23 +863,23 @@ div.group.sns input[type="text"] {
 }
 
 div.group.sns input[type="text"][name="social_instagram"] {
-  padding-left: 198px;
+  padding-left: 115px;
 }
 
 div.group.sns input[type="text"][name="social_facebook"] {
-  padding-left: 188px;
+  padding-left: 112px;
 }
 
 div.group.sns input[type="text"][name="social_blog"] {
-  padding-left: 160px;
+  padding-left: 118px;
 }
 
 div.group.sns input[type="text"][name="social_twitter"] {
-  padding-left: 145px;
+  padding-left: 96px;
 }
 
 div.group.sns input[type="text"][name="social_youtube"] {
-  padding-left: 240px;
+  padding-left: 157px;
 }
 
 div.group.additional label.sub-title {
@@ -779,6 +891,12 @@ div.group.additional label.sub-title {
   position: relative;
 }
 
+@media (max-width: 475px) {
+  div.group.additional label.sub-title {
+    font-size: 15px;
+  }
+}
+
 div.group.additional label.sub-title a.toggle-folder {
   position: absolute;
   right: 0;
@@ -787,6 +905,11 @@ div.group.additional label.sub-title a.toggle-folder {
 
 div.group.additional label.sub-title a.toggle-folder i {
   margin: 0 5px;
+}
+
+div.group.additional input.spec {
+  padding-left: 10px;
+  font-size: 13px;
 }
 
 div.group.additional textarea {
@@ -953,46 +1076,47 @@ div.cover {
   height: 100%;
 }
 
-div.document {
-  height: 800px;
-  overflow: hidden;
-  overflow-y: scroll;
-  width: 650px;
+div.docu-wrap {
+  max-width: 550px;
+  max-height: 800px;
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-left: -325px;
+  margin-left: -275px;
   margin-top: -400px;
+}
+
+@media (max-width: 550px) {
+  div.docu-wrap {
+    left: 0;
+    margin-left: 0;
+  }
+}
+
+div.docu-wrap div.document {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
   background: #fff;
-  border-radius: 20px;
-  border: 1px solid #eee;
+  border-radius: 10px 0px 10px 10px;
   box-sizing: border-box;
   padding: 50px;
   color: #333;
 }
 
-div.document a.close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: #333;
-  font-size: 30px;
-  padding: 0;
+@media (max-width: 550px) {
+  div.docu-wrap div.document {
+    padding: 50px 30px;
+  }
 }
 
-div.document a.close:hover {
-  color: orangered;
-}
-
-div.document a.close i {
-  margin: 0;
-}
-
-div.document div {
+div.docu-wrap div.document div {
   margin: 20px 0;
 }
 
-div.document div.contact {
+div.docu-wrap div.document div.contact {
   border: 1px solid #eee;
   background: #eee;
   border-radius: 10px;
@@ -1002,63 +1126,97 @@ div.document div.contact {
   width: 280px;
 }
 
-div.document div.contact dd, div.document div.contact dt {
+div.docu-wrap div.document div.contact dd, div.docu-wrap div.document div.contact dt {
   line-height: 1.8;
 }
 
-div.document ul {
+div.docu-wrap div.document ul {
   padding: 0 10px;
 }
 
-div.document p.title, div.document h2 {
+div.docu-wrap div.document p.title, div.docu-wrap div.document h2 {
   font-size: 20px;
   font-weight: 900;
   margin-bottom: 30px;
 }
 
-div.document h3 {
+div.docu-wrap div.document h3 {
   color: #333;
   margin-top: 30px;
 }
 
-div.document p.sub_title {
+div.docu-wrap div.document p.sub_title {
   font-size: 16px;
   font-weight: 700;
   margin: 10px 0;
 }
 
-div.document p, div.document li, div.document dd {
+div.docu-wrap div.document p, div.docu-wrap div.document li, div.docu-wrap div.document dd {
   line-height: 1.6;
   font-size: 14px;
   text-align: justify;
   margin: 5px 0;
 }
 
-div.document table {
+div.docu-wrap div.document table {
   margin: 10px 30px;
 }
 
-div.document table caption {
+div.docu-wrap div.document table caption {
   border: 1px solid #333;
   text-align: center;
 }
 
-div.document table th, div.document table td {
+div.docu-wrap div.document table th, div.docu-wrap div.document table td {
   border: 1px solid #333;
   width: 100px;
   text-align: center;
 }
 
-div.document table th span, div.document table td span {
+div.docu-wrap div.document table th span, div.docu-wrap div.document table td span {
   text-decoration: line-through;
 }
 
-div.document p.contents {
+div.docu-wrap div.document p.contents {
   text-indent: 5px;
 }
 
-div.document li > p {
+div.docu-wrap div.document li > p {
   padding-left: 20px;
+}
+
+div.docu-wrap a.close {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  color: #333;
+  font-size: 20px;
+  font-weight: 900;
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  border-radius: 10px 10px 0 0;
+  background: #fff;
+}
+
+div.docu-wrap a.close:hover {
+  background: orangered;
+  color: #fff;
+}
+
+div.docu-wrap a.close.inner {
+  display: inline;
+  background: none;
+  top: 10px;
+  right: 5px;
+  position: fixed;
+  width: initial;
+}
+
+div.docu-wrap a.close.inner:hover {
+  color: orangered;
 }
 
 .section {

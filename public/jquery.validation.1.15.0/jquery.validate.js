@@ -272,7 +272,7 @@ $.extend( $.validator, {
 		errorContainer: $( [] ),
 		errorLabelContainer: $( [] ),
 		onsubmit: true,
-		ignore: ":hidden",
+		ignore: ":hidden, #profile_image_imgUploadField",
 		ignoreTitle: false,
 		onfocusin: function( element ) {
 			this.lastActive = element;
