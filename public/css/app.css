@@ -162,6 +162,7 @@ div.join-form:not(.enter) input[type="text"], div.join-form:not(.enter) input[ty
   text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.6);
   /* change [input font] by this*/
   -webkit-text-fill-color: transparent;
+  -ms-text-fill-color: transparent;
 }
 
 div.join-form.enter input[type="text"], div.join-form.enter input[type="email"], div.join-form.enter input[type="password"] {
@@ -604,9 +605,9 @@ div.group.video a.add-items {
 
 div.group.main-profile div.button {
   border: 1px solid #aaa;
-  width: 300px;
-  height: 200px;
-  line-height: 200px;
+  width: 324px;
+  height: 202.2px;
+  line-height: 202.2px;
   text-align: center;
   cursor: pointer;
   margin: 10px 0;
