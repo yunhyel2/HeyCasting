@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use SocialiteProviders\Manager\SocialiteWasCalled;
 use SocialiteProviders\Naver\NaverExtendSocialite;
 use SocialiteProviders\Kakao\KakaoExtendSocialite;
+use SocialiteProviders\Google\GoogleExtendSocialite;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -19,10 +20,17 @@ class EventServiceProvider extends ServiceProvider
         // 'App\Events\SomeEvent' => [
         //     'App\Listeners\EventListener',
         // ],
-        SocialiteWasCalled::class => [
-            NaverExtendSocialite::class,
-            KakaoExtendSocialite::class,
-        ], 
+
+        // SocialiteWasCalled::class => [
+        //     NaverExtendSocialite::class,
+        //     KakaoExtendSocialite::class,
+        //     GoogleExtendSocialite::class,
+        // ], 
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            'SocialiteProviders\Naver\NaverExtendSocialite@handle',
+            'SocialiteProviders\Kakao\KakaoExtendSocialite@handle',
+            'SocialiteProviders\Google\GoogleExtendSocialite@handle',
+        ],
     ];
 
     /**

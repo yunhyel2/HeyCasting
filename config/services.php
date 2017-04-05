@@ -40,16 +40,19 @@ return [
         'client_secret' => env('NAVER_SECRET'),
         'redirect' => env('NAVER_REDIRECT_URI'),
     ],
+
     'kakao' => [
         'client_id' => env('KAKAO_KEY'),
         'client_secret' => env('KAKAO_SECRET'),
         'redirect' => env('KAKAO_REDIRECT_URI'),
     ],
+
     'facebook' => [
         'client_id' => env('FACEBOOK_KEY'),
         'client_secret' => env('FACEBOOK_SECRET'),
         'redirect' => env('FACEBOOK_REDIRECT_URI'),
     ],
+    
     'google' => [
         'client_id' => env('GOOGLE_KEY'),
         'client_secret' => env('GOOGLE_SECRET'),
