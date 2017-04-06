@@ -18,6 +18,7 @@
     sizeMatching();
     $(window).on('resize', sizeMatching);
     
+
 //Next button
     jQuery.validator.setDefaults({
         debug: true,

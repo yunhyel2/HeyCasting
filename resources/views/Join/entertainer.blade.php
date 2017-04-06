@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.FormLayout')
 
 @section('content')
     <div class="join-form enter">
@@ -19,12 +19,6 @@
                             <label for="user-email" class="icon"><img src="/img/icon_mail_address.png" alt="" width="20px" height="auto"/></label>
                             <input type="email" name="user-email" id="user-email" class="required email" placeholder="이메일을 입력하세요" autocomplete="Off"/>
                         </div>
-                        <!---
-                        <div class="form-group">
-                            <label for="user-nickname" class="icon"><img src="/img/icon_nickname.png" alt="" width="auto" height="20px"/></label>
-                            <input type="text" name="user-nickname" id="user-nickname" class="required" placeholder="닉네임을 입력하세요"/>
-                        </div>
-                        -->
                         <div class="form-group">
                             <label for="password" class="icon"><img src="/img/icon_password.png" alt="" width="auto" height="20px"/></label>
                             <input type="password" name="password" id="password" class="required" placeholder="비밀번호를 입력하세요"/>
@@ -40,12 +34,187 @@
                     <div class="group quick-join">
                         <h2>간편 회원가입</h2>
                         <ul>
-                            <li><a href="/join/kakao"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
-                            <li><a href="/join/google"><img src="/img/social_google.png" alt="구글로가입하기"/></a></li>
-                            <li><a href="/join/facebook"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
-                            <li><a href="/join/naver"><img src="/img/social_naver_line.png" alt="네이버로가입하기"/></a></li>
+                            <li><a href="javascript:loginWithKakao()" id="custom-login-btn"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
+                            <li><a href="/join/google" onclick="signIn();"><img src="/img/social_google.png" alt="구글로가입하기"/></a></li>
+                            <li><fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button></li>
+                            <li><div id="naver_id_login"></div></li>
                         </ul>
                     </div>
+                <!--- 간편로그인 -->
+                    <script type='text/javascript'>
+                    //카카오톡
+                        // 사용할 앱의 JavaScript 키를 설정해 주세요.
+                        Kakao.init('8195484f1954080cea8217c97485a60a');
+                        function loginWithKakao() {
+                            // 로그인 창을 띄웁니다.
+                            Kakao.Auth.login({
+                            success: function(authObj) {
+                                alert(JSON.stringify(authObj));
+                            },
+                            fail: function(err) {
+                                alert(JSON.stringify(err));
+                            }
+                            });
+                        };
+                        //]]>
+                    </script>
+                    <script>
+                    //페이스북
+                        // This is called with the results from from FB.getLoginStatus(). 
+                        
+                        function statusChangeCallback(response) { console.log('statusChangeCallback'); console.log(response); 
+                        
+                        // response 객체는 현재 로그인 상태를 나타내는 정보를 보여준다. 
+                        // 앱에서 현재의 로그인 상태에 따라 동작하면 된다.
+                        // FB.getLoginStatus().의 레퍼런스에서 더 자세한 내용이 참조 가능하다. 
+                        if (response.status === 'connected') { 
+                            // 페이스북을 통해서 로그인이 되어있다. 
+                            testAPI(); 
+                        } else if (response.status === 'not_authorized') { 
+                            // 페이스북에는 로그인 했으나, 앱에는 로그인이 되어있지 않다. 
+                            document.getElementById('status').innerHTML = 'Please log ' + 'into this app.'; 
+                        } else { 
+                            // 페이스북에 로그인이 되어있지 않다. 따라서, 앱에 로그인이 되어있는지 여부가 불확실하다. 
+                            document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.'; } 
+                        }
+
+                        // 이 함수는 누군가가 로그인 버튼에 대한 처리가 끝났을 때 호출된다. 
+                        // onlogin 핸들러를 아래와 같이 첨부하면 된다.
+                        function checkLoginState() { 
+                            FB.getLoginStatus(function(response) { 
+                                statusChangeCallback(response); 
+                            }); 
+                        }
+
+                        window.fbAsyncInit = function() { 
+                            FB.init({ 
+                                appId : '{1051232541675265}', 
+                                cookie : true, // 쿠키가 세션을 참조할 수 있도록 허용
+                                xfbml : true, // 소셜 플러그인이 있으면 처리 
+                                version : 'v2.1' // 버전 2.1 사용 
+                            }); 
+                        
+                        // 자바스크립트 SDK를 초기화 했으니, FB.getLoginStatus()를 호출한다. 
+                        //.이 함수는 이 페이지의 사용자가 현재 로그인 되어있는 상태 3가지 중 하나를 콜백에 리턴한다. 
+                        // 그 3가지 상태는 아래와 같다. 
+                        // 1. 앱과 페이스북에 로그인 되어있다. ('connected') 
+                        // 2. 페이스북에 로그인되어있으나, 앱에는 로그인이 되어있지 않다. ('not_authorized') 
+                        // 3. 페이스북에 로그인이 되어있지 않아서 앱에 로그인이 되었는지 불확실하다. 
+                        // 
+                        // 위에서 구현한 콜백 함수는 이 3가지를 다루도록 되어있다. 
+                        
+                            FB.getLoginStatus(function(response) { 
+                                statusChangeCallback(response); 
+                            }); 
+                        };
+
+                        // SDK를 비동기적으로 호출 
+                        (function(d, s, id) { 
+                            var js, fjs = d.getElementsByTagName(s)[0]; 
+                            if (d.getElementById(id)) return; 
+                            js = d.createElement(s); 
+                            js.id = id; 
+                            js.src = "//connect.facebook.net/en_US/sdk.js"; 
+                            fjs.parentNode.insertBefore(js, fjs); 
+                        }(document, 'script', 'facebook-jssdk')); 
+
+                        // 로그인이 성공한 다음에는 간단한 그래프API를 호출한다. 
+                        // 이 호출은 statusChangeCallback()에서 이루어진다. 
+                        
+                        function testAPI() { 
+                            console.log('Welcome! Fetching your information.... '); 
+                            FB.api('/me', function(response) { 
+                                console.log('Successful login for: ' + response.name); 
+                                document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!'; 
+                            }); 
+                        }
+
+                    </script>
+                    <script>
+                    //구글
+                        $("#authorized").hide();
+                        $("#error").hide();
+                        
+                        firebase.auth().getRedirectResult()
+                            .then(signInSucceed)
+                            .catch(signInError);
+                        });
+
+                        function signIn() {
+                            var provider = new firebase.auth.GoogleAuthProvider();
+                            
+                            firebase.auth().signInWithPopup(provider)
+                                    .then(signInSucceed)
+                                    .catch(signInError);
+                        }
+                        
+                        function signInSucceed(result) {
+                            if (result.credential) {
+                                googleAccountToken = result.credential.accessToken;
+                                user = result.user;
+                        
+                                $("#photo").attr("src", user.photoURL);
+                                $("#displayName").html(user.displayName);
+                                $("#email").html(user.email);
+                                $("#refreshToken").html(user.refreshToken);
+                                $("#uid").html(user.uid);
+                        
+                                $("#authorized").show();
+                                $("#signIn").hide();
+                            }
+                        }
+                        
+                        function signInError(error) {
+                            var errorCode = error.code;
+                            var errorMessage = error.message;
+                            var email = error.email;
+                            var credential = error.credential;
+                        
+                            var errmsg = errorCode + " " + errorMessage;
+                        
+                            if(typeof(email) != 'undefined') {
+                                errmsg += "<br />";
+                                errmsg += "Cannot sign in with your google account: " + email;
+                            }
+                        
+                            if(typeof(credential) != 'undefined') {
+                                errmsg += "<br />";
+                                errmsg += credential;
+                            }
+                        
+                            lastWork = "signIn";
+                            $("#error #errmsg").html(errmsg);
+                            $("#error").show();
+                            $("#signIn").hide();
+                            return;
+                        }
+                        
+                        function signInWithRedirect() {
+                            var provider = new firebase.auth.GoogleAuthProvider();
+                            
+                            firebase.auth().signInWithRedirect(provider);
+                        }
+                        
+                        function back() {
+                            $("#" + lastWork).show();
+                            $("#error").hide();
+                        }
+
+                    </script>
+                    <script>
+                    // 네이버
+                        var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/join_naver");
+                        naver_id_login.setPopup(); //Popup형태의 인증 진행
+                        naver_id_login.init_naver_id_login();
+                        
+                        var state = naver_id_login.getUniqState();
+                        naver_id_login.setButton("green", 1, 50);
+                        naver_id_login.setDomain("www.heycasting.com/enter-join");
+                        naver_id_login.setState(state);
+                        naver_id_login.setPopup();
+                        naver_id_login.init_naver_id_login();
+                    </script>
+                <!--- 간편로그인End -->
                 </div>
                 <div id="user-contents" class="step {{ strpos( Request::segment(1) , 'social' ) ? '' : 'hidden' }}">
                     @if( strpos( Request::segment(1) , 'social' ) )
