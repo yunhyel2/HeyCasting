@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.FormLayout')
 
 @section('content')
     <div class="join-form">
