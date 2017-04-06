@@ -155,16 +155,29 @@
                         function onSignIn(googleUser) {
                             // Useful data for your client-side scripts:
                             var profile = googleUser.getBasicProfile();
-                            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-                            console.log('Full Name: ' + profile.getName());
-                            console.log('Given Name: ' + profile.getGivenName());
-                            console.log('Family Name: ' + profile.getFamilyName());
-                            console.log("Image URL: " + profile.getImageUrl());
-                            console.log("Email: " + profile.getEmail());
+                            $('input[type="user-email"]').val(profile.getEmail());
+                            $('input[type="password"]').attr('disabled', 'disabled');
+                            $('div#user-contents').removeClass('hidden').parent().animate(
+                                { 
+                                    left: '-100%'
+                                },{ 
+                                    complete:function(){
+                                        $('div#user-account').find('input.next').remove();
+                                        $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                    }
+                                }
+                            );
+                            $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                            // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                            // console.log('Full Name: ' + profile.getName());
+                            // console.log('Given Name: ' + profile.getGivenName());
+                            // console.log('Family Name: ' + profile.getFamilyName());
+                            // console.log("Image URL: " + profile.getImageUrl());
+                            // console.log("Email: " + profile.getEmail());
 
                             // The ID token you need to pass to your backend:
-                            var id_token = googleUser.getAuthResponse().id_token;
-                            console.log("ID Token: " + id_token);
+                            // var id_token = googleUser.getAuthResponse().id_token;
+                            // console.log("ID Token: " + id_token);
                         };
                     </script>
                     <script>
@@ -185,6 +198,18 @@
                             // naver_id_login.getProfileData('프로필항목명');
                             // 프로필 항목은 개발가이드를 참고하시기 바랍니다.
                             $('input[name="user-email"]').val(naver_id_login.getProfileData('email'));
+                            $('input[type="password"]').attr('disabled', 'disabled');
+                            $('div#user-contents').removeClass('hidden').parent().animate(
+                                { 
+                                    left: '-100%'
+                                },{ 
+                                    complete:function(){
+                                        $('div#user-account').find('input.next').remove();
+                                        $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                    }
+                                }
+                            );
+                            $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
                         }
                     </script>
                 <!--- 간편로그인End -->
