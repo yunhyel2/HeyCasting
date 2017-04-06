@@ -35,7 +35,7 @@
                         <h2>간편 회원가입</h2>
                         <ul>
                             <li><a href="javascript:loginWithKakao()" id="custom-login-btn"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
-                            <li><a href="/join/google" onclick="signIn();"><img src="/img/social_google.png" alt="구글로가입하기"/></a></li>
+                            <li><div class="g-signin2" data-onsuccess="onSignIn" data-width="50" data-height="50" data-longtitle="false"></div></li>
                             <li><fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button></li>
                             <li><div id="naver_id_login"></div></li>
                         </ul>
@@ -132,74 +132,20 @@
                     </script>
                     <script>
                     //구글
-                        $("#authorized").hide();
-                        $("#error").hide();
-                        
-                        firebase.auth().getRedirectResult()
-                            .then(signInSucceed)
-                            .catch(signInError);
-                        });
+                        function onSignIn(googleUser) {
+                            // Useful data for your client-side scripts:
+                            var profile = googleUser.getBasicProfile();
+                            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                            console.log('Full Name: ' + profile.getName());
+                            console.log('Given Name: ' + profile.getGivenName());
+                            console.log('Family Name: ' + profile.getFamilyName());
+                            console.log("Image URL: " + profile.getImageUrl());
+                            console.log("Email: " + profile.getEmail());
 
-                        function signIn() {
-                            var provider = new firebase.auth.GoogleAuthProvider();
-                            
-                            firebase.auth().signInWithPopup(provider)
-                                    .then(signInSucceed)
-                                    .catch(signInError);
-                        }
-                        
-                        function signInSucceed(result) {
-                            if (result.credential) {
-                                googleAccountToken = result.credential.accessToken;
-                                user = result.user;
-                        
-                                $("#photo").attr("src", user.photoURL);
-                                $("#displayName").html(user.displayName);
-                                $("#email").html(user.email);
-                                $("#refreshToken").html(user.refreshToken);
-                                $("#uid").html(user.uid);
-                        
-                                $("#authorized").show();
-                                $("#signIn").hide();
-                            }
-                        }
-                        
-                        function signInError(error) {
-                            var errorCode = error.code;
-                            var errorMessage = error.message;
-                            var email = error.email;
-                            var credential = error.credential;
-                        
-                            var errmsg = errorCode + " " + errorMessage;
-                        
-                            if(typeof(email) != 'undefined') {
-                                errmsg += "<br />";
-                                errmsg += "Cannot sign in with your google account: " + email;
-                            }
-                        
-                            if(typeof(credential) != 'undefined') {
-                                errmsg += "<br />";
-                                errmsg += credential;
-                            }
-                        
-                            lastWork = "signIn";
-                            $("#error #errmsg").html(errmsg);
-                            $("#error").show();
-                            $("#signIn").hide();
-                            return;
-                        }
-                        
-                        function signInWithRedirect() {
-                            var provider = new firebase.auth.GoogleAuthProvider();
-                            
-                            firebase.auth().signInWithRedirect(provider);
-                        }
-                        
-                        function back() {
-                            $("#" + lastWork).show();
-                            $("#error").hide();
-                        }
-
+                            // The ID token you need to pass to your backend:
+                            var id_token = googleUser.getAuthResponse().id_token;
+                            console.log("ID Token: " + id_token);
+                        };
                     </script>
                     <script>
                     // 네이버
