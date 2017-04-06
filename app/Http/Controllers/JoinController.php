@@ -217,8 +217,8 @@ class JoinController extends Controller
 
                 $profile_main_image = new Enter_main_image;
                 $profile_main_image->enter_id = $enter_id;
-                // $profile_main_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
-                $profile_main_image->image = '';
+                $profile_main_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
+                // $profile_main_image->image = '';
                 $profile_main_image->save();
 
                 if( $images ) { 
