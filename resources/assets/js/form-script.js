@@ -65,7 +65,6 @@
                                     }
                                 );
                                 $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
-                                
                             }
                         }
                     },error:function(request,status,error){

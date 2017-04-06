@@ -173,6 +173,10 @@ div.join-form {
   font-size: 15px;
 }
 
+div.join-form.complete {
+  background: rgba(0, 0, 0, 0.7);
+}
+
 @media (max-width: 475px) {
   div.join-form {
     font-size: 14px;
@@ -1064,6 +1068,12 @@ form[name="join-form"].complete div.complete-wrap {
   overflow-y: scroll;
 }
 
+@media (max-width: 550px) {
+  form[name="join-form"].complete div.complete-wrap {
+    padding: 100px 30px;
+  }
+}
+
 form[name="join-form"].complete div.complete-wrap img {
   width: 65%;
   margin: 0 17.5%;
@@ -1073,6 +1083,13 @@ form[name="join-form"].complete div.complete-wrap p {
   font-size: 18px;
   text-align: center;
   margin: 80px 0;
+}
+
+@media (max-width: 550px) {
+  form[name="join-form"].complete div.complete-wrap p {
+    font-size: 15px;
+    margin: 50px 0;
+  }
 }
 
 form[name="join-form"].complete div.complete-wrap a.button {
@@ -1085,7 +1102,22 @@ form[name="join-form"].complete div.complete-wrap a.button {
   width: 100%;
   height: 60px;
   line-height: 60px;
-  margin: 20px 0;
+  margin: 20px auto;
+}
+
+@media (max-width: 550px) {
+  form[name="join-form"].complete div.complete-wrap a.button {
+    font-size: 15px;
+    width: 50%;
+    height: 40px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width: 385px) {
+  form[name="join-form"].complete div.complete-wrap a.button {
+    font-size: 13px;
+  }
 }
 
 div.cover {

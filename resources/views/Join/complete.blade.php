@@ -1,7 +1,7 @@
 @extends('layouts.FormLayout')
 
 @section('content')
-    <div class="join-form">
+    <div class="join-form complete">
         <form name="join-form" class="complete">
             <div class="complete-wrap">
                 <h2 class="logo"><img src="/img/logo2.png" alt="헤이캐스팅"/></h2>
