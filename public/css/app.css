@@ -333,7 +333,27 @@ div.join-form div.group.quick-join li img {
   width: 50px;
 }
 
-div.join-form div.group.quick-join li button.g-signin {
+div.join-form div.group.quick-join li div#gConnect {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 0 auto;
+  background: url("/img/social_google.png");
+  background-size: cover;
+}
+
+div.join-form div.group.quick-join li div#gConnect button {
+  margin: -1px;
+  height: 52px !important;
+  width: auto !important;
+}
+
+div.join-form div.group.quick-join li div#gConnect iframe {
+  opacity: 0;
+}
+
+div.join-form div.group.quick-join li button.g-signin2 {
   width: 50px;
   height: 50px;
   overflow: hidden;
@@ -341,16 +361,16 @@ div.join-form div.group.quick-join li button.g-signin {
   border-radius: 10px;
 }
 
-div.join-form div.group.quick-join li button.g-signin div.abcRioButtonIcon {
+div.join-form div.group.quick-join li button.g-signin2 div.abcRioButtonIcon {
   padding: 10px !important;
 }
 
-div.join-form div.group.quick-join li button.g-signin div.abcRioButtonIcon svg {
+div.join-form div.group.quick-join li button.g-signin2 div.abcRioButtonIcon svg {
   width: 30px;
   height: 30px;
 }
 
-div.join-form div.group.quick-join li button.g-signin span {
+div.join-form div.group.quick-join li button.g-signin2 span {
   display: none;
 }
 
