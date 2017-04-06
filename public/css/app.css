@@ -333,7 +333,7 @@ div.join-form div.group.quick-join li img {
   width: 50px;
 }
 
-div.join-form div.group.quick-join li div.g-signin2 {
+div.join-form div.group.quick-join li button.g-signin {
   width: 50px;
   height: 50px;
   overflow: hidden;
@@ -341,16 +341,16 @@ div.join-form div.group.quick-join li div.g-signin2 {
   border-radius: 10px;
 }
 
-div.join-form div.group.quick-join li div.g-signin2 div.abcRioButtonIcon {
+div.join-form div.group.quick-join li button.g-signin div.abcRioButtonIcon {
   padding: 10px !important;
 }
 
-div.join-form div.group.quick-join li div.g-signin2 div.abcRioButtonIcon svg {
+div.join-form div.group.quick-join li button.g-signin div.abcRioButtonIcon svg {
   width: 30px;
   height: 30px;
 }
 
-div.join-form div.group.quick-join li div.g-signin2 span {
+div.join-form div.group.quick-join li button.g-signin span {
   display: none;
 }
 

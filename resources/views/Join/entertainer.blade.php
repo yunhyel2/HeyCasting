@@ -35,7 +35,11 @@
                         <h2>간편 회원가입</h2>
                         <ul>
                             <li><a href="javascript:loginWithKakao()" id="custom-login-btn"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
-                            <li><div class="g-signin2" data-onsuccess="SignIn" data-width="50" data-height="50" data-longtitle="false"></div></li>
+                            <li>
+                                <div id="gConnect" class="button">
+                                    <button class="g-signin" data-scope="email" data-clientid="978762129980-mm03vb2s9ad3brnovetbrfbktkg5fkd1.apps.googleusercontent.com" data-callback="onSignInCallback" data-theme="dark" data-cookiepolicy="single_host_origin"></button>
+                                </div>
+                            </li>
                             <li><div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div></li>
                             <li><div id="naver_id_login"></div></li>
                         </ul>
@@ -152,33 +156,30 @@
                     </script>
                     <script>
                     //구글
-                        function SignIn(googleUser) {
-                            // Useful data for your client-side scripts:
-                            var profile = googleUser.getBasicProfile();
-                            $('input[type="user-email"]').val(profile.getEmail());
-                            $('input[type="password"]').attr('disabled', 'disabled');
-                            $('div#user-contents').removeClass('hidden').parent().animate(
-                                { 
-                                    left: '-100%'
-                                },{ 
-                                    complete:function(){
-                                        $('div#user-account').find('input.next').remove();
-                                        $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
-                                    }
-                                }
-                            );
-                            $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
-                            // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-                            // console.log('Full Name: ' + profile.getName());
-                            // console.log('Given Name: ' + profile.getGivenName());
-                            // console.log('Family Name: ' + profile.getFamilyName());
-                            // console.log("Image URL: " + profile.getImageUrl());
-                            // console.log("Email: " + profile.getEmail());
+                        
+                        //Handler for the signin callback triggered after the user selects an account.
+                        
+                        function onSignInCallback(resp) {
+                            gapi.client.load('plus', 'v1', apiClientLoaded);
+                        }
 
-                            // The ID token you need to pass to your backend:
-                            // var id_token = googleUser.getAuthResponse().id_token;
-                            // console.log("ID Token: " + id_token);
-                        };
+                        // Sets up an API call after the Google API client loads.
+                        
+                        function apiClientLoaded() {
+                            gapi.client.plus.people.get({userId: 'me'}).execute(handleEmailResponse);
+                        }
+
+                        // Response callback for when the API client receives a response.
+                        // @param resp The API response object with the user email and profile information.
+
+                        function handleEmailResponse(resp) {
+                            var primaryEmail;
+                            for (var i=0; i < resp.emails.length; i++) {
+                            if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
+                            }
+                            document.getElementById('user-email').value = primaryEmail;
+                        }
+
                     </script>
                     <script>
                     // 네이버

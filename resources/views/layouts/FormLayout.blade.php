@@ -19,8 +19,7 @@
     <!---카카오톡간편로그인-->
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!---구글간편로그인-->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="978762129980-mm03vb2s9ad3brnovetbrfbktkg5fkd1.apps.googleusercontent.com">
+    <script src = "https://plus.google.com/js/client:platform.js" async defer></script>
 
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
