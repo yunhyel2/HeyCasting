@@ -329,6 +329,27 @@ div.join-form div.group.quick-join li img {
   width: 50px;
 }
 
+div.join-form div.group.quick-join li div.g-signin2 {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+div.join-form div.group.quick-join li div.g-signin2 div.abcRioButtonIcon {
+  padding: 10px !important;
+}
+
+div.join-form div.group.quick-join li div.g-signin2 div.abcRioButtonIcon svg {
+  width: 30px;
+  height: 30px;
+}
+
+div.join-form div.group.quick-join li div.g-signin2 span {
+  display: none;
+}
+
 div.join-form h2, div.join-form label.title {
   font-size: 23px;
   display: inline-block;
