@@ -35,7 +35,7 @@
                         <h2>간편 회원가입</h2>
                         <ul>
                             <li><a href="javascript:loginWithKakao()" id="custom-login-btn"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
-                            <li><div class="g-signin2" data-onsuccess="onSignIn" data-width="50" data-height="50" data-longtitle="false"></div></li>
+                            <li><div class="g-signin2" data-onsuccess="SignIn" data-width="50" data-height="50" data-longtitle="false"></div></li>
                             <li><div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div></li>
                             <li><div id="naver_id_login"></div></li>
                         </ul>
@@ -152,7 +152,7 @@
                     </script>
                     <script>
                     //구글
-                        function onSignIn(googleUser) {
+                        function SignIn(googleUser) {
                             // Useful data for your client-side scripts:
                             var profile = googleUser.getBasicProfile();
                             $('input[type="user-email"]').val(profile.getEmail());
