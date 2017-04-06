@@ -59,7 +59,7 @@ class JoinController extends Controller
         $password2 = $request->input('passwordConf');
 
         $videos = $request->input('videos'); 
-        $main_image = $request->file('main-profile');
+        $main_image = $request->input('main-profile');
         $images = $request->file('photos'); 
 
         $name = $request->input('user-name');
@@ -94,9 +94,9 @@ class JoinController extends Controller
             return back();
         } else {
 
-            DB::beginTransaction();
+            // DB::beginTransaction();
 
-            try {
+            // try {
 
                 $entertainer = new Enter;
                 $entertainer->flag = $flag;
@@ -217,8 +217,7 @@ class JoinController extends Controller
 
                 $profile_main_image = new Enter_main_image;
                 $profile_main_image->enter_id = $enter_id;
-                $profile_main_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $main_image, 'public');
-                // $profile_main_image->image = '';
+                $profile_main_image->image = $main_image;
                 $profile_main_image->save();
 
                 if( $images ) { 
@@ -253,12 +252,12 @@ class JoinController extends Controller
                 $user_key->device_id = 0;
                 $user_key->push_state = 'Y';
                 $user_key->save();
-                DB::commit();
+            //     DB::commit();
 
-            } catch(\Exception $e) {
-                DB::rollback();
-                return redirect('/');
-            }
+            // } catch(\Exception $e) {
+            //     DB::rollback();
+            //     return redirect('/');
+            // }
             return redirect('/complete/enter');
         }
     }
