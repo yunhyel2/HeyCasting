@@ -20,6 +20,7 @@
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!---구글간편로그인-->
     <script src = "https://plus.google.com/js/client:platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="978762129980-mm03vb2s9ad3brnovetbrfbktkg5fkd1.apps.googleusercontent.com">
 
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
@@ -52,16 +53,6 @@
     </script>
 </head>
 <body class="{{ Request::segment(1) == 'enter-join' || Request::segment(1) == 'user-join' ? 'join' : '' }}{{ strpos( Request::segment(1) , 'social' ) ? 'social' : '' }}{{ Request::segment(1) == 'complete' ? 'fixed' : '' }}">
-    <div id="fb-root"></div>
-    <script>
-        (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.8";
-        fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
     <div id="app">
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
