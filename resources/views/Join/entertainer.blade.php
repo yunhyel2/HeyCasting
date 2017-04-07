@@ -76,22 +76,37 @@
 
                             //statusChangeCallback
                             function naverSignInCallback(e) {
-                                // naver_id_login.getProfileData('프로필항목명');
-                                // 프로필 항목은 개발가이드를 참고하시기 바랍니다.
-                                $('input[name="naver_mail"]').val(naver_id_login.getProfileData('email'));
-                                $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
-                                $('div#user-contents').removeClass('hidden').parent().animate(
-                                    { 
-                                        left: '-100%'
-                                    },{ 
-                                        complete:function(){
-                                            $('div#user-account').find('input.next').remove();
-                                            $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                            var express = require('express');
+                            var app = express();
+                            var token = "YOUR_ACCESS_TOKEN";
+                            var header = "Bearer " + token; // Bearer 다음에 공백 추가
+                            app.get('/member', function (req, res) {
+                                var api_url = 'https://openapi.naver.com/v1/nid/me';
+                                var request = require('request');
+                                var options = {
+                                    url: api_url,
+                                    headers: {'Authorization': header}
+                                    };
+                                request.get(options, function (error, response, body) {
+                                    $('input[name="naver_mail"]').val(response.email);
+                                    $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
+                                    $('div#user-contents').removeClass('hidden').parent().animate(
+                                        { 
+                                            left: '-100%'
+                                        },{ 
+                                            complete:function(){
+                                                $('div#user-account').find('input.next').remove();
+                                                $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                            }
                                         }
-                                    }
-                                );
-                                $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
-                            }
+                                    );
+                                    $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                });
+                            });
+                            app.listen(3000, function () {
+                            console.log('http://127.0.0.1:3000/member app listening on port 3000!');
+                            });
+                        }
                     </script>
                 </div>
                 <div id="user-contents" class="step hidden">
