@@ -179,7 +179,7 @@
                     </script>
                     <script>
                     // 네이버
-                        var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/join_naver");
+                        var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/enter-join");
                         naver_id_login.setPopup(); //Popup형태의 인증 진행
                         naver_id_login.init_naver_id_login();
                         
