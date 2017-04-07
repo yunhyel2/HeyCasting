@@ -39,14 +39,44 @@
                     <div class="group quick-join">
                         <h2>간편 회원가입</h2>
                         <ul>
-                            <li><a href="#"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
-                            <li><a href="#"><img src="/img/social_google.png" alt="구글로가입하기"/></a></li>
-                            <li><a href="#"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
-                            <li><a href="#"><img src="/img/social_naver_line.png" alt="네이버로가입하기"/></a></li>
+                            <li><a href="#" id="custom-login-btn" class="not-ready"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
+                            <li><div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div></li>
+                            <li><a href="#" id="facebook_login"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
+                            <li><a href="#" class="not-ready"><img src="/img/social_naver_line.png" alt="네이버로가입하기"/></a></li>
                         </ul>
                     </div>
+                    <script>
+                        //구글
+                        function onSignIn(googleUser) {
+                            // Useful data for your client-side scripts:
+                            $('div.g-signin2').on('click', function(){
+                                var profile = googleUser.getBasicProfile();
+                                console.log(profile);
+                                $('input[name="google_mail"]').val(profile.getEmail());
+                                $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
+                                $('div#user-contents').removeClass('hidden').parent().animate(
+                                    { 
+                                        left: '-100%'
+                                    },{ 
+                                        complete:function(){
+                                            $('div#user-account').find('input.next').remove();
+                                            $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                        }
+                                    }
+                                );
+                                $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                // The ID token you need to pass to your backend:
+                                var id_token = googleUser.getAuthResponse().id_token;
+                                console.log("ID Token: " + id_token);
+                            });
+                        };
+                    </script>
                 </div>
                 <div id="user-contents" class="step hidden">
+                    <input type="hidden" name="kakao_id" value=""/>
+                    <input type="hidden" name="google_mail" value=""/>
+                    <input type="hidden" name="facebook_mail" value=""/>
+                    <input type="hidden" name="naver_mail" id="naver_mail" value=""/>
                     <div class="group">
                         <div class="form-group">
                             <label for="user_name" class="title">연락처 입력</label>
@@ -85,4 +115,5 @@
     <script type="text/javascript" src="/jquery.validation.1.15.0/additional-methods.js"></script>
     <script type="text/javascript" src="/jquery.validation.1.15.0/messages_ko.min.js"></script>
     <script type="text/javascript" src="/js/form-script.js"></script>
+    <script type="text/javascript" src="/js/quick-join.js"></script>
 @endsection

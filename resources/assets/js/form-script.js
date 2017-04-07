@@ -158,22 +158,29 @@
         }
     });
 //Select
-    $('select').on('click', function(e){
-        e.preventDefault();
-        if( !$(this).hasClass('disable') ){
+    $('div.selected').on('click', function(){
+        if( !$(this).prev('select').hasClass('disable') ){
             $(this).toggleClass('active').next('ul.select').toggleClass('hidden');
         }
     });
+    // $('select').on('click', function(e){
+    //     //e.preventDefault();
+    //     if( !$(this).hasClass('disable') ){
+    //         $(this).toggleClass('active').next('ul.select').toggleClass('hidden');
+    //     }
+    // });
     $('ul.select').on('click', 'li', function(){
         $value = $(this).attr('name');
         if( $(this).parent('ul.select').hasClass('sns') ){
             $('div#social_'+$value).removeClass('hidden');
-            $(this).parent('ul.select').addClass('hidden').prev('select').removeClass('active');
+            $(this).parent('ul.select').addClass('hidden').prev().removeClass('active');
             $(this).parent('ul.select').find('li[name="'+$value+'"]').addClass('hidden');
         }else{
-            $(this).parent('ul.select').prev('select').find('option[value="'+$value+'"]').prop("selected", true);
-            $(this).parent('ul.select').addClass('hidden').prev('select').removeClass('active');
-            if( $(this).parent('ul.select').prev('select').attr('name') == 'user-job' ){
+            $data = $(this).parent('ul.select').prev().prev('select').find('option[value="'+$value+'"]').html();
+            $(this).parent('ul.select').prev('div.selected').html($data);
+            $(this).parent('ul.select').prev().prev('select').find('option[value="'+$value+'"]').prop("selected", true);
+            $(this).parent('ul.select').addClass('hidden').prev().removeClass('active');
+            if( $(this).parent('ul.select').prev().prev('select').attr('name') == 'user-job' ){
                 if( $(this).attr('name') !== '기타 아티스트' ){
                     $('select[name="user-job2"], select[name="user-job3"]').removeClass('disable');
                 }else{
@@ -207,7 +214,7 @@
                     url:"/php/detailJob_ul.php", 
                     data:"Name="+$this.val(), 
                     success:function(msg){ 
-                        $('select[name="user-job2"]').next('ul.select').html(msg); 
+                        $('select[name="user-job2"]').next().next('ul.select').html(msg); 
                     }, error:function(){
 
                     }
@@ -217,21 +224,21 @@
                     url:"/php/detailJob2_ul.php", 
                     data:"Name="+$this.val(), 
                     success:function(msg){ 
-                        $('select[name="user-job3"]').next('ul.select').html(msg); 
+                        $('select[name="user-job3"]').next().next('ul.select').html(msg); 
                     }, error:function(){
 
                     }
                 }); 
             }
-            if( $(this).parent('ul.select').prev('select').attr('name') == 'user-job2' ){
+            if( $(this).parent('ul.select').prev().prev('select').attr('name') == 'user-job2' ){
                 $selected = $(this).attr('name');
-                $('select[name="user-job3"]').next('ul.select').children('li').not('[name="'+$selected+'"]').removeClass('hidden');
-                $('select[name="user-job3"]').next('ul.select').find('li[name="'+$selected+'"]').addClass('hidden');
+                $('select[name="user-job3"]').next().next('ul.select').children('li').not('[name="'+$selected+'"]').removeClass('hidden');
+                $('select[name="user-job3"]').next().next('ul.select').find('li[name="'+$selected+'"]').addClass('hidden');
             }
-            if( $(this).parent('ul.select').prev('select').attr('name') == 'user-job3' ){
+            if( $(this).parent('ul.select').prev().prev('select').attr('name') == 'user-job3' ){
                 $selected = $(this).attr('name');
-                $('select[name="user-job2"]').next('ul.select').children('li').not('[name="'+$selected+'"]').removeClass('hidden');
-                $('select[name="user-job2"]').next('ul.select').find('li[name="'+$selected+'"]').addClass('hidden');
+                $('select[name="user-job2"]').next().next('ul.select').children('li').not('[name="'+$selected+'"]').removeClass('hidden');
+                $('select[name="user-job2"]').next().next('ul.select').find('li[name="'+$selected+'"]').addClass('hidden');
             }
         }
     });

@@ -139,7 +139,7 @@
                     <div class="group">
                         <h2>직군선택<span class="required"><img src="/img/required.png" alt="(필수)"></span></h2>
                         <div class="form-group">
-                            <select class="required" name="user-job" id="user-job">
+                            <select class="required dont-show" name="user-job" id="user-job">
                                 <option selected value>선택하세요</option>
                                 <option value="사회자">MC/사회자</option>
                                 <option value="가수">가수</option>
@@ -150,6 +150,7 @@
                                 <option value="크리에이터">크리에이터</option>
                                 <option value="기타 아티스트">기타 아티스트</option>
                             </select>
+                            <div class="selected user-job">선택하세요</div>
                             <ul class="select hidden">
                                 <li name="사회자">MC/사회자</li>
                                 <li name="가수">가수</li>
@@ -161,18 +162,18 @@
                                 <li name="기타 아티스트">기타 아티스트</li>
                             </ul>
                             <div class="half">
-                                <select class="half disable required" name="user-job2">
+                                <select class="half disable required dont-show" name="user-job2">
                                     <option selected value>세부분야</option>
                                 </select>
-                                <ul class="select hidden half">
-                                </ul>
+                                <div class="selected detail">세부분야</div>
+                                <ul class="select hidden half"></ul>
                             </div>
                             <div class="half left-mrg">
-                                <select class="half disable" name="user-job3">
+                                <select class="half disable dont-show" name="user-job3">
                                     <option selected value>세부분야</option>
                                 </select>
-                                <ul class="select hidden half">
-                                </ul>
+                                <div class="selected detail">세부분야</div>
+                                <ul class="select hidden half"></ul>
                             </div> 
                         </div>
                     </div>
@@ -215,7 +216,7 @@
                     <div class="group">
                         <h2>나이대 (평균)<span class="required"><img src="/img/required.png" alt="(필수)"></span></h2>
                         <div class="form-group">
-                            <select name="user-age" id="user-age" class="required">
+                            <select name="user-age" id="user-age" class="required dont-show">
                                 <option value selected>선택하세요</option>
                                 <option value="10">~ 10대</option>
                                 <option value="20">20대</option>
@@ -223,6 +224,7 @@
                                 <option value="40">40대</option>
                                 <option value="50">50대 ~</option>
                             </select>
+                            <div class="selected">선택하세요</div>
                             <ul class="select hidden">
                                 <li name="10">~ 10대</li>
                                 <li name="20">20대</li>
@@ -236,11 +238,12 @@
                         <h2>지역 선택<span class="required"><img src="/img/required.png" alt="(필수)"></span></h2>
                         <div class="form-group half">
                             <label for="location1">거주지</label>
-                            <select name="location1" id="location1" class="required">
+                            <select name="location1" id="location1" class="required dont-show">
                                 <option value selected>선택하세요</option>
                                 <option value="1">한국 내</option>
                                 <option value="2">한국 외</option>
                             </select>
+                            <div class="selected">선택하세요</div>
                             <ul class="select hidden">
                                 <li name="1">한국 내</li>
                                 <li name="2">한국 외</li>
@@ -248,7 +251,7 @@
                         </div>
                         <div class="form-group half">
                             <label for="location2">본 국적</label>
-                            <select name="location2" id="location2" class="required">
+                            <select name="location2" id="location2" class="required dont-show">
                                 <option value selected>선택하세요</option>
                                 <option value="1">한국</option>
                                 <option value="2">중국</option>
@@ -259,6 +262,7 @@
                                 <option value="7">유럽</option>
                                 <option value="8">기타</option>
                             </select>
+                            <div class="selected">선택하세요</div>
                             <ul class="select hidden">
                                 <li name="1">한국</li>
                                 <li name="2">중국</li>
@@ -272,7 +276,7 @@
                         </div>
                         <div class="form-group">
                             <label for="location3">캐스팅 선호 지역</label>
-                            <select name="location3" id="location3" class="required">
+                            <select name="location3" id="location3" class="required dont-show">
                                 <option value selected>선택하세요</option>
                                 <option value="1">국내 외 전체</option>
                                 <option value="2">국내 전체</option>
@@ -283,6 +287,7 @@
                                 <option value="7">충청</option>
                                 <option value="8">제주</option>
                             </select>
+                            <div class="selected">선택하세요</div>
                             <ul class="select hidden">
                                 <li name="1">국내 외 전체</li>
                                 <li name="2">국내 전체</li>
@@ -429,7 +434,7 @@
                     <div class="group cost">
                         <div class="form-group">
                             <label for="casting-cost" class="title">평균 캐스팅 비용<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
-                            <select class="required" name="casting-cost" id="casting-cost">
+                            <select class="required dont-show" name="casting-cost" id="casting-cost">
                                 <option selected value>비용 선택(건당)</option>
                                 <option value="cost1">0 ~ 30만원</option>
                                 <option value="cost2">30 ~ 50만원</option>
@@ -438,6 +443,7 @@
                                 <option value="cost5">200 ~ 500만원</option>
                                 <option value="cost6">500만원 이상</option>
                             </select>
+                            <div class="selected">선택하세요</div>
                             <ul class="select hidden">
                                 <li name="cost1">0 ~ 30만원</li>
                                 <li name="cost2">30 ~ 50만원</li>
@@ -483,7 +489,7 @@
                     <div class="group sns">
                         <div class="form-group">
                             <label for="social_select" class="title">SNS 주소</label>
-                            <select name="social_select" id="social_select">
+                            <select name="social_select" id="social_select" class="dont-show">
                                 <option selected value>SNS 추가</option>
                                 <option value="instagram">인스타그램</option>
                                 <option value="facebook">페이스북</option>
@@ -491,6 +497,7 @@
                                 <option value="twitter">트위터</option>
                                 <option value="youtube">유투브</option>
                             </select>
+                            <div class="selected social_select">SNS 추가</div>
                             <ul class="select hidden sns">
                                 <li name="instagram">인스타그램</li>
                                 <li name="facebook">페이스북</li>
