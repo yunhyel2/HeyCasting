@@ -145,7 +145,7 @@ class JoinController extends Controller
             $entertainer->image = '';
             $entertainer->save();
 
-            $enter_id = Enter::where('email', $user_email)->first()->id;
+            $enter_id = Enter::where('email', $user_email)->where('link', $link)->first()->id;
 
             $enter_job = new Enter_job;
             $enter_job->enter_id = $enter_id;
