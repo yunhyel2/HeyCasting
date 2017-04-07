@@ -42,7 +42,7 @@
                             <li><a href="#" id="custom-login-btn" class="not-ready"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
                             <li><div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div></li>
                             <li><a href="#" id="facebook_login"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
-                            <li><a href="#" class="not-ready"><img src="/img/social_naver_line.png" alt="네이버로가입하기"/></a></li>
+                            <li><div id="naver_id_login"></div></li>
                         </ul>
                     </div>
                     <script>
@@ -70,6 +70,40 @@
                                 console.log("ID Token: " + id_token);
                             });
                         };
+                        //네이버
+                        var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/user-join");
+                                            
+                        var state = naver_id_login.getUniqState();
+                        naver_id_login.setButton("green", 1, 50);
+                        naver_id_login.setDomain("www.heycasting.com/user-join");
+                        naver_id_login.setState(state);
+                        // naver_id_login.setPopup();
+                        naver_id_login.init_naver_id_login();
+
+                        //statusChangeCallback
+                        function naverSignInCallback(e) {
+                            // naver_id_login.getProfileData('프로필항목명');
+                            // 프로필 항목은 개발가이드를 참고하시기 바랍니다.
+                            e.preventDefault();
+                            window.opener.document.getElementById('naver_mail').value = naver_id_login.getProfileData('email');
+                            window.opener.document.getElementById('user-email').disabled = true;
+                            window.opener.document.getElementById('password').disabled = true;
+                            window.opener.document.getElementById('passwordConf').disabled = true;
+                            var user_contents = window.opener.document.getElementById('user-contents');
+                            var joinNav = window.opener.document.getElementsByClass('join-nav');
+                            $(user_contents).removeClass('hidden').parent().animate(
+                                { 
+                                    left: '-100%'
+                                },{ 
+                                    complete:function(){
+                                        $('div#user-account').find('input.next').remove();
+                                        $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                    }
+                                }
+                            );
+                            $(joinNav).find('li:first-child').removeClass('active').next().addClass('active');
+                            self.close();
+                        }
                     </script>
                 </div>
                 <div id="user-contents" class="step hidden">

@@ -130,6 +130,7 @@ $url = window.location.pathname.toString().toLowerCase();;
 //네이버
     if( $url.indexOf('enter') != -1 ){
         var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/enter-join");
+        console.log('헐');
     }else{
         var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/user-join");
     }
@@ -142,7 +143,7 @@ $url = window.location.pathname.toString().toLowerCase();;
         naver_id_login.setDomain("www.heycasting.com/user-join");
     }
     naver_id_login.setState(state);
-    naver_id_login.setPopup();
+    // naver_id_login.setPopup();
     naver_id_login.init_naver_id_login();
 
     //statusChangeCallback
