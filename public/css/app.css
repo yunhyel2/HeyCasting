@@ -205,6 +205,7 @@ div.join-form.enter input[type="text"], div.join-form.enter input[type="email"],
   text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.7);
   /* change [input font] by this*/
   -webkit-text-fill-color: transparent;
+  -ms-text-fill-color: transparent;
 }
 
 div.join-form nav.join-nav li {
@@ -526,46 +527,51 @@ div.form-group input:not([type="radio"]).error {
   border-bottom: 1px solid indianred;
 }
 
-div.form-group select {
+div.form-group div.selected {
   width: 100%;
   height: 40px;
   line-height: 40px;
   box-sizing: border-box;
   padding: 0 20px;
+  margin: 5px 0 0 0 !important;
   border: 1px solid #fff;
   border-radius: 20px;
   background: none;
   opacity: 0.7;
   color: #fff;
   font-size: 15px;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
+  cursor: default;
   background: url(/img/select_arrow_down.png) no-repeat;
   background-size: 10px auto;
   background-position: right 10px top 15px;
 }
 
+div.form-group div.selected::-ms-expand {
+  display: none;
+}
+
 @media (max-width: 475px) {
-  div.form-group select {
+  div.form-group div.selected {
     font-size: 14px;
   }
 }
 
 @media (max-width: 385px) {
-  div.form-group select {
+  div.form-group div.selected {
     font-size: 13px;
     padding: 0 10px;
   }
 }
 
-div.form-group select option {
+div.form-group div.selected option {
   display: none;
   outline: none;
+  opacity: 0;
+  position: relative;
+  left: -9999px;
 }
 
-div.form-group select.active {
+div.form-group div.selected.active {
   border-radius: 20px 20px 0 0;
   background: rgba(50, 150, 200, 0.7);
   background: url(/img/select_arrow_up.png) no-repeat;
@@ -573,24 +579,28 @@ div.form-group select.active {
   background-position: right 10px top 15px;
 }
 
-div.form-group select[name="user-job"] {
+div.form-group div.selected.user-job {
   margin-top: 10px;
 }
 
-div.form-group select[name="social_select"] {
+div.form-group div.selected.detail {
+  margin: 0 !important;
+}
+
+div.form-group div.selected.social_select {
   display: block;
   width: 50%;
   margin-top: 20px;
 }
 
-div.form-group select[name="social_select"] ~ ul.select {
+div.form-group div.selected.social_select ~ ul.select {
   width: 50%;
   margin-bottom: 20px;
 }
 
 div.form-group div.half {
   width: 49%;
-  margin-top: 10px;
+  margin-top: 0 !important;
   float: left;
 }
 
