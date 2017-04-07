@@ -40,6 +40,32 @@
                             <li><a href="#" class="not-ready"><img src="/img/social_naver_line.png" alt="네이버로가입하기"/></a></li>
                         </ul>
                     </div>
+                    <script>
+                        //구글
+                        function onSignIn(googleUser) {
+                            // Useful data for your client-side scripts:
+                            $('div.g-signin2').on('click', function(){
+                                var profile = googleUser.getBasicProfile();
+                                console.log(profile);
+                                $('input[name="google_mail"]').val(profile.getEmail());
+                                $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
+                                $('div#user-contents').removeClass('hidden').parent().animate(
+                                    { 
+                                        left: '-100%'
+                                    },{ 
+                                        complete:function(){
+                                            $('div#user-account').find('input.next').remove();
+                                            $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                        }
+                                    }
+                                );
+                                $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                // The ID token you need to pass to your backend:
+                                var id_token = googleUser.getAuthResponse().id_token;
+                                console.log("ID Token: " + id_token);
+                            });
+                        };
+                    </script>
                 </div>
                 <div id="user-contents" class="step hidden">
                     <input type="hidden" name="kakao_id" value=""/>

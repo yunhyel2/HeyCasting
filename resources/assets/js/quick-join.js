@@ -43,7 +43,7 @@
 //구글
     function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
-        $('div.g-signin2').on('click',function(){
+        $('div.g-signin2').on('click', function(){
             var profile = googleUser.getBasicProfile();
             console.log(profile);
             $('input[name="google_mail"]').val(profile.getEmail());

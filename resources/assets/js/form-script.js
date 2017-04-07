@@ -310,6 +310,7 @@
     });
 
 //Not-ready
-    $('a.not-ready').click(function(){
+    $('a.not-ready').click(function(e){
+        e.preventDefault();
         alert('준비중입니다!');
     });
