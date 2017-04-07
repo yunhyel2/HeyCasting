@@ -116,7 +116,9 @@
                             FB.login(function(response) {
                                 if (response.authResponse) {
                                     //user just authorized your app
-                                    $('input[name="user-email"]').val(response.email);
+                                    FB.api('/me', {fields: 'email'}, function(response) {
+                                        $('input[name="user-email"]').val(response.email);
+                                    });
                                     $('input[type="password"]').attr('disabled', 'disabled');
                                     $('div#user-contents').removeClass('hidden').parent().animate(
                                         { 
@@ -155,7 +157,9 @@
                         function handleEmailResponse(resp) {
                             var primaryEmail;
                             for (var i=0; i < resp.emails.length; i++) {
-                            if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
+                                if (resp.emails[i].type === 'account') {
+                                    primaryEmail = resp.emails[i].value;
+                                }
                             }
                             document.getElementById('user-email').value = primaryEmail;
                             $('input[type="password"]').attr('disabled', 'disabled');
@@ -187,9 +191,10 @@
                         naver_id_login.init_naver_id_login();
 
                         //statusChangeCallback
-                        function naverSignInCallback() {
+                        function naverSignInCallback(e) {
                             // naver_id_login.getProfileData('프로필항목명');
                             // 프로필 항목은 개발가이드를 참고하시기 바랍니다.
+                            e.preventDefault();
                             $('input[name="user-email"]').val(naver_id_login.getProfileData('email'));
                             $('input[type="password"]').attr('disabled', 'disabled');
                             $('div#user-contents').removeClass('hidden').parent().animate(

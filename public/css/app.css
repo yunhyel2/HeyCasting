@@ -353,6 +353,14 @@ div.join-form div.group.quick-join li div#gConnect iframe {
   opacity: 0;
 }
 
+div.join-form div.group.quick-join li div#naver_id_login {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
 div.join-form div.group.quick-join li button.g-signin2 {
   width: 50px;
   height: 50px;
