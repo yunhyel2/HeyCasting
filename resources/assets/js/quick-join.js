@@ -43,29 +43,29 @@ $url = window.location.pathname.toString().toLowerCase();;
     };
 
 //구글
-    function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        $('div.g-signin2').on('click', function(){
-            var profile = googleUser.getBasicProfile();
-            console.log(profile);
-            $('input[name="google_mail"]').val(profile.getEmail());
-            $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
-            $('div#user-contents').removeClass('hidden').parent().animate(
-                { 
-                    left: '-100%'
-                },{ 
-                    complete:function(){
-                        $('div#user-account').find('input.next').remove();
-                        $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
-                    }
-                }
-            );
-            $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
-            // The ID token you need to pass to your backend:
-            var id_token = googleUser.getAuthResponse().id_token;
-            console.log("ID Token: " + id_token);
-        });
-    };
+    // function onSignIn(googleUser) {
+    //     // Useful data for your client-side scripts:
+    //     $('div.g-signin2').on('click', function(){
+    //         var profile = googleUser.getBasicProfile();
+    //         console.log(profile);
+    //         $('input[name="google_mail"]').val(profile.getEmail());
+    //         $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
+    //         $('div#user-contents').removeClass('hidden').parent().animate(
+    //             { 
+    //                 left: '-100%'
+    //             },{ 
+    //                 complete:function(){
+    //                     $('div#user-account').find('input.next').remove();
+    //                     $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+    //                 }
+    //             }
+    //         );
+    //         $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+    //         // The ID token you need to pass to your backend:
+    //         var id_token = googleUser.getAuthResponse().id_token;
+    //         console.log("ID Token: " + id_token);
+    //     });
+    // };
 
 //페이스북
     function getUserData() {
@@ -128,45 +128,45 @@ $url = window.location.pathname.toString().toLowerCase();;
     }, false);
 
 //네이버
-    if( $url.indexOf('enter') != -1 ){
-        var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/enter-join");
-        console.log('헐');
-    }else{
-        var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/user-join");
-    }
+    // if( $url.indexOf('enter') != -1 ){
+    //     var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/enter-join");
+    //     console.log('헐');
+    // }else{
+    //     var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/user-join");
+    // }
                         
-    var state = naver_id_login.getUniqState();
-    naver_id_login.setButton("green", 1, 50);
-    if( $url.indexOf('enter') != -1 ){
-        naver_id_login.setDomain("www.heycasting.com/enter-join");
-    }else{
-        naver_id_login.setDomain("www.heycasting.com/user-join");
-    }
-    naver_id_login.setState(state);
-    // naver_id_login.setPopup();
-    naver_id_login.init_naver_id_login();
+    // var state = naver_id_login.getUniqState();
+    // naver_id_login.setButton("green", 1, 50);
+    // if( $url.indexOf('enter') != -1 ){
+    //     naver_id_login.setDomain("www.heycasting.com/enter-join");
+    // }else{
+    //     naver_id_login.setDomain("www.heycasting.com/user-join");
+    // }
+    // naver_id_login.setState(state);
+    // // naver_id_login.setPopup();
+    // naver_id_login.init_naver_id_login();
 
-    //statusChangeCallback
-    function naverSignInCallback(e) {
-        // naver_id_login.getProfileData('프로필항목명');
-        // 프로필 항목은 개발가이드를 참고하시기 바랍니다.
-        e.preventDefault();
-        window.opener.document.getElementById('naver_mail').value = naver_id_login.getProfileData('email');
-        window.opener.document.getElementById('user-email').disabled = true;
-        window.opener.document.getElementById('password').disabled = true;
-        window.opener.document.getElementById('passwordConf').disabled = true;
-        var user_contents = window.opener.document.getElementById('user-contents');
-        var joinNav = window.opener.document.getElementsByClass('join-nav');
-        $(user_contents).removeClass('hidden').parent().animate(
-            { 
-                left: '-100%'
-            },{ 
-                complete:function(){
-                    $('div#user-account').find('input.next').remove();
-                    $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
-                }
-            }
-        );
-        $(joinNav).find('li:first-child').removeClass('active').next().addClass('active');
-        self.close();
-    }
+    // //statusChangeCallback
+    // function naverSignInCallback(e) {
+    //     // naver_id_login.getProfileData('프로필항목명');
+    //     // 프로필 항목은 개발가이드를 참고하시기 바랍니다.
+    //     e.preventDefault();
+    //     window.opener.document.getElementById('naver_mail').value = naver_id_login.getProfileData('email');
+    //     window.opener.document.getElementById('user-email').disabled = true;
+    //     window.opener.document.getElementById('password').disabled = true;
+    //     window.opener.document.getElementById('passwordConf').disabled = true;
+    //     var user_contents = window.opener.document.getElementById('user-contents');
+    //     var joinNav = window.opener.document.getElementsByClass('join-nav');
+    //     $(user_contents).removeClass('hidden').parent().animate(
+    //         { 
+    //             left: '-100%'
+    //         },{ 
+    //             complete:function(){
+    //                 $('div#user-account').find('input.next').remove();
+    //                 $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+    //             }
+    //         }
+    //     );
+    //     $(joinNav).find('li:first-child').removeClass('active').next().addClass('active');
+    //     self.close();
+    // }
