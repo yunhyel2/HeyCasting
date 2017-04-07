@@ -37,17 +37,48 @@
                             <li><a href="#" id="custom-login-btn" class="not-ready"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
                             <li><div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div></li>
                             <li><a href="#" id="facebook_login"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
-                            <li><a href="#" class="not-ready"><img src="/img/social_naver_line.png" alt="네이버로가입하기"/></a></li>
+                            <li><div id="naver_id_login"></div></li>
                         </ul>
                     </div>
                     <script>
                         //구글
-                        function onSignIn(googleUser) {
-                            // Useful data for your client-side scripts:
-                            $('div.g-signin2').on('click', function(){
-                                var profile = googleUser.getBasicProfile();
-                                console.log(profile);
-                                $('input[name="google_mail"]').val(profile.getEmail());
+                            function onSignIn(googleUser) {
+                                // Useful data for your client-side scripts:
+                                $('div.g-signin2').on('click', function(){
+                                    var profile = googleUser.getBasicProfile();
+                                    $('input[name="google_mail"]').val(profile.getEmail());
+                                    $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
+                                    $('div#user-contents').removeClass('hidden').parent().animate(
+                                        { 
+                                            left: '-100%'
+                                        },{ 
+                                            complete:function(){
+                                                $('div#user-account').find('input.next').remove();
+                                                $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                            }
+                                        }
+                                    );
+                                    $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                    // The ID token you need to pass to your backend:
+                                    var id_token = googleUser.getAuthResponse().id_token;
+                                    console.log("ID Token: " + id_token);
+                                });
+                            };
+                        //네이버
+                            var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/enter-join");
+                                                
+                            var state = naver_id_login.getUniqState();
+                            naver_id_login.setButton("green", 1, 50);
+                            naver_id_login.setDomain("www.heycasting.com/enter-join");
+                            naver_id_login.setState(state);
+                            // naver_id_login.setPopup();
+                            naver_id_login.init_naver_id_login();
+
+                            //statusChangeCallback
+                            function naverSignInCallback(e) {
+                                // naver_id_login.getProfileData('프로필항목명');
+                                // 프로필 항목은 개발가이드를 참고하시기 바랍니다.
+                                $('input[name="naver_mail"]').val(naver_id_login.getProfileData('email'));
                                 $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
                                 $('div#user-contents').removeClass('hidden').parent().animate(
                                     { 
@@ -60,11 +91,7 @@
                                     }
                                 );
                                 $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
-                                // The ID token you need to pass to your backend:
-                                var id_token = googleUser.getAuthResponse().id_token;
-                                console.log("ID Token: " + id_token);
-                            });
-                        };
+                            }
                     </script>
                 </div>
                 <div id="user-contents" class="step hidden">
