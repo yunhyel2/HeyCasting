@@ -34,12 +34,8 @@
                     <div class="group quick-join">
                         <h2>간편 회원가입</h2>
                         <ul>
-                            <li><a href="javascript:loginWithKakao()" id="custom-login-btn"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
-                            <li>
-                                <div id="gConnect" class="button">
-                                    <button class="g-signin" data-scope="email" data-clientid="978762129980-mm03vb2s9ad3brnovetbrfbktkg5fkd1" data-callback="onSignInCallback" data-theme="dark" data-cookiepolicy="single_host_origin"></button>
-                                </div>
-                            </li>
+                            <li><a href="#" id="kakao-login-btn"></a></li>
+                            <li><div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div></li>
                             <li><a href="#" id="facebook_login"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
                             <li><div id="naver_id_login"></div></li>
                         </ul>
@@ -49,42 +45,51 @@
                     //카카오톡
                         // 사용할 앱의 JavaScript 키를 설정해 주세요.
                         Kakao.init('8195484f1954080cea8217c97485a60a');
+                        //버튼생성
+                        Kakao.Auth.createLoginButton({
+                            container: '#kakao-login-btn',
+                            success: function(authObj) {
+                                // 로그인 성공시, 정보를 호출합니다.
+                                Kakao.API.request({
+                                url: '/v1/user/me',
+                                success: function(res) {
+                                    $('input[name="kakao_id"]').val(res.id);
+                                    $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
+                                    $('div#user-contents').removeClass('hidden').parent().animate(
+                                        { 
+                                            left: '-100%'
+                                        },{ 
+                                            complete:function(){
+                                                $('div#user-account').find('input.next').remove();
+                                                $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                            }
+                                        }
+                                    );
+                                    $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                },
+                                fail: function(error) {
+                                    alert(JSON.stringify(error));
+                                }
+                                });
+                            },
+                            fail: function(err) {
+                                alert(JSON.stringify(err));
+                            }
+                        });
                         function loginWithKakao() {
                             // 로그인 창을 띄웁니다.
-                            Kakao.Auth.login({
-                                success: function(authObj) {
-                                    getKakaotalkUserProfile();
-                                },
-                                fail: function(err) {
-                                    alert(JSON.stringify(err));
-                                }
-                            });
-                            // 사용자 정보 가져오기
-                            function getKakaotalkUserProfile(){
-                                Kakao.API.request({
-                                    url: '/v1/user/me',
-                                    success: function(res) {
-                                        $('input[name="kakao_id"]').val(res.properties.id);
-                                        $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
-                                        $('div#user-contents').removeClass('hidden').parent().animate(
-                                            { 
-                                                left: '-100%'
-                                            },{ 
-                                                complete:function(){
-                                                    $('div#user-account').find('input.next').remove();
-                                                    $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
-                                                }
-                                            }
-                                        );
-                                        $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                            $('a#kakao-login-btn').click(function(){
+                                Kakao.Auth.login({
+                                    persistAccessToken: true,
+						            persistRefreshToken: true,
+                                    success: function(authObj) {
                                     },
-                                    fail: function(error) {
-                                        console.log(error);
+                                    fail: function(err) {
+                                        alert(JSON.stringify(err));
                                     }
                                 });
-                            }
+                            });
                         };
-                        //]]>
                     </script>
                     <script>
                     //페이스북
@@ -150,44 +155,29 @@
                     </script>
                     <script>
                     //구글
-                        
-                        //Handler for the signin callback triggered after the user selects an account.
-                        
-                        function onSignInCallback(resp) {
-                            gapi.client.load('plus', 'v1', apiClientLoaded);
-                        }
-
-                        // Sets up an API call after the Google API client loads.
-                        
-                        function apiClientLoaded() {
-                            gapi.client.plus.people.get({userId: 'me'}).execute(handleEmailResponse);
-                        }
-
-                        // Response callback for when the API client receives a response.
-                        // @param resp The API response object with the user email and profile information.
-
-                        function handleEmailResponse(resp) {
-                            var primaryEmail;
-                            for (var i=0; i < resp.emails.length; i++) {
-                                if (resp.emails[i].type === 'account') {
-                                    primaryEmail = resp.emails[i].value;
-                                }
-                            }
-                            document.getElementById('user-email').value = primaryEmail;
-                            $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
-                            $('div#user-contents').removeClass('hidden').parent().animate(
-                                { 
-                                    left: '-100%'
-                                },{ 
-                                    complete:function(){
-                                        $('div#user-account').find('input.next').remove();
-                                        $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                        function onSignIn(googleUser) {
+                            // Useful data for your client-side scripts:
+                            $('div.g-signin2').on('click',function(){
+                                var profile = googleUser.getBasicProfile();
+                                console.log(profile);
+                                $('input[name="google_mail"]').val(profile.getEmail());
+                                $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
+                                $('div#user-contents').removeClass('hidden').parent().animate(
+                                    { 
+                                        left: '-100%'
+                                    },{ 
+                                        complete:function(){
+                                            $('div#user-account').find('input.next').remove();
+                                            $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                        }
                                     }
-                                }
-                            );
-                            $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
-                        }
-
+                                );
+                                $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                // The ID token you need to pass to your backend:
+                                var id_token = googleUser.getAuthResponse().id_token;
+                                console.log("ID Token: " + id_token);
+                            });
+                        };
                     </script>
                     <script>
                     // 네이버

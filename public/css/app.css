@@ -361,7 +361,7 @@ div.join-form div.group.quick-join li div#naver_id_login {
   margin: 0 auto;
 }
 
-div.join-form div.group.quick-join li button.g-signin2 {
+div.join-form div.group.quick-join li div.g-signin2 {
   width: 50px;
   height: 50px;
   overflow: hidden;
@@ -369,16 +369,21 @@ div.join-form div.group.quick-join li button.g-signin2 {
   border-radius: 10px;
 }
 
-div.join-form div.group.quick-join li button.g-signin2 div.abcRioButtonIcon {
+div.join-form div.group.quick-join li div.g-signin2 div.abcRioButton {
+  height: 50px !important;
+  background: #fff;
+}
+
+div.join-form div.group.quick-join li div.g-signin2 div.abcRioButtonIcon {
   padding: 10px !important;
 }
 
-div.join-form div.group.quick-join li button.g-signin2 div.abcRioButtonIcon svg {
+div.join-form div.group.quick-join li div.g-signin2 div.abcRioButtonIcon svg {
   width: 30px;
   height: 30px;
 }
 
-div.join-form div.group.quick-join li button.g-signin2 span {
+div.join-form div.group.quick-join li div.g-signin2 span {
   display: none;
 }
 
