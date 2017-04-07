@@ -160,6 +160,25 @@ img.icon {
   background: rgba(255, 255, 255, 0.5);
 }
 
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  div.join-form:not(.enter) input[type="text"], div.join-form:not(.enter) input[type="email"], div.join-form:not(.enter) input[type="password"] {
+    color: #ff627d;
+    /* change [input cursor color] by this*/
+    text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.6);
+    /* change [input font] by this*/
+    -webkit-text-fill-color: transparent;
+    -ms-text-fill-color: transparent;
+  }
+  div.join-form.enter input[type="text"], div.join-form.enter input[type="email"], div.join-form.enter input[type="password"] {
+    color: cyan;
+    /* change [input cursor color] by this*/
+    text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.7);
+    /* change [input font] by this*/
+    -webkit-text-fill-color: transparent;
+    -ms-text-fill-color: transparent;
+  }
+}
+
 div.join-form {
   width: 90%;
   max-width: 500px;
@@ -188,24 +207,6 @@ div.join-form.complete {
     width: 100%;
     font-size: 13px;
   }
-}
-
-div.join-form:not(.enter) input[type="text"], div.join-form:not(.enter) input[type="email"], div.join-form:not(.enter) input[type="password"] {
-  color: #ff627d;
-  /* change [input cursor color] by this*/
-  text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.6);
-  /* change [input font] by this*/
-  -webkit-text-fill-color: transparent;
-  -ms-text-fill-color: transparent;
-}
-
-div.join-form.enter input[type="text"], div.join-form.enter input[type="email"], div.join-form.enter input[type="password"] {
-  color: cyan;
-  /* change [input cursor color] by this*/
-  text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.7);
-  /* change [input font] by this*/
-  -webkit-text-fill-color: transparent;
-  -ms-text-fill-color: transparent;
 }
 
 div.join-form nav.join-nav li {
@@ -488,6 +489,7 @@ div.form-group input:not([type="radio"]) {
   border: none;
   border-bottom: 1px solid #fff;
   opacity: 0.8;
+  filter: Alpha(opactiy=80);
   outline: none;
   color: #fff;
 }

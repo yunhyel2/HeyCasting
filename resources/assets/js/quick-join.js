@@ -1,3 +1,5 @@
+$url = window.location.pathname.toString().toLowerCase();;
+
 //카카오톡
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('8195484f1954080cea8217c97485a60a');
@@ -126,11 +128,19 @@
     }, false);
 
 //네이버
-    var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/enter-join");
+    if( $url.indexOf('enter') != -1 ){
+        var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/enter-join");
+    }else{
+        var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/user-join");
+    }
                         
     var state = naver_id_login.getUniqState();
     naver_id_login.setButton("green", 1, 50);
-    naver_id_login.setDomain("www.heycasting.com/enter-join");
+    if( $url.indexOf('enter') != -1 ){
+        naver_id_login.setDomain("www.heycasting.com/enter-join");
+    }else{
+        naver_id_login.setDomain("www.heycasting.com/user-join");
+    }
     naver_id_login.setState(state);
     naver_id_login.setPopup();
     naver_id_login.init_naver_id_login();

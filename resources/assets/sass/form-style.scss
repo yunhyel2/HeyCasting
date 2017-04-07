@@ -1,3 +1,25 @@
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+    //크롬만 적용
+    div.join-form{
+        &:not(.enter){
+            input[type="text"], input[type="email"], input[type="password"]{
+                color: #ff627d;  /* change [input cursor color] by this*/
+                text-shadow: 0px 0px 0px rgba(255,255,255, 0.6); /* change [input font] by this*/
+                -webkit-text-fill-color: transparent;
+                -ms-text-fill-color: transparent;
+            }
+        }
+        &.enter{
+            input[type="text"], input[type="email"], input[type="password"]{
+                color: cyan;  /* change [input cursor color] by this*/
+                text-shadow: 0px 0px 0px rgba(255,255,255, 0.7); /* change [input font] by this*/
+                -webkit-text-fill-color: transparent;
+                -ms-text-fill-color: transparent;
+            }
+        }
+    }
+}
+
 div.join-form{
     width:90%;
     max-width:500px;
@@ -17,22 +39,6 @@ div.join-form{
     @include respond-to('too-small'){
         width:100%;
         font-size:13px;
-    }
-    &:not(.enter){
-        input[type="text"], input[type="email"], input[type="password"]{
-            color: #ff627d;  /* change [input cursor color] by this*/
-            text-shadow: 0px 0px 0px rgba(255,255,255, 0.6); /* change [input font] by this*/
-            -webkit-text-fill-color: transparent;
-            -ms-text-fill-color: transparent;
-        }
-    }
-    &.enter{
-        input[type="text"], input[type="email"], input[type="password"]{
-            color: cyan;  /* change [input cursor color] by this*/
-            text-shadow: 0px 0px 0px rgba(255,255,255, 0.7); /* change [input font] by this*/
-            -webkit-text-fill-color: transparent;
-            -ms-text-fill-color: transparent;
-        }
     }
     nav.join-nav{
         li{
@@ -256,6 +262,7 @@ div.form-group{
         border:none;
         border-bottom:1px solid #fff;
         opacity:0.8;
+        filter:Alpha(opactiy=80);
         outline:none;
         color:#fff;
         @include respond-to('mid-small'){
