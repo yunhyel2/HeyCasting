@@ -53,8 +53,12 @@ class JoinController extends Controller
     public function enterStore(EnterJoinRequest $request) 
     {
         $flag = 'E';
-        $link = $request->input('link'); 
         $email = $request->input('user-email'); 
+        $f_email = $request->input('facebook_mail');
+        $g_email = $request->input('google_mail');
+        $k_email = $request->input('kakao_id');
+        $n_email = $request->input('naver_mail');
+
         $password = $request->input('password');
         $password2 = $request->input('passwordConf');
 
@@ -72,7 +76,7 @@ class JoinController extends Controller
         $gender = $request->input('gender');
         $team = $request->input('isTeam');
         $age = $request->input('user-age');
-        $residence = $request->input('location1'); //view에서 코드 변경 
+        $residence = $request->input('location1');
         $nation = $request->input('location2');
         $prefer_area = $request->input('location3'); 
         $performs = $request->input('career'); 
@@ -88,27 +92,38 @@ class JoinController extends Controller
         $sns_facebook = $request->input('social_facebook');
         $sns_blog = $request->input('social_blog');
         $sns_twitter = $request->input('social_twitter');      
-        $sns_youtube = $request->input('social_youtube');  
+        $sns_youtube = $request->input('social_youtube'); 
+
+        if( $email ) {
+            $link = 'A';
+            $user_email = $email;
+        } else if ( $f_email ) {
+            $link = 'F';
+            $user_email = $f_email;
+        } else if ( $n_email ) {
+            $link = 'N';
+            $user_email = $n_email;
+        } else if ( $k_email ) {
+            $link = 'K';
+            $user_email = $k_email;
+        } else if ( $g_email ) {
+            $link = 'G';
+            $user_email = $g_email;
+        }
 
         if( $password != $password2 ) {
             return back();
         } else {
 
-            // DB::beginTransaction();
+            DB::beginTransaction();
 
-            // try {
+            try {
 
                 $entertainer = new Enter;
                 $entertainer->flag = $flag;
-                if( $link ) {
-                    $entertainer->link = $link; 
-                    // kakao : 'K', google : 'G', facebook : 'F', naver : 'N'
-                } else {
-                    $entertainer->link = 'A'; 
-                }
-
-                $entertainer->password = bcrypt($password);
-                $entertainer->email = $email; 
+                $entertainer->link = $link; 
+                $entertainer->email = $user_email;
+                $entertainer->password = bcrypt($password); 
                 $entertainer->name = $name;
                 $entertainer->nickname = $name;
                 $entertainer->nation = $nation; 
@@ -252,12 +267,12 @@ class JoinController extends Controller
                 $user_key->device_id = 0;
                 $user_key->push_state = 'Y';
                 $user_key->save();
-            //     DB::commit();
+                DB::commit();
 
-            // } catch(\Exception $e) {
-            //     DB::rollback();
-            //     return redirect('/');
-            // }
+            } catch(\Exception $e) {
+                DB::rollback();
+                return redirect('/');
+            }
             return redirect('/complete/enter');
         }
     }
