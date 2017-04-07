@@ -34,7 +34,7 @@
                     <div class="group quick-join">
                         <h2>간편 회원가입</h2>
                         <ul>
-                            <li><a href="#" id="kakao-login-btn"></a></li>
+                            <li><a href="javascript:loginWithKakao()" id="custom-login-btn"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
                             <li><div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div></li>
                             <li><a href="#" id="facebook_login"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
                             <li><div id="naver_id_login"></div></li>
@@ -45,12 +45,8 @@
                     //카카오톡
                         // 사용할 앱의 JavaScript 키를 설정해 주세요.
                         Kakao.init('8195484f1954080cea8217c97485a60a');
-                        //버튼생성
-                        Kakao.Auth.createLoginButton({
-                            container: '#kakao-login-btn',
-                            success: function(authObj) {
-                                // 로그인 성공시, 정보를 호출합니다.
-                                Kakao.API.request({
+                        function getKakaotalkUserProfile(){
+                            Kakao.API.request({
                                 url: '/v1/user/me',
                                 success: function(res) {
                                     $('input[name="kakao_id"]').val(res.id);
@@ -68,21 +64,18 @@
                                     $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
                                 },
                                 fail: function(error) {
-                                    alert(JSON.stringify(error));
+                                    console.log(error);
                                 }
-                                });
-                            },
-                            fail: function(err) {
-                                alert(JSON.stringify(err));
-                            }
-                        });
+                            });
+                        }
                         function loginWithKakao() {
                             // 로그인 창을 띄웁니다.
-                            $('a#kakao-login-btn').click(function(){
+                            $('a#custom-login-btn').click(function(){
                                 Kakao.Auth.login({
                                     persistAccessToken: true,
 						            persistRefreshToken: true,
                                     success: function(authObj) {
+                                        getKakaotalkUserProfile();
                                     },
                                     fail: function(err) {
                                         alert(JSON.stringify(err));
@@ -197,9 +190,13 @@
                             // naver_id_login.getProfileData('프로필항목명');
                             // 프로필 항목은 개발가이드를 참고하시기 바랍니다.
                             e.preventDefault();
-                            $('input[name="naver_mail"]').val(naver_id_login.getProfileData('email'));
-                            $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
-                            $('div#user-contents').removeClass('hidden').parent().animate(
+                            window.opener.document.getElementById('naver_mail').value = naver_id_login.getProfileData('email');
+                            window.opener.document.getElementById('user-email').disabled = true;
+                            window.opener.document.getElementById('password').disabled = true;
+                            window.opener.document.getElementById('passwordConf').disabled = true;
+                            var user_contents = window.opener.document.getElementById('user-contents');
+                            var joinNav = window.opener.document.getElementsByClass('join-nav');
+                            $(user_contents).removeClass('hidden').parent().animate(
                                 { 
                                     left: '-100%'
                                 },{ 
@@ -209,7 +206,8 @@
                                     }
                                 }
                             );
-                            $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                            $(joinNav).find('li:first-child').removeClass('active').next().addClass('active');
+                            self.close();
                         }
                     </script>
                 <!--- 간편로그인End -->
