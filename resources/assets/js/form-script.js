@@ -308,3 +308,8 @@
         $('div.docu-wrap').scrollTop(0).addClass('hidden');
         $('div.cover').addClass('hidden');
     });
+
+//Not-ready
+    $('a.not-ready').click(function(){
+        alert('준비중입니다!');
+    });
