@@ -52,25 +52,37 @@
                         function loginWithKakao() {
                             // 로그인 창을 띄웁니다.
                             Kakao.Auth.login({
-                            success: function(authObj) {
-                                $('input[name="user-email"]').val(authObj.scope);
-                                $('input[type="password"]').attr('disabled', 'disabled');
-                                $('div#user-contents').removeClass('hidden').parent().animate(
-                                    { 
-                                        left: '-100%'
-                                    },{ 
-                                        complete:function(){
-                                            $('div#user-account').find('input.next').remove();
-                                            $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
-                                        }
-                                    }
-                                );
-                                $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
-                            },
-                            fail: function(err) {
-                                alert(JSON.stringify(err));
-                            }
+                                success: function(authObj) {
+                                    getKakaotalkUserProfile();
+                                },
+                                fail: function(err) {
+                                    alert(JSON.stringify(err));
+                                }
                             });
+                            // 사용자 정보 가져오기
+                            function getKakaotalkUserProfile(){
+                                Kakao.API.request({
+                                    url: '/v1/user/me',
+                                    success: function(res) {
+                                        $('input[name="kakao_id"]').val(res.properties.id);
+                                        $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
+                                        $('div#user-contents').removeClass('hidden').parent().animate(
+                                            { 
+                                                left: '-100%'
+                                            },{ 
+                                                complete:function(){
+                                                    $('div#user-account').find('input.next').remove();
+                                                    $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                                }
+                                            }
+                                        );
+                                        $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                    },
+                                    fail: function(error) {
+                                        console.log(error);
+                                    }
+                                });
+                            }
                         };
                         //]]>
                     </script>
@@ -117,9 +129,9 @@
                                 if (response.authResponse) {
                                     //user just authorized your app
                                     FB.api('/me', {fields: 'email'}, function(response) {
-                                        $('input[name="user-email"]').val(response.email);
+                                        $('input[name="facebook_mail"]').val(response.email);
                                     });
-                                    $('input[type="password"]').attr('disabled', 'disabled');
+                                    $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
                                     $('div#user-contents').removeClass('hidden').parent().animate(
                                         { 
                                             left: '-100%'
@@ -162,7 +174,7 @@
                                 }
                             }
                             document.getElementById('user-email').value = primaryEmail;
-                            $('input[type="password"]').attr('disabled', 'disabled');
+                            $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
                             $('div#user-contents').removeClass('hidden').parent().animate(
                                 { 
                                     left: '-100%'
@@ -195,8 +207,8 @@
                             // naver_id_login.getProfileData('프로필항목명');
                             // 프로필 항목은 개발가이드를 참고하시기 바랍니다.
                             e.preventDefault();
-                            $('input[name="user-email"]').val(naver_id_login.getProfileData('email'));
-                            $('input[type="password"]').attr('disabled', 'disabled');
+                            $('input[name="naver_mail"]').val(naver_id_login.getProfileData('email'));
+                            $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
                             $('div#user-contents').removeClass('hidden').parent().animate(
                                 { 
                                     left: '-100%'
@@ -213,7 +225,10 @@
                 <!--- 간편로그인End -->
                 </div>
                 <div id="user-contents" class="step hidden">
-                    <input type="hidden" name="link" value=""/>
+                    <input type="hidden" name="kakao_id" value=""/>
+                    <input type="hidden" name="google_mail" value=""/>
+                    <input type="hidden" name="facebook_mail" value=""/>
+                    <input type="hidden" name="naver_mail" value=""/>
                     <div class="group video">
                         <div class="form-group">
                             <label for="videos" class="title">활동 영상 첨부<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
