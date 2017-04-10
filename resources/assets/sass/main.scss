@@ -127,7 +127,7 @@
 			transition:all 0.5s;
 		}
 		&.fixed{
-			position:fixed;
+			overflow:hidden;
 		}
 		h1,h2,h3,h4,strong,b{
 			font-weight:normal;

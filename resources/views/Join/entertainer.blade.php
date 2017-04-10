@@ -34,13 +34,77 @@
                     <div class="group quick-join">
                         <h2>간편 회원가입</h2>
                         <ul>
-                            <li><a href="#" id="custom-login-btn" class="not-ready"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
+                            <li><a href="javascript:createKakaotalkLogin()" id="custom-login-btn"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
                             <li><div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div></li>
                             <li><a href="#" id="facebook_login"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
                             <li><div id="naver_id_login"></div></li>
                         </ul>
                     </div>
                     <script>
+                        //카카오톡
+                            // 사용할 앱의 JavaScript 키를 설정해 주세요.
+                            Kakao.init('8195484f1954080cea8217c97485a60a');
+                            function getKakaotalkUserProfile(){
+                                Kakao.Auth.getStatus(function(statusObj) {
+                                    if (statusObj.status == "not_connected") {
+                                        alert('You should log in first.');
+                                    } else {
+                                        Kakao.API.request({
+                                            url: '/v1/user/me',
+                                            success: function(res) {
+                                                $('input[name="kakao_id"]').val(res.id);
+                                                $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
+                                                $('div#user-contents').removeClass('hidden').parent().animate(
+                                                    { 
+                                                        left: '-100%'
+                                                    },{ 
+                                                        complete:function(){
+                                                            $('div#user-account').find('input.next').remove();
+                                                            $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                                        }
+                                                    }
+                                                );
+                                                $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                            },
+                                            fail: function(error) {
+                                                console.log(error);
+                                            }
+                                        });   
+                                    }
+                                });
+                            }
+                            function createKakaotalkLogin() {
+                                // 로그인 창을 띄웁니다.
+                                $('a#custom-login-btn').click(function(){
+                                    Kakao.Auth.login({
+                                        persistAccessToken: true,
+                                        persistRefreshToken: true,
+                                        success: function(authObj) {
+                                            getKakaotalkUserProfile();
+                                            createKakaotalkLogout();
+                                        },
+                                        fail: function(err) {
+                                            alert(JSON.stringify(err));
+                                        }
+                                    });
+                                });
+                            };
+                            function createKakaotalkLogout(){
+                                $("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
+                                var logoutBtn = $("<a/>",{"class":"kakao-logout-btn","text":"로그아웃"});
+                                logoutBtn.click(function(){
+                                    Kakao.Auth.logout();
+                                    createKakaotalkLogin();
+                                    $("#kakao-profile").text("");
+                                });
+                                $("#kakao-logged-group").prepend(logoutBtn);
+                            }
+                            if(Kakao.Auth.getRefreshToken()!=undefined&&Kakao.Auth.getRefreshToken().replace(/ /gi,"")!=""){
+                                createKakaotalkLogout();
+                                getKakaotalkUserProfile();
+                            }else{
+                                createKakaotalkLogin();
+                            }
                         //구글
                             function onSignIn(googleUser) {
                                 // Useful data for your client-side scripts:
@@ -66,33 +130,32 @@
                             };
                         //네이버
                             var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/enter-join");
-                                                
                             var state = naver_id_login.getUniqState();
                             naver_id_login.setButton("green", 1, 50);
                             naver_id_login.setDomain("www.heycasting.com/enter-join");
                             naver_id_login.setState(state);
                             // naver_id_login.setPopup();
                             naver_id_login.init_naver_id_login();
-
-                            //statusChangeCallback
-                            naver_id_login.get_naver_userprofile("naverSignInCallback()");
-                            // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-                            function naverSignInCallback() {
-                                $('input[name="naver_mail"]').val(naver_id_login.getProfileData('email'));
-                                $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
-                                $('div#user-contents').removeClass('hidden').parent().animate(
-                                    { 
-                                        left: '-100%'
-                                    },{ 
-                                        complete:function(){
-                                            $('div#user-account').find('input.next').remove();
-                                            $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                            $('div#naver_id_login').on('click', function(){
+                                //statusChangeCallback
+                                naver_id_login.get_naver_userprofile("naverSignInCallback()");
+                                // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+                                function naverSignInCallback() {
+                                    $('input[name="naver_mail"]').val(naver_id_login.getProfileData('email'));
+                                    $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
+                                    $('div#user-contents').removeClass('hidden').parent().animate(
+                                        { 
+                                            left: '-100%'
+                                        },{ 
+                                            complete:function(){
+                                                $('div#user-account').find('input.next').remove();
+                                                $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                            }
                                         }
-                                    }
-                                );
-                                $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
-                            }
-                        }
+                                    );
+                                    $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                }
+                            });        
                     </script>
                 </div>
                 <div id="user-contents" class="step hidden">
@@ -103,19 +166,16 @@
                     <div class="group video">
                         <div class="form-group">
                             <label for="videos" class="title">활동 영상 첨부<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
-                            <p class="explanation">최소 2개 이상의 영상을 등록해주세요</p>
+                            <p class="explanation">최소 1개 이상의 영상을 등록해주세요</p>
                             <div class="preview-items">
                                 <ul class="video">
                                     <li name="video1"></li>
-                                    <li name="video2"></li>
+                                    <li name="video2" class="hidden"></li>
                                     <li name="video3" class="hidden"></li>
                                 </ul>
                             </div>
                             <div class="items bt-mrg">
                                 <input type="text" name="videos[]" id="video1" class="required no-pad" placeholder="Youtube 주소 입력" autocomplete="Off"/>
-                            </div>
-                            <div class="bt-mrg">
-                                <input type="text" name="videos[]" id="video2" class="required no-pad" placeholder="Youtube 주소 입력" autocomplete="Off"/>
                             </div>
                         </div>
                         <a href="#" class="add-btn add-items video"><img src="/img/icon_plus_contents.png" class="icon" alt=""/></i>영상 추가 하기</a>

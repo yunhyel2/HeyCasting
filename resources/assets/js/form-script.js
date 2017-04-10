@@ -8,10 +8,10 @@
             $('form[name="join-form"].complete').css('height', $winHeight+5+'px' );
             $('div.docu-wrap').css('margin-top', 0).css('top', '0').find('a.close').addClass('inner');
         }else{
-            $('div.join-form').css('margin', '5% auto');  
+            $('div.join-form').css('margin', '80px auto');  
             $marginTop = $('form[name="join-form"]').offset().top;
-            $('form[name="join-form"]').not('.complete').css('height', $winHeight-(2*$marginTop)+47+'px' );
-            $('form[name="join-form"].complete').css('height', $winHeight-(2*$marginTop)+'px' );
+            $('form[name="join-form"]').not('.complete').css('height', $winHeight-160-47+'px' );
+            $('form[name="join-form"].complete').css('height', $winHeight-160+'px' );
             $('div.docu-wrap').css('margin-top', '-400px').css('top', '50%').find('a.close').removeClass('inner');
         }
     };
@@ -321,3 +321,41 @@
         e.preventDefault();
         alert('준비중입니다!');
     });
+//Input FileCheck
+    //업로드 체크 
+    function fileCheck(fileValue)
+    {
+        //확장자 체크
+        var src = getFileType(fileValue);
+        if(!(src.toLowerCase() == "zip"))
+        {
+            alert("zip 파일로 압축하여 첨부해주세요.");
+            return;
+        }
+        //사이즈체크
+        var maxSize  = 31457280    //30MB
+        var fielSize = Math.round(fileValue.fileSize);
+        if(fileSize > maxSize)
+        {
+            alert("첨부파일 사이즈는 30MB 이내로 등록 가능합니다.    ");
+            return;
+        }
+        form.submit();
+    }
+    
+    //파일 확장자 확인
+    function getFileType(filePath)
+    {
+        var index = -1;
+            index = filePath.lastIndexOf('.');
+        var type = "";
+        if(index != -1)
+        {
+            type = filePath.substring(index+1, filePath.len);
+        }
+        else
+        {
+            type = "";
+        }
+        return type;
+    }

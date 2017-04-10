@@ -1,47 +1,5 @@
 $url = window.location.pathname.toString().toLowerCase();;
 
-//카카오톡
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('8195484f1954080cea8217c97485a60a');
-    function getKakaotalkUserProfile(){
-        Kakao.API.request({
-            url: '/v1/user/me',
-            success: function(res) {
-                $('input[name="kakao_id"]').val(res.id);
-                $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
-                $('div#user-contents').removeClass('hidden').parent().animate(
-                    { 
-                        left: '-100%'
-                    },{ 
-                        complete:function(){
-                            $('div#user-account').find('input.next').remove();
-                            $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
-                        }
-                    }
-                );
-                $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
-            },
-            fail: function(error) {
-                console.log(error);
-            }
-        });
-    }
-    function loginWithKakao() {
-        // 로그인 창을 띄웁니다.
-        $('a#custom-login-btn').click(function(){
-            Kakao.Auth.login({
-                persistAccessToken: true,
-                persistRefreshToken: true,
-                success: function(authObj) {
-                    getKakaotalkUserProfile();
-                },
-                fail: function(err) {
-                    alert(JSON.stringify(err));
-                }
-            });
-        });
-    };
-
 //구글
     // function onSignIn(googleUser) {
     //     // Useful data for your client-side scripts:
