@@ -114,7 +114,7 @@ body.social {
 }
 
 body.fixed {
-  position: fixed;
+  overflow: hidden;
 }
 
 body h1, body h2, body h3, body h4, body strong, body b {
