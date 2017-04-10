@@ -34,7 +34,7 @@
                     <div class="group quick-join">
                         <h2>간편 회원가입</h2>
                         <ul>
-                            <li><a href="#" id="custom-login-btn" class="not-ready"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
+                            <li><a href="javascript:loginWithKakao()" id="custom-login-btn"><img src="/img/social_kakao.png"/></a></li>
                             <li><div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div></li>
                             <li><a href="#" id="facebook_login"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
                             <li><a href="#" id="naver_id_login" class="not-ready"><img src="/img/social_naver_line.png"/></a></li>
@@ -64,6 +64,40 @@
                                     console.log("ID Token: " + id_token);
                                 });
                             };
+                        //카카오톡
+                            // 사용할 앱의 JavaScript 키를 설정해 주세요.
+                            Kakao.init('8195484f1954080cea8217c97485a60a');
+                            function loginWithKakao(){
+                                Kakao.Auth.login({
+                                    success: function(authObj) {
+                                        // 로그인 성공시, API를 호출합니다.
+                                        Kakao.API.request({
+                                        url: '/v1/user/me',
+                                        success: function(res) {
+                                            $('input[name="kakao_id"]').val(res.id);
+                                                    $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
+                                                    $('div#user-contents').removeClass('hidden').parent().animate(
+                                                        { 
+                                                            left: '-100%'
+                                                        },{ 
+                                                            complete:function(){
+                                                                $('div#user-account').find('input.next').remove();
+                                                                $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                                            }
+                                                        }
+                                                    );
+                                                    $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                        },
+                                        fail: function(error) {
+                                            alert(JSON.stringify(error));
+                                        }
+                                        });
+                                    },
+                                    fail: function(err) {
+                                        alert(JSON.stringify(err));
+                                    }
+                                });
+                            }
                     </script>
                 </div>
                 <div id="user-contents" class="step hidden">
