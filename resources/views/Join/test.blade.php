@@ -75,7 +75,6 @@
                                     } else {
                                         Kakao.API.request({
                                             url: '/v1/user/me',
-                                            data:,
                                             success: function(res) {
                                                 $('input[name="kakao_id"]').val(res.id);
                                                 $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
