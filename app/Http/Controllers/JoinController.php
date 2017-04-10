@@ -28,6 +28,11 @@ use Illuminate\Support\Facades\DB;
 class JoinController extends Controller
 {
 
+    public function test()
+    {
+        return view('Join.test');
+    }
+
     public function index()
     {
         if( request()->segment(1) == 'enter-join' || request()->segment(1) == 'enter-social-join' ) { 
