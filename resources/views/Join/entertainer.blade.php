@@ -66,33 +66,32 @@
                             };
                         //네이버
                             var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/enter-join");
-                                                
                             var state = naver_id_login.getUniqState();
                             naver_id_login.setButton("green", 1, 50);
                             naver_id_login.setDomain("www.heycasting.com/enter-join");
                             naver_id_login.setState(state);
                             // naver_id_login.setPopup();
                             naver_id_login.init_naver_id_login();
-
-                            //statusChangeCallback
-                            naver_id_login.get_naver_userprofile("naverSignInCallback()");
-                            // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-                            function naverSignInCallback() {
-                                $('input[name="naver_mail"]').val(naver_id_login.getProfileData('email'));
-                                $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
-                                $('div#user-contents').removeClass('hidden').parent().animate(
-                                    { 
-                                        left: '-100%'
-                                    },{ 
-                                        complete:function(){
-                                            $('div#user-account').find('input.next').remove();
-                                            $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                            $('div#naver_id_login').on('click', function(){
+                                //statusChangeCallback
+                                naver_id_login.get_naver_userprofile("naverSignInCallback()");
+                                // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+                                function naverSignInCallback() {
+                                    $('input[name="naver_mail"]').val(naver_id_login.getProfileData('email'));
+                                    $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
+                                    $('div#user-contents').removeClass('hidden').parent().animate(
+                                        { 
+                                            left: '-100%'
+                                        },{ 
+                                            complete:function(){
+                                                $('div#user-account').find('input.next').remove();
+                                                $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                            }
                                         }
-                                    }
-                                );
-                                $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
-                            }
-                        }
+                                    );
+                                    $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                }
+                            });        
                     </script>
                 </div>
                 <div id="user-contents" class="step hidden">
