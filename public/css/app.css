@@ -335,13 +335,6 @@ div.join-form div.group.quick-join li img {
   width: 50px;
 }
 
-div.join-form div.group.quick-join li a#kakao-login-btn {
-  width: 50px;
-  height: 50px;
-  overflow: hidden;
-  margin: 0 auto;
-}
-
 div.join-form div.group.quick-join li div#gConnect {
   width: 50px;
   height: 50px;

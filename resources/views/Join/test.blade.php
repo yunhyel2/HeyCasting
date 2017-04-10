@@ -34,7 +34,7 @@
                     <div class="group quick-join">
                         <h2>간편 회원가입</h2>
                         <ul>
-                            <li><a href="javascript:loginWithKakao()" id="custom-login-btn"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
+                            <li><a href="#" id="kakao-login-btn"></a></li>
                             <li><div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div></li>
                             <li><a href="#" id="facebook_login"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
                             <li><div id="naver_id_login"></div></li>
@@ -68,15 +68,14 @@
                         //카카오톡
                             // 사용할 앱의 JavaScript 키를 설정해 주세요.
                             Kakao.init('8195484f1954080cea8217c97485a60a');
-                            function getKakaotalkUserProfile(){
-                                Kakao.Auth.getStatus(function(statusObj) {
-                                    if (statusObj.status == "not_connected") {
-                                        alert('You should log in first.');
-                                    } else {
-                                        Kakao.API.request({
-                                            url: '/v1/user/me',
-                                            success: function(res) {
-                                                $('input[name="kakao_id"]').val(res.id);
+                            Kakao.Auth.createLoginButton({
+                                container: '#kakao-login-btn',
+                                success: function(authObj) {
+                                    // 로그인 성공시, API를 호출합니다.
+                                    Kakao.API.request({
+                                    url: '/v1/user/me',
+                                    success: function(res) {
+                                        $('input[name="kakao_id"]').val(res.id);
                                                 $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
                                                 $('div#user-contents').removeClass('hidden').parent().animate(
                                                     { 
@@ -89,29 +88,16 @@
                                                     }
                                                 );
                                                 $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
-                                            },
-                                            fail: function(error) {
-                                                console.log(error);
-                                            }
-                                        });   
+                                    },
+                                    fail: function(error) {
+                                        alert(JSON.stringify(error));
                                     }
-                                });
-                            }
-                            function createKakaotalkLogin() {
-                                // 로그인 창을 띄웁니다.
-                                $('a#custom-login-btn').click(function(){
-                                    Kakao.Auth.login({
-                                        persistAccessToken: true,
-                                        persistRefreshToken: true,
-                                        success: function(authObj) {
-                                            getKakaotalkUserProfile();
-                                        },
-                                        fail: function(err) {
-                                            alert(JSON.stringify(err));
-                                        }
                                     });
-                                });
-                            };
+                                },
+                                fail: function(err) {
+                                    alert(JSON.stringify(err));
+                                }
+                            });
                         
                         //네이버
                             var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/test");

@@ -39,62 +39,19 @@
                     <div class="group quick-join">
                         <h2>간편 회원가입</h2>
                         <ul>
-                            <li><a href="#" id="custom-login-btn" class="not-ready"><img src="/img/social_kakao.png" alt="카카오톡으로가입하기"/></a></li>
+                            <li><a href="javascript:loginWithKakao()" id="custom-login-btn"><img src="/img/social_kakao.png"/></a></li>
                             <li><div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div></li>
                             <li><a href="#" id="facebook_login"><img src="/img/social_facebook.png" alt="페이스북으로가입하기"/></a></li>
-                            <li><div id="naver_id_login"></div></li>
+                            <li><a href="#" id="naver_id_login" class="not-ready"><img src="/img/social_naver_line.png"/></a></li>
                         </ul>
                     </div>
                     <script>
                         //구글
-                        function onSignIn(googleUser) {
-                            // Useful data for your client-side scripts:
-                            $('div.g-signin2').on('click', function(){
-                                var profile = googleUser.getBasicProfile();
-                                console.log(profile);
-                                $('input[name="google_mail"]').val(profile.getEmail());
-                                $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
-                                $('div#user-contents').removeClass('hidden').parent().animate(
-                                    { 
-                                        left: '-100%'
-                                    },{ 
-                                        complete:function(){
-                                            $('div#user-account').find('input.next').remove();
-                                            $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
-                                        }
-                                    }
-                                );
-                                $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
-                                // The ID token you need to pass to your backend:
-                                var id_token = googleUser.getAuthResponse().id_token;
-                                console.log("ID Token: " + id_token);
-                            });
-                        };
-                        //네이버
-                        var naver_id_login = new naver_id_login("XMud2Vx5LvxAfLRpcb8F", "http://www.heycasting.com/user-join");
-                                            
-                        var state = naver_id_login.getUniqState();
-                        naver_id_login.setButton("green", 1, 50);
-                        naver_id_login.setDomain("www.heycasting.com/user-join");
-                        naver_id_login.setState(state);
-                        // naver_id_login.setPopup();
-                        naver_id_login.init_naver_id_login();
-
-                        //statusChangeCallback
-                        function naverSignInCallback(e) {
-                            var express = require('express');
-                            var app = express();
-                            var token = "YOUR_ACCESS_TOKEN";
-                            var header = "Bearer " + token; // Bearer 다음에 공백 추가
-                            app.get('/member', function (req, res) {
-                                var api_url = 'https://openapi.naver.com/v1/nid/me';
-                                var request = require('request');
-                                var options = {
-                                    url: api_url,
-                                    headers: {'Authorization': header}
-                                    };
-                                request.get(options, function (error, response, body) {
-                                    $('input[name="naver_mail"]').val(response.email);
+                            function onSignIn(googleUser) {
+                                // Useful data for your client-side scripts:
+                                $('div.g-signin2').on('click', function(){
+                                    var profile = googleUser.getBasicProfile();
+                                    $('input[name="google_mail"]').val(profile.getEmail());
                                     $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
                                     $('div#user-contents').removeClass('hidden').parent().animate(
                                         { 
@@ -107,14 +64,45 @@
                                         }
                                     );
                                     $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                    // The ID token you need to pass to your backend:
+                                    var id_token = googleUser.getAuthResponse().id_token;
+                                    console.log("ID Token: " + id_token);
                                 });
-                            });
-                            app.listen(3000, function () {
-                            console.log('http://127.0.0.1:3000/member app listening on port 3000!');
-                            });
-
-                        }
-                        
+                            };
+                        //카카오톡
+                            // 사용할 앱의 JavaScript 키를 설정해 주세요.
+                            Kakao.init('8195484f1954080cea8217c97485a60a');
+                            function loginWithKakao(){
+                                Kakao.Auth.login({
+                                    success: function(authObj) {
+                                        // 로그인 성공시, API를 호출합니다.
+                                        Kakao.API.request({
+                                        url: '/v1/user/me',
+                                        success: function(res) {
+                                            $('input[name="kakao_id"]').val(res.id);
+                                                    $('input[type="password"], input[name="user-email"]').attr('disabled', 'disabled');
+                                                    $('div#user-contents').removeClass('hidden').parent().animate(
+                                                        { 
+                                                            left: '-100%'
+                                                        },{ 
+                                                            complete:function(){
+                                                                $('div#user-account').find('input.next').remove();
+                                                                $('body').css('background', 'url("/img/background/03_back.jpg") no-repeat').css('background-size', 'cover');
+                                                            }
+                                                        }
+                                                    );
+                                                    $('nav.join-nav').find('li:first-child').removeClass('active').next().addClass('active');
+                                        },
+                                        fail: function(error) {
+                                            alert(JSON.stringify(error));
+                                        }
+                                        });
+                                    },
+                                    fail: function(err) {
+                                        alert(JSON.stringify(err));
+                                    }
+                                });
+                            }
                     </script>
                 </div>
                 <div id="user-contents" class="step hidden">
