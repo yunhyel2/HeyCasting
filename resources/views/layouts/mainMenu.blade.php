@@ -85,10 +85,10 @@
                     <li>문의사항 : </li>
                     <li>이메일 : </li>
                 </ul>
-                <ul>
-                    <li><a href="#"><img src="/image/icon_facebook_bottom.png" alt="헤이캐스팅 페이스북"/></a></li>
-                    <li><a href="#"><img src="/image/icon_instagram_bottom.png" alt="헤이캐스팅 인스타그램"/></a></li>
-                </ul>
+                <p>
+                    <a href="#"><img src="/image/icon_facebook_bottom.png" alt="헤이캐스팅 페이스북"/></a>
+                    <a href="#"><img src="/image/icon_instagram_bottom.png" alt="헤이캐스팅 인스타그램"/></a>
+                </p>
             </div>
         </div>
     </body>

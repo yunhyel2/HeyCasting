@@ -117,7 +117,9 @@
                                 </ul>
                             </div>
                             <div class="items bt-mrg">
-                                <input type="text" name="videos[]" id="video1" class="required no-pad" placeholder="Youtube 주소 입력" autocomplete="Off"/>
+                                <a href="#" class="btn change">직접등록</a>
+                                <input type="text" name="videos[]" id="video1" class="required" placeholder="Youtube 주소 입력" autocomplete="Off"/>
+                                <input type="file" name="videos2[]" id="videoDirect1" class="required hidden"/>
                             </div>
                         </div>
                         <a href="#" class="add-btn add-items video"><img src="/img/icon_plus_contents.png" class="icon" alt=""/></i>영상 추가 하기</a>

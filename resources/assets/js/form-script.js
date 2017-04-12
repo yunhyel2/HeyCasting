@@ -109,7 +109,7 @@
         if( $(this).hasClass('video') ){
             $count = $('input[name="videos[]"]').length;
             if( $count < 3 ){
-                $(this).prev('div.form-group').append('<div class="items bt-mrg"><input type="text" name="videos[]" id="video'+($count+1)+'" class="required no-pad" placeholder="Youtube 주소 입력"/><a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a></div>');
+                $(this).prev('div.form-group').append('<div class="items bt-mrg"><a href="#" class="btn change">직접등록</a><input type="text" name="videos[]" id="video'+($count+1)+'" class="required no-pad" placeholder="Youtube 주소 입력" autocomplete="Off"/><input type="file" name="videos2[]" id="videoDirect'+($count+1)+'" class="required no-pad hidden"/><a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a></div>');
                 $(this).prev('div.form-group').find('ul.video').css('width', 160*($count+1)+'px');
                 $(this).prev('div.form-group').find('ul.video li').eq($count).removeClass('hidden');
             }
@@ -275,18 +275,58 @@
             }
         }
     });
+//VideoPreview
+    $(document).on('click' , 'a.change.btn' , function(e){
+        e.preventDefault();
+        if( $(this).html() == '직접등록' ){
+            $(this).parent().find('input[type="file"]').removeClass('hidden').removeAttr('disabled').prev().addClass('hidden').attr('disabled', 'disabled');
+            $(this).html('주소입력');
+            $nth = $(this).next().index('input[name="videos[]"]');
+            $('div.video div.preview-items li:nth-child('+($nth+1)+')').append('<video name="video'+($nth+1)+'" controls autoplay></video>');
+        }else{
+            $(this).parent().find('input[type="file"]').addClass('hidden').attr('disabled', 'disabled').prev().removeClass('hidden').removeAttr('disabled');
+            $(this).html('직접등록');
+            $nth = $(this).next().index('input[name="videos[]"]');
+            $('div.video div.preview-items li:nth-child('+($nth+1)+')').html('');
+        }
+    });
+
+    (function localFileVideoPlayer() {
+        var URL = window.URL || window.webkitURL
+        var playSelectedFile = function (event) {
+            var file = this.files[0]
+            var type = file.type
+            var videoNode = document.querySelector('video[name="video1"]')
+            var canPlay = videoNode.canPlayType(type)
+            if (canPlay === '') canPlay = 'no'
+            var message = 'Can play type "' + type + '": ' + canPlay
+            var isError = canPlay === 'no'
+
+            if (isError) {
+                alert('지원하지 않는 확장자입니다!');
+            return
+            }
+
+            var fileURL = URL.createObjectURL(file)
+            videoNode.src = fileURL
+        }  
+        var inputNode = document.querySelector('input#videoDirect1')
+        inputNode.addEventListener('change', playSelectedFile, false)
+    })();
+
     $(document).on('focusout', 'input[name="videos[]"]', function(){
         $src = $(this).val().replace('=','/')
         if( $src=='' ){
+            $('li[name="'+$(this).attr('id')+'"]').attr('style', 'background:none;');
             return false;
         }
         if( $src.indexOf('youtube') != -1 ){
             $imgSrc = $src.split('/');
             var i = $imgSrc.length;
             $preview = 'http://img.youtube.com/vi/'+$imgSrc[i-1]+'/0.jpg';       
-            $('li[name="'+$(this).attr('id')+'"]').attr('style', 'background-image:url(\"'+$preview+'\"); background-size:cover;');
+            $('li[name="'+$(this).attr('id')+'"]').attr('style', 'background-image:url(\"'+$preview+'\"); background-size:cover; background-position:center;');
         }else{
-            
+            $('li[name="'+$(this).attr('id')+'"]').attr('style', 'background:none;');
         }
     });
 //경력경험선택
@@ -321,6 +361,7 @@
         e.preventDefault();
         alert('준비중입니다!');
     });
+    
 //Input FileCheck
     //업로드 체크 
     function fileCheck(fileValue)

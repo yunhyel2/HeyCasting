@@ -444,6 +444,10 @@ div.group{
             &.video{
                 width:320px;
                 transition:all 1s;
+                video{
+                    width:100%;
+                    height:100%;
+                }
             }
         }
         li{
@@ -481,29 +485,43 @@ div.group{
                 margin-bottom:30px;
             }
         }
+        div.items{
+            position:relative;
+            a.change{
+                display:block;
+                width:60px;
+                box-sizing:border-box;
+                border:1px solid #eee;
+                border-radius:5px;
+                background:none;
+                color:#fff;
+                font-size:13px;
+                padding:5px;
+                position:absolute;
+                top:5px;
+                left:0;
+                z-index:3;
+                text-align:center;
+            }
+        }
         input{
             width:100%;
-            padding:0 50px 0 0;
+            padding:0 50px 0 70px !important;
             margin:0;
-        }
-        a.preview{
-            display:inline-block;
-            width:25%;
-            height:30px;
-            box-sizing:border-box;
-            color:#fff;
-            border-radius:15px;
-            border:1px solid #fff;
-            text-align:center;
-            line-height:30px;
-            opacity:0.7;
-            position:relative;
-            top:5px;
+            &[type="file"]{
+                padding-top:5px !important;
+            }
         }
         a.add-items{
             position:absolute;
             right:80px;
             bottom:20px;
+            @include respond-to('small'){
+                right:50px;
+            }
+            @include respond-to('too-small'){
+                right:20px;
+            }
         }
     }
     &.main-profile{
@@ -775,12 +793,13 @@ div.group{
         margin:5px 0;
         a.delete{
             position:absolute;
-            top:10px;
-            right:10px;
+            top:0;
+            right:20px;
             width:17px;
             img{
                 width:100%;
                 height:auto;
+                padding:10px;
             }
         }
     }

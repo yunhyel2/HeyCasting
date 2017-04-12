@@ -61,8 +61,8 @@
                 <a href="#" class="img-box" style="background:url('http://cfile8.uf.tistory.com/image/1139444B4DA9A50710DF80') no-repeat;background-size:cover;">
                     <div class="cover"></div>
                     <div class="detail">
-                        <p class="enter-name">공기남녀</p>
-                        <p class="enter-type">가수</p>
+                        <p class="enter-name {{ $i == 0 ? 'best' : '' }}">공기남녀</p>
+                        <p class="enter-type {{ $i == 0 ? 'best' : '' }}">가수</p>
                     </div>
                 </a>
             </li>
