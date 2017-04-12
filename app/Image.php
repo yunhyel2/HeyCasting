@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
-    protected $table = 'images';
+    protected $table = 'Images';
 
     public static $rules = [
         'img' => 'required|mimes:png,gif,jpeg,jpg,bmp'

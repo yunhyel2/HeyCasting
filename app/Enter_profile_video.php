@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Enter_profile_video extends Model
 {
-    protected $table = 'user_enter_profile_video';
+    protected $table = 'User_enter_profile_video';
 }

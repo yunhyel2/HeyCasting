@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Job_genre extends Model
+class Exhibition extends Model
 {
-    protected $table = 'Job_genre2';
+    protected $table = 'Exhibition';
 }

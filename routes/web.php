@@ -30,5 +30,4 @@ Route::get('/complete/{stat}', 'JoinController@complete');
 Route::post('/upload', 'CropController@upload');
 Route::post('/crop', 'CropController@crop');
 
-
 Route::get('/test', 'JoinController@test');

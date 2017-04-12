@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Enter_main_image extends Model
 {
-    protected $table = 'user_enter_profile_main_image';
+    protected $table = 'User_enter_profile_main_image';
+
+    public function enter() 
+    {
+        return $this->belongsTo('App\Enter');
+    }
 }
