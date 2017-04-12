@@ -1,0 +1,375 @@
+/* Reset CSS
+* --------------------------------------- */
+	body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
+	form,fieldset,input,textarea,p,blockquote,th,td {
+		padding: 0;
+		margin: 0;
+	}
+	a{
+		text-decoration:none;
+	}
+	table {
+		border-spacing: 0;
+	}
+	fieldset,img {
+		border: 0;
+	}
+	address,caption,cite,code,dfn,em,strong,th,var {
+		font-weight: normal;
+		font-style: normal;
+	}
+	strong{
+		font-weight: bold;
+	}
+	ol,ul {
+		list-style: none;
+		margin:0;
+		padding:0;
+	}
+	caption,th {
+		text-align: left;
+
+	}
+	h1,h2,h3,h4,h5,h6 {
+		font-weight: normal;
+		font-size: 100%;
+		margin:0;
+		padding:0;
+		color:#444;
+	}
+	q:before,q:after {
+		content:'';
+	}
+	abbr,acronym { border: 0;
+	}
+	.hidden{
+		display:none;
+	}
+	.dont-show{
+		width:0;
+		height:0;
+		overflow:hidden;
+		position:relative;
+		left:-9999px;
+	}
+
+
+/// 반응형 매니저
+/// @access public
+/// @param {String} $breakpoint - 브레이크포인트
+	$breakpoints: (
+	'small-nav' : (max-width: 800px),
+	'too-small': (max-width: 385px),
+	'mid-small': (max-width: 475px),
+	'small': (max-width: 550px),
+	);
+/// @requires $breakpoints
+	@mixin respond-to($breakpoint) {
+	$raw-query: map-get($breakpoints, $breakpoint);
+
+	@if $raw-query {
+		$query: if(
+		type-of($raw-query) == 'string',
+		unquote($raw-query),
+		inspect($raw-query)
+		);
+
+		@media #{$query} {
+		@content;
+		}
+	} @else {
+		@error 'No value found for `#{$breakpoint}`. '
+			+ 'Please make sure it is defined in `$breakpoints` map.';
+	}
+	}
+	
+	/*웹폰트(kopub체) */
+	@font-face {
+		font-family: 'kopub';
+		src:url('../font/KoPubDotumMedium.eot') format('embedded-opentype'),
+			url("../font/KoPubDotumMedium.woff") format('woff');
+	}
+
+	@font-face {
+		font-family: 'kopublight';
+		src:url('../font/KoPubDotumLight.eot') format('embedded-opentype'),
+			url("../font/KoPubDotumLight.woff") format('woff');
+	}
+
+	@font-face {
+		font-family: 'kopubbold';
+		src:url('../font/KoPubDotumBold.eot') format('embedded-opentype'),
+			url("../font/KoPubDotumBold.woff") format('woff');
+	}
+
+
+
+// 변수
+	$point-color: #1fe3cb;
+	$category-color: #00FFFF;
+// CommonStyle
+	*{
+		font-family:'kopub';
+	}
+	body{
+		font-family:'kopub';
+		width:100%;
+		height:100%;
+		min-width:320px;
+		&.form{
+			background:url('/img/background/01_back.jpg');
+			background-size:cover;
+			transition:all 0.5s;
+		}
+		&.join{
+			background:url('/img/background/02_back.jpg');
+			background-size:cover;
+			overflow:hidden;
+			transition:all 0.5s;
+		}
+		&.social{
+			background:url('/img/background/03_back.jpg');
+			background-size:cover;
+			overflow:hidden;
+			transition:all 0.5s;
+		}
+		&.fixed{
+			overflow:hidden;
+		}
+		h1,h2,h3,h4,strong,b,p.title{
+			font-weight:normal;
+			font-family:'kopubbold';
+			font-size:30px;
+			@include respond-to('small'){
+				font-size:25px;
+			}
+		}
+		p, a, li{
+			font-size:18px;
+			@include respond-to('small'){
+				font-size:15px;
+			}
+			@include respond-to('too-small'){
+				font-size:13px;
+			}
+		}
+	}
+	img.icon{
+		height:20px;
+		width:auto;
+		position:relative;
+		top:5px;
+		@include respond-to('too-small'){
+			height:18px;
+			width:auto;
+		}
+	}
+// Scrollbar
+	::-webkit-scrollbar
+	{
+	width: 5px;  /* for vertical scrollbars */
+	height: 5px; /* for horizontal scrollbars */
+	}
+
+	::-webkit-scrollbar-track
+	{
+	background: rgba(0, 0, 0, 0.1);
+	}
+
+	::-webkit-scrollbar-thumb
+	{
+	background: rgba(0, 0, 0, 0.5);
+	}
+
+// mainNav
+	div.sub-nav{
+		background:#7f7e7e;
+		overflow:hidden;
+		height:50px;
+		padding:10px 5%;
+		box-sizing:border-box;
+		width:100%;
+		@include respond-to('small'){
+			padding:10px;
+		}
+		li{
+			font-size:17px;
+			height:30px;
+			line-height:30px;
+			float:left;
+			margin:0 5px;
+			@include respond-to('small'){
+				font-size:15px;
+				margin: 0 3px;
+			}
+			img{
+				height:100%;
+				width:auto;
+				vertical-align:middle;
+				&.down{
+					margin:0 10px;
+					height:20px;
+					padding:5px 0;
+					@include respond-to('small'){
+						margin:0 5px;
+					}
+				}
+			}
+			a{
+				color:#fff;
+				span{
+					@include respond-to('small'){
+						display:none;
+					}
+				}
+			}
+		}
+		ul.right{
+			float:right;
+			li{
+				margin:0;
+				a{
+					padding:0 20px;
+				}
+				&:not(:last-child){
+					a{
+						border-right:1px solid #fff;
+					}
+				}
+			}
+		}
+	}
+	nav#main-nav{
+		height:80px;
+		padding:0 5%;
+		background:#fff;
+		box-sizing:border-box;
+		border-bottom:1px solid #ccc;
+		position:relative;
+		h1.logo{
+			float:left;
+			width:230px;
+			padding:25px 0;
+			img{
+				height:20px;
+				width:auto;
+				padding:5px;
+			}
+		}
+		ul{
+			float:right;
+			height:80px;
+			&.small{
+				display:none;
+				@include respond-to('small-nav'){
+					display:block;
+				}
+			}
+			&:not(.small){
+				@include respond-to('small-nav'){
+					position:absolute;
+					top:80px;
+					left:0;
+					z-index:10;
+					width:100%;
+					li{
+						width:100%;
+						height:45px;
+						border-bottom:1px solid #ddd;
+						background:#fff;
+						clear:both;
+						box-sizing:border-box;
+						margin:0;
+						&:hover{
+							background:#eee;
+						}
+						a{
+							display:block;
+							font-size:15px;
+							width:100%;						
+							height:45px;
+							line-height:45px;
+							padding-left:20px;
+						}
+						&.active{
+							a{
+								border:none;
+								border-left:5px solid $point-color;
+							}
+						}
+					}
+				}
+			}
+			&.hidden{
+				display:block;
+				@include respond-to('small-nav'){
+					display:none;
+				}
+			}
+			li{
+				height:80px;
+				float:left;
+				margin:0 5px;
+				a{
+					font-size:18px;
+					color:#7f7e7e;
+					display:inline-block;
+					padding:0 5px;
+					line-height:80px;
+					height:80px;
+					box-sizing:border-box;
+					&.tabmenu{
+						color:#494949;
+						font-size:25px;
+					}
+				}
+				&.active{
+					a{
+						display:block;
+						color:#494949;
+						font-weight:bold;
+						border-bottom:5px solid $point-color;
+					}
+				}
+			}
+		}
+	}
+	div#footer{
+		width:100%;
+		background:#f5f5f5;
+		padding:50px 10%;
+		text-align:center;
+		box-sizing:border-box;
+		a.app img{
+			width:120px;
+			height:auto;
+		}
+		ul{
+			margin:30px 0;
+			&.introduction{
+				color:#7f7e7e;
+				li{
+					margin:5px 0;
+					font-size:20px;
+				}
+			}
+			&:not(.introduction){
+				width:150px;
+				margin:10px auto;
+				li{
+					margin:10px;
+					float:left;
+					img{
+						width:50px;
+						height:50px;
+					}
+				}
+				&:last-child:after{
+					content:'';
+					clear:both;
+					margin-left:30px;
+					margin-bottom:30px;
+				}
+			}
+		}
+	}
