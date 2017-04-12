@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 use App\Enter;
 use App\Enter_profile;
 use App\Enter_main_image;
+use App\Exhibition;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $new_enters = Enter::orderBy('created_at', 'desc')->limit(8);
-        $best_enters = Enter_profile::orderBy('count', 'desc')->limit(7);
+        $new_enters = Enter::orderBy('created_at', 'desc')->limit(8)->get();
+        $best_enters = Enter_profile::orderBy('count', 'desc')->limit(7)->get();
+        $banners = Exhibition::where('flag', 'B')->get();
         $new_images = array();
         $best_images = array(); 
 
@@ -27,6 +29,6 @@ class HomeController extends Controller
             array_push( $best_images, $image );
         }
 
-        return view('home')->with('new_enters', $new_images)->with('best_enters', $best_images);
+        return view('home')->with('new_enters', $new_images)->with('best_enters', $best_images)->with('banners', $banners);
     }
 }

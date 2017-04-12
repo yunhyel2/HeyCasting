@@ -68,6 +68,7 @@ class JoinController extends Controller
         $password2 = $request->input('passwordConf');
 
         $videos = $request->input('videos'); 
+        $videos2 = $request->file('videos2');
         $main_image = $request->input('main-profile');
         $images = $request->file('photos'); 
 
@@ -261,21 +262,32 @@ class JoinController extends Controller
                 }
             }
             
-            
-            foreach( $videos as $video ) {
-                $profile_video = new Enter_profile_video;
-                $profile_video->enter_id = $enter_id;
-                $profile_video->video = $video;
-                if( strpos( $video, 'www.youtube.com') ) {
-                    $parse = strstr($video, 'watch?v=');
-                    $profile_video->thumbnail = 'https://img.youtube.com/vi/' . $parse . '/0.jpg';
-                } else if( strpos( $video, 'youtu.be') ) {
-                    $parse = strstr($video, 'youtu.be/');
-                    $profile_video->thumbnail = 'https://img.youtube.com/vi/' . $parse . '/0.jpg';
-                } else {
-                    $profile_video->thumbnail = 'https://img.youtube.com/vi//0.jpg';
+            if( $videos ) {
+                foreach( $videos as $video ) {
+                    $profile_video = new Enter_profile_video;
+                    $profile_video->enter_id = $enter_id;
+                    $profile_video->video = $video;
+                    if( strpos( $video, 'www.youtube.com') ) {
+                        $parse = strstr($video, 'watch?v=');
+                        $profile_video->thumbnail = 'https://img.youtube.com/vi/' . $parse . '/0.jpg';
+                    } else if( strpos( $video, 'youtu.be') ) {
+                        $parse = strstr($video, 'youtu.be/');
+                        $profile_video->thumbnail = 'https://img.youtube.com/vi/' . $parse . '/0.jpg';
+                    } else {
+                        $profile_video->thumbnail = 'https://img.youtube.com/vi//0.jpg';
+                    }
+                    $profile_video->save();
                 }
-                $profile_video->save();
+            }
+
+            if( $videos2 ) {
+                foreach( $videos2 as $video2 ) {
+                    $profile_video = new Enter_profile_video;
+                    $profile_video->enter_id = $enter_id;
+                    $profile_video->video = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('video_test', $video2, 'public');
+                    $profile_video->thumbnail = '';
+                    $profile_video->save();
+                }
             }
 
             $user_key = new User_key;
