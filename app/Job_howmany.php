@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Job_howmany extends Model
 {
-    protected $table = 'job_howmany';
+    protected $table = 'Job_howmany';
 }

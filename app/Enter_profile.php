@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Enter_profile extends Model
 {
-    protected $table = 'user_enter_profile';
+    protected $table = 'User_enter_profile';
+
+    public function enter() 
+    {
+        return $this->belongsTo('App\Enter');
+    }
 }

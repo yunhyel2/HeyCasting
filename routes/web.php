@@ -27,17 +27,7 @@ Route::post('/join-in', 'JoinController@enterStore');
 Route::post('/join-in-user', 'JoinController@userStore');
 Route::get('/complete/{stat}', 'JoinController@complete');
 
-// Route::get('/join/naver', 'SocialController@redirectToNaver');
-// Route::get('/join_naver', 'SocialController@callbackNaver');
-// Route::get('/join/kakao', 'SocialController@redirectToKakao');
-// Route::get('/join_kakao', 'SocialController@callbackKakao');
-// Route::get('/join/facebook', 'SocialController@redirectToFacebook');
-// Route::get('/join_facebook', 'SocialController@callbackFacebook');
-// Route::get('/join/google', 'SocialController@redirectToGoogle');
-// Route::get('/join_google', 'SocialController@callbackGoogle');
-
 Route::post('/upload', 'CropController@upload');
 Route::post('/crop', 'CropController@crop');
-
 
 Route::get('/test', 'JoinController@test');

@@ -3,26 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Enter;
+use App\Enter_profile;
+use App\Enter_main_image;
+use App\Exhibition;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('home');
+        $new_enters = Enter::orderBy('created_at', 'desc')->limit(8)->get();
+        $best_enters = Enter_profile::orderBy('count', 'desc')->limit(7)->get();
+        $banners = Exhibition::where('flag', 'B')->get();
+        $new_images = array();
+        $best_images = array(); 
+
+        foreach( $new_enters as $new_enter ) {
+            $main_image = $new_enter->main_image()->first()->image;
+            array_push( $new_images, $main_image ); 
+        }
+
+        foreach( $best_enters as $best_enter ) {
+            $enter_id = $best_enter->enter()->first()->id;
+            $image = Enter_main_image::where('enter_id', $enter_id)->first()->image;
+            array_push( $best_images, $image );
+        }
+
+        return view('home')->with('new_enters', $new_images)->with('best_enters', $best_images)->with('banners', $banners);
     }
 }

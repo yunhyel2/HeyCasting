@@ -39,7 +39,7 @@ class CropController extends Controller
 
         $filename_ext = $allowed_filename .'.jpg';
 
-        $url = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/' . Storage::disk('s3')->put('main_image', $photo, 'public');
+        $url = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/' . Storage::disk('s3')->put('enter_image', $photo, 'public');
 
         if( !$url) {
 
@@ -89,9 +89,9 @@ class CropController extends Controller
                     ->rotate(-$angle)
                     ->crop(1080, 674, $imgX1, $imgY1);
         $image = $image->stream();
-        Storage::disk('s3')->delete('main_image/'.$filename);
-        Storage::disk('s3')->put('main_image/crop-'.$filename, $image->__toString(), 'public');
-        $url = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/main_image/crop-' .$filename; 
+        Storage::disk('s3')->delete('enter_image/'.$filename);
+        Storage::disk('s3')->put('enter_image/crop-'.$filename, $image->__toString(), 'public');
+        $url = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/enter_image/crop-' .$filename; 
 
         $imageDB = Image::where('crop', $image_url)->first();
         $imageDB->crop = $url;

@@ -68,6 +68,7 @@ class JoinController extends Controller
         $password2 = $request->input('passwordConf');
 
         $videos = $request->input('videos'); 
+        $videos2 = $request->file('videos2');
         $main_image = $request->input('main-profile');
         $images = $request->file('photos'); 
 
@@ -256,26 +257,37 @@ class JoinController extends Controller
                 foreach( $images as $image ) {
                     $profile_image = new Enter_image;
                     $profile_image->enter_id = $enter_id;
-                    $profile_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('test', $image, 'public');
+                    $profile_image->image = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('enter_image', $image, 'public');
                     $profile_image->save();
                 }
             }
             
-            
-            foreach( $videos as $video ) {
-                $profile_video = new Enter_profile_video;
-                $profile_video->enter_id = $enter_id;
-                $profile_video->video = $video;
-                if( strpos( $video, 'www.youtube.com') ) {
-                    $parse = strstr($video, 'watch?v=');
-                    $profile_video->thumbnail = 'https://img.youtube.com/vi/' . $parse . '/0.jpg';
-                } else if( strpos( $video, 'youtu.be') ) {
-                    $parse = strstr($video, 'youtu.be/');
-                    $profile_video->thumbnail = 'https://img.youtube.com/vi/' . $parse . '/0.jpg';
-                } else {
-                    $profile_video->thumbnail = 'https://img.youtube.com/vi//0.jpg';
+            if( $videos ) {
+                foreach( $videos as $video ) {
+                    $profile_video = new Enter_profile_video;
+                    $profile_video->enter_id = $enter_id;
+                    $profile_video->video = $video;
+                    if( strpos( $video, 'www.youtube.com') ) {
+                        $parse = strstr($video, 'watch?v=');
+                        $profile_video->thumbnail = 'https://img.youtube.com/vi/' . $parse . '/0.jpg';
+                    } else if( strpos( $video, 'youtu.be') ) {
+                        $parse = strstr($video, 'youtu.be/');
+                        $profile_video->thumbnail = 'https://img.youtube.com/vi/' . $parse . '/0.jpg';
+                    } else {
+                        $profile_video->thumbnail = 'https://img.youtube.com/vi//0.jpg';
+                    }
+                    $profile_video->save();
                 }
-                $profile_video->save();
+            }
+
+            if( $videos2 ) {
+                foreach( $videos2 as $video2 ) {
+                    $profile_video = new Enter_profile_video;
+                    $profile_video->enter_id = $enter_id;
+                    $profile_video->video = 'https://s3.ap-northeast-2.amazonaws.com/heycasting/'.Storage::put('video_test', $video2, 'public');
+                    $profile_video->thumbnail = '';
+                    $profile_video->save();
+                }
             }
 
             $user_key = new User_key;
@@ -288,7 +300,7 @@ class JoinController extends Controller
 
         } catch(\Exception $e) {
             DB::rollback();
-            return redirect('/');
+            return back();
         }
         return redirect('/complete/enter');
         
@@ -297,47 +309,71 @@ class JoinController extends Controller
     public function userStore(UserJoinRequest $request) 
     {
         $flag = 'N';
-        $link = $request->input('link'); 
         $email = $request->input('user-email'); 
+        $f_email = $request->input('facebook_mail');
+        $g_email = $request->input('google_mail');
+        $k_email = $request->input('kakao_id');
+        $n_email = $request->input('naver_mail'); 
         $password = $request->input('password');
         $password2 = $request->input('passwordConf');
         $name = $request->input('user_name');
         $phone = $request->input('user_phone');
 
-        if( $password != $password2 ) {
-            return back();
-        } else {
-
-            DB::beginTransaction();
-
-            try {
-                $user = new User;
-                $user->flag = $flag;
-                if( $link ) {
-                    $user->link = $link;
-                } else {
-                    $user->link = 'A';
-                }
-                
-                $user->email = $email;
-                $user->password = bcrypt($password);
-                $user->name = $name;
-                $user->nickname = $name;
-                $user->nation = 'KR';
-                $user->gukgi = 2130837906; 
-                $user->code = 82; 
-                $user->phone = $phone;
-                $user->image = '';
-                $user->save();
-
-                DB::commit();
-
-            } catch(\Exception $e) {
-                DB::rollback();
-                return view('/');         
+        if( $email ) {
+            $link = 'A';
+            $user_email = $email;
+            if( $password != $password2 ) {
+                return back();
             }
-            return redirect('/complete/user');
+        } else if ( $f_email ) {
+            $link = 'F';
+            $user_email = $f_email;
+        } else if ( $n_email ) {
+            $link = 'N';
+            $user_email = $n_email;
+        } else if ( $k_email ) {
+            $link = 'K';
+            $user_email = $k_email;
+        } else if ( $g_email ) {
+            $link = 'G';
+            $user_email = $g_email;
         }
+
+        //이미 존재하는 회원일 경우! 
+        $exist_user = User::where('link', $link)->where('email', $user_email)->count();
+        if( $exist_user != 0 ) {
+            return back();
+        }
+
+        DB::beginTransaction();
+
+        try {
+            $user = new User;
+            $user->flag = $flag;
+            $user->link = $link;
+            $user->email = $user_email;
+            if( $email ) {
+                $user->password = bcrypt($password); 
+            } else {
+                $user->password = '';
+            } 
+            $user->name = $name;
+            $user->nickname = $name;
+            $user->nation = 'KR';
+            $user->gukgi = 2130837906; 
+            $user->code = 82; 
+            $user->phone = $phone;
+            $user->image = '';
+            $user->save();
+
+            DB::commit();
+
+        } catch(\Exception $e) {
+            DB::rollback();
+            return back();         
+        }
+        return redirect('/complete/user');
+        
     }
 
     public function complete($stat) {
