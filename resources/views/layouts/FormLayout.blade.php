@@ -11,7 +11,24 @@
     <!---Cropit-->
     <link rel="stylesheet" href="/croppic/assets/css/main.css"/>
     <link rel="stylesheet" href="/croppic/assets/css/croppic.css">
+    <style>
+        // Scrollbar
+        ::-webkit-scrollbar
+        {
+        width: 5px;  /* for vertical scrollbars */
+        height: 5px; /* for horizontal scrollbars */
+        }
 
+        ::-webkit-scrollbar-track
+        {
+        background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb
+        {
+        background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!---js-->
     <!---네이버간편로그인-->
@@ -52,7 +69,7 @@
         ]); ?>
     </script>
 </head>
-<body class="{{ Request::segment(1) == 'enter-join' || Request::segment(1) == 'user-join' ? 'join' : '' }}{{ strpos( Request::fullUrl() , 'access_token=' ) ? 'social' : '' }}{{ Request::segment(1) == 'complete' ? 'fixed' : '' }}">
+<body class="form {{ Request::segment(1) == 'enter-join' || Request::segment(1) == 'user-join' ? 'join' : '' }}{{ strpos( Request::fullUrl() , 'access_token=' ) ? 'social' : '' }}{{ Request::segment(1) == 'complete' ? 'fixed' : '' }}">
     <div id="app">
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
