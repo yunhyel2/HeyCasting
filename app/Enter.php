@@ -18,4 +18,8 @@ class Enter extends Model
         return $this->hasOne('App\Enter_main_image');
     }
     
+    public function jobs() 
+    {
+        return $this->hasMany('App\Enter_job');
+    }
 }

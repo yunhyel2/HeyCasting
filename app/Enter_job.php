@@ -7,4 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Enter_job extends Model
 {
     protected $table = 'User_enter_job2';
+
+    public function enter()
+    {
+        return $this->belongsTo('App\Enter');
+    }
+
+    public function jobs()
+    {
+        return $this->belongsToMany('App\Job');
+    }
 }
