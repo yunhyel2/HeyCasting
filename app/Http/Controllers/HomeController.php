@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Enter;
 use App\Enter_profile;
-use App\Enter_main_image;
 use App\Exhibition;
 
 class HomeController extends Controller
