@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Enter;
 use App\Enter_profile;
-use App\Enter_main_image;
 use App\Exhibition;
 
 class HomeController extends Controller
@@ -15,20 +14,14 @@ class HomeController extends Controller
         $new_enters = Enter::orderBy('created_at', 'desc')->limit(8);
         $best_enters = Enter_profile::orderBy('count', 'desc')->limit(7);
         $banners = Exhibition::where('flag', 'B')->get();
-        $new_images = array();
-        $best_images = array(); 
 
-        foreach( $new_enters as $new_enter ) {
-            $main_image = $new_enter->main_image()->first()->image;
-            array_push( $new_images, $main_image ); 
-        }
+        return view('home')->with('new_enters', $new_enters)->with('best_enters', $best_enters)->with('banners', $banners);
+        //$best_enter->enter()->first()->jobs()->first()->job //직업
+        //$best_enter->name //이름 
+        //$best_enter->enter()->first()->main_image()->first()->image //이미지
 
-        foreach( $best_enters as $best_enter ) {
-            $enter_id = $best_enter->enter()->first()->id;
-            $image = Enter_main_image::where('enter_id', $enter_id)->first()->image;
-            array_push( $best_images, $image );
-        }
-
-        return view('home')->with('new_enters', $new_images)->with('best_enters', $best_images)->with('banners', $banners);
+        //$new_enter->profile()->first()->name //이름 
+        //$new_enter->profile()->first()->intro //소개
+        //$new_enter->main_image()->first()->image //이미지
     }
 }
