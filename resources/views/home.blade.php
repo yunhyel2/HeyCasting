@@ -42,10 +42,10 @@
                 @foreach($new_enters as $new)
                 <li>
                     <div class="img-box">
-                        <a href="#" class="profile" style="{{ 'background:url(' . $new->profile()->first()->image . ') no-repeat;background-size:cover;' }}"></a>
+                        <a href="#" class="profile" style="{{ 'background:url(' . $new->main_image->image . ') center no-repeat;background-size:cover;' }}"></a>
                     </div>
-                    <p class="title">{{ $new->profile()->first()->name }}<span>{{ $new->jobs()->first()->jobs()->job }}</span></p>
-                    <p>{{ $new->profile()->first()->intro }}</p>
+                    <p class="title">{{ $new->profile->name }}<span></span></p>
+                    <p>{{ $new->profile->intro }}</p>
                 </li>
                 @endforeach
             </ul>
@@ -58,11 +58,11 @@
         <ul>
             @foreach($best_enters as $i=>$best)
             <li class="{{ $i < 3 ? 'triple' : '' }}">
-                <a href="#" class="img-box" style="{{ 'background:url(' . $best->enter()->first()->main_image()->first()->image . ') no-repeat;background-size:cover;' }}">
+                <a href="#" class="img-box" style="{{ 'background:url(' . $best->enter->main_image->image . ') center no-repeat;background-size:cover;' }}">
                     <div class="cover"></div>
                     <div class="detail">
                         <p class="enter-name {{ $i == 0 ? 'best' : '' }}">{{ $best->name }}</p>
-                        <p class="enter-type {{ $i == 0 ? 'best' : '' }}">{{ $best->enter()->first()->jobs()->first()->jobs() }}</p>
+                        <p class="enter-type {{ $i == 0 ? 'best' : '' }}">직업</p>
                     </div>
                 </a>
             </li>
