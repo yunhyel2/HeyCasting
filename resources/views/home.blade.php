@@ -115,23 +115,23 @@
         <p>오늘 올라온 따끈따끈한 엔터테이너들의 일상 사진을 구경하세요</p>
         <div class="gallery">
             <div class="wrap">
-                <div class="half"><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') no-repeat;background-size:cover;"></a></div>
-                <div class="half"><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') no-repeat;background-size:cover;"></a></div>
-                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') no-repeat;background-size:cover;"></a></div>
+                <div class="half"><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') center no-repeat;background-size:cover;"></a></div>
+                <div class="half"><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') center no-repeat;background-size:cover;"></a></div>
+                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') center no-repeat;background-size:cover;"></a></div>
             </div>
             <div class="wrap">
-                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') no-repeat;background-size:cover;"></a></div>
-                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') no-repeat;background-size:cover;"></a></div>
+                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') center no-repeat;background-size:cover;"></a></div>
+                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') center no-repeat;background-size:cover;"></a></div>
             </div>
             <div class="wrap">
-                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') no-repeat;background-size:cover;"></a></div>
-                <div class="half"><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') no-repeat;background-size:cover;"></a></div>
-                <div class="half"><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') no-repeat;background-size:cover;"></a></div>
+                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') center no-repeat;background-size:cover;"></a></div>
+                <div class="half"><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') center no-repeat;background-size:cover;"></a></div>
+                <div class="half"><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') center no-repeat;background-size:cover;"></a></div>
             </div>
             <div class="wrap">
-                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') no-repeat;background-size:cover;"></a></div>
-                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') no-repeat;background-size:cover;"></a></div>
-                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') no-repeat;background-size:cover;"></a></div>
+                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') center no-repeat;background-size:cover;"></a></div>
+                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') center no-repeat;background-size:cover;"></a></div>
+                <div><a href="#" style="background:url('https://secure.static.tumblr.com/201d4cf004265e8365064d354950b65f/vxokifl/j64o689c8/tumblr_static_tumblr_static_filename_640.jpg') center no-repeat;background-size:cover;"></a></div>
             </div>
         </div>
     </div>
