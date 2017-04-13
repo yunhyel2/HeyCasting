@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $new_enters = Enter::orderBy('created_at', 'desc')->limit(8)->get();
+        $new_enters = Enter::orderBy('created_at', 'asc')->limit(8)->get();
         $best_enters = Enter_profile::orderBy('count', 'desc')->limit(7)->get();
         $banners = Exhibition::where('flag', 'B')->get();
 
