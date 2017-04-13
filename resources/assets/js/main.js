@@ -62,6 +62,9 @@
         };
     });
     function Slide(target){
+        if( $(target).closest('nav.arrow').next('div.slide-wrap').children('ul.slider').children('li').length == 1 ){
+            return false;
+        }
         var width = $(target).closest('nav.arrow').next().find('ul.slider').find('li').outerWidth(true);
         if( $(target).attr('name') == 'left' ){
             $(target).closest('nav.arrow').next().find('ul.slider').css('left', '-'+width+'px').prepend( $(target).closest('nav.arrow').next().find('ul.slider').find('li:last-child') );

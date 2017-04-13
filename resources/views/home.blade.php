@@ -42,10 +42,10 @@
                 @foreach($new_enters as $new)
                 <li>
                     <div class="img-box">
-                        <a href="#" class="profile" style="{{ 'background:url(' . $new->main_image->image . ') center no-repeat;background-size:cover;' }}"></a>
+                        <a href="#" class="profile" style="{{ isset( $new->main_image->image ) ? 'background:url(' . $new->main_image->image . ') center no-repeat;background-size:cover;' : '' }}"></a>
                     </div>
-                    <p class="title">{{ $new->profile->name }}<span></span></p>
-                    <p>{{ $new->profile->intro }}</p>
+                    <p class="title">{{ isset( $new->profile->name ) ? $new->profile->name : '' }}<span>{{ isset($new->jobs()->first()->job) ? $new->jobs()->first()->job : '' }}</span></p>
+                    <p>{{ isset( $new->profile->intro ) ? $new->profile->intro : '' }}</p>
                 </li>
                 @endforeach
             </ul>
@@ -58,11 +58,11 @@
         <ul>
             @foreach($best_enters as $i=>$best)
             <li class="{{ $i < 3 ? 'triple' : '' }}">
-                <a href="#" class="img-box" style="{{ 'background:url(' . $best->enter->main_image->image . ') center no-repeat;background-size:cover;' }}">
+                <a href="#" class="img-box" style="{{ isset( $best->enter->main_image )? 'background:url(' . $best->enter->main_image->image . ') center no-repeat;background-size:cover;' : '' }}">
                     <div class="cover"></div>
                     <div class="detail">
-                        <p class="enter-name {{ $i == 0 ? 'best' : '' }}">{{ $best->name }}</p>
-                        <p class="enter-type {{ $i == 0 ? 'best' : '' }}">직업</p>
+                        <p class="enter-name {{ $i == 0 ? 'best' : '' }}">{{ isset( $best->name ) ? $best->name : '' }}</p>
+                        <p class="enter-type {{ $i == 0 ? 'best' : '' }}">{{ isset($best->enter->jobs()->first()->job) ? $best->enter->jobs()->first()->job : '' }}</p>
                     </div>
                 </a>
             </li>
@@ -88,6 +88,7 @@
                     @endif
                 @endfor
                 </li>
+                @if( isset( $banners[3] ) == TRUE )
                 <li>
                 @for($i=3;$i<6;$i++)
                     @if( $i<$banners->count() )
@@ -95,6 +96,16 @@
                     @endif
                 @endfor
                 </li>
+                @endif
+                @if( isset( $banners[6] ) == TRUE )
+                <li>
+                @for($i=6;$i<9;$i++)
+                    @if( $i<$banners->count() )
+                    <a href="{{ $banners[$i]->content_image }}"><img src="{{ $banners[$i]->image }}" alt=""/></a>
+                    @endif
+                @endfor
+                </li>
+                @endif
             </ul>
         </div>
     </div>
