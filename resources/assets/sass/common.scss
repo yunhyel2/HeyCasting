@@ -146,7 +146,7 @@
 				font-size:20px;
 			}
 		}
-		p, a, li{
+		p, a, li, label[for="agree"]{
 			font-size:18px;
 			@include respond-to('small'){
 				font-size:15px;

@@ -233,6 +233,7 @@ div.join-form{
     p.explanation{
         padding:10px 0;
         opacity:0.7;
+        font-size:1em;
         word-break:keep-all;
         line-height:1.5;
         margin-bottom:0;
@@ -481,9 +482,6 @@ div.group{
         position:relative;
         div.bt-mrg{
             margin:5px 0;
-            &:last-child{
-                margin-bottom:30px;
-            }
         }
         div.items{
             position:relative;
@@ -515,7 +513,6 @@ div.group{
         a.add-items{
             position:absolute;
             right:80px;
-            bottom:20px;
             @include respond-to('small'){
                 right:50px;
             }
@@ -601,6 +598,10 @@ div.group{
                     height:40px;
                     line-height:40px;
                     word-wrap:normal;
+                    font-size:14px;
+                    @include respond-to('too-small'){
+                        font-size:13px;
+                    }
                     &.strong{
                         font-weight:bold;
                         font-size:20px;
@@ -747,21 +748,22 @@ div.group{
         }
     }
     &.agree{
+        max-width:403px;
+        margin:0 auto;
         label{
             display:inline-block;
             width:90%;
             height:20px;
-            font-size:20px;
+            font-size:15px !important;
             line-height:1.5;
             padding-left:50px;
             word-break:keep-all;
             margin-left:10px;
             a{
+                font-size:15px !important;
                 border-bottom:1px solid #fff;
                 padding-bottom:1px;
                 color:#fff;
-                position:relative;
-                top:-2px;
             }
             span.error{
                 margin-left:20px;
