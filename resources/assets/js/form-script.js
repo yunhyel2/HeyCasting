@@ -107,11 +107,14 @@
     $('a.add-items').on('click', function(e){
         e.preventDefault();
         if( $(this).hasClass('video') ){
-            $count = $('input[name="videos[]"]').length;
-            if( $count < 3 ){
-                $(this).prev('div.form-group').append('<div class="items bt-mrg"><a href="#" class="btn change">직접등록</a><input type="text" name="videos[]" id="video'+($count+1)+'" class="required no-pad" placeholder="Youtube 주소 입력" autocomplete="Off"/><input type="file" name="videos2[]" id="videoDirect'+($count+1)+'" class="required no-pad hidden"/><a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a></div>');
-                $(this).prev('div.form-group').find('ul.video').css('width', 160*($count+1)+'px');
-                $(this).prev('div.form-group').find('ul.video li').eq($count).removeClass('hidden');
+            $count = $('div.video div.items:not(.hidden)').length;
+            $(this).prev('div.form-group').find('ul.video').css('width', 160*($count+1)+'px');
+            if( $('div.items[name="video3"]').hasClass('hidden') ){
+                $(this).prev('div.form-group').find('div.items[name="video'+ ($count+1) +'"]').removeClass('hidden');
+                $(this).prev('div.form-group').find('ul.video li[name="video'+ ($count+1) +'"]').removeClass('hidden');
+            }else{
+                $(this).prev('div.form-group').find('div.items[name="video2"]').removeClass('hidden');
+                $(this).prev('div.form-group').find('ul.video li[name="video2"]').removeClass('hidden');
             }
         }else if( $(this).hasClass('spec') ){
             if( $('input[name="spec-intro1[]"]').length < 5 ){
@@ -129,9 +132,12 @@
             $('ul.select').find('li[name="'+$name+'"]').removeClass('hidden');
         }else if( $(this).parent().parent().parent().hasClass('video') ){
             $count = $('input[name="videos[]"]').length;
+            $nth = $(this).parent().index('div.items');
+            console.log($nth);
             $(this).closest('div.form-group').find('ul.video').css('width', 160*($count-1)+'px');
-            $(this).closest('div.form-group').find('ul.video li').eq($count).addClass('hidden');
-            $(this).parent().remove();
+            $(this).closest('div.form-group').find('ul.video li:nth-child(' + ($nth+1) + ')').addClass('hidden');
+            $(this).closest('div.form-group').find('ul.video li:nth-child(' + ($nth+1) + ') video').remove();
+            $(this).parent().addClass('hidden');
         }else{
             if( $('input[name="spec-intro1[]"]').length > 1 ){
                 $(this).closest('tr').prev().remove();
@@ -293,7 +299,7 @@
 
     (function localFileVideoPlayer() {
         var URL = window.URL || window.webkitURL
-        var playSelectedFile = function (event) {
+        var playSelectedFile1 = function (event) {
             var file = this.files[0]
             var type = file.type
             var videoNode = document.querySelector('video[name="video1"]')
@@ -304,14 +310,52 @@
 
             if (isError) {
                 alert('지원하지 않는 확장자입니다!');
-            return
+                return
             }
 
             var fileURL = URL.createObjectURL(file)
             videoNode.src = fileURL
         }  
-        var inputNode = document.querySelector('input#videoDirect1')
-        inputNode.addEventListener('change', playSelectedFile, false)
+        var playSelectedFile2 = function (event) {
+            var file = this.files[0]
+            var type = file.type
+            var videoNode = document.querySelector('video[name="video2"]')
+            var canPlay = videoNode.canPlayType(type)
+            if (canPlay === '') canPlay = 'no'
+            var message = 'Can play type "' + type + '": ' + canPlay
+            var isError = canPlay === 'no'
+
+            if (isError) {
+                alert('지원하지 않는 확장자입니다!');
+                return
+            }
+
+            var fileURL = URL.createObjectURL(file)
+            videoNode.src = fileURL
+        }  
+        var playSelectedFile3 = function (event) {
+            var file = this.files[0]
+            var type = file.type
+            var videoNode = document.querySelector('video[name="video3"]')
+            var canPlay = videoNode.canPlayType(type)
+            if (canPlay === '') canPlay = 'no'
+            var message = 'Can play type "' + type + '": ' + canPlay
+            var isError = canPlay === 'no'
+
+            if (isError) {
+                alert('지원하지 않는 확장자입니다!');
+                return
+            }
+
+            var fileURL = URL.createObjectURL(file)
+            videoNode.src = fileURL
+        }  
+        var inputNode1 = document.querySelector('input#videoDirect1');
+        var inputNode2 = document.querySelector('input#videoDirect2');
+        var inputNode3 = document.querySelector('input#videoDirect3');
+        inputNode1.addEventListener('change', playSelectedFile1, false)
+        inputNode2.addEventListener('change', playSelectedFile2, false)
+        inputNode3.addEventListener('change', playSelectedFile3, false)
     })();
 
     $(document).on('focusout', 'input[name="videos[]"]', function(){

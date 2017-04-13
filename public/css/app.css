@@ -759,29 +759,29 @@ div.section.best li {
 
 div.section.best li.triple {
   width: 33.333333333333333333333333333333333333333333%;
-  padding-bottom: 16.12903225806452%;
+  padding-bottom: 21.66666666666667%;
 }
 
 @media (max-width: 550px) {
   div.section.best li.triple:first-child {
     width: 100%;
-    padding-bottom: 60%;
+    padding-bottom: 65%;
   }
   div.section.best li.triple:not(:first-child) {
-    width: 33.333333333333333333333%;
-    padding-bottom: 33.3333333333333333333%;
+    width: 33.333333333333333333333333333333333333333333%;
+    padding-bottom: 21.66666666666667%;
   }
 }
 
 div.section.best li:not(.triple) {
   width: 25%;
-  padding-bottom: 16.12903225806452%;
+  padding-bottom: 16.25%;
 }
 
 @media (max-width: 550px) {
   div.section.best li:not(.triple) {
-    width: 33.3333333333333333333%;
-    padding-bottom: 33.3333333333333333333%;
+    width: 33.333333333333333333333333333333333333333333%;
+    padding-bottom: 21.66666666666667%;
   }
 }
 
@@ -903,7 +903,7 @@ div.section.special ul.slider li a {
   overflow: hidden;
   width: 100%;
   border-radius: 30px;
-  padding-bottom: 25%;
+  padding-bottom: 30%;
 }
 
 div.section.special ul.slider li a img {

@@ -13,7 +13,7 @@ class Enter_job extends Model
         return $this->belongsTo('App\Enter');
     }
 
-    public function jobs()
+    public function job()
     {
         return $this->belongsToMany('App\Job');
     }
