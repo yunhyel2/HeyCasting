@@ -11,8 +11,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $new_enters = Enter::orderBy('created_at', 'desc')->limit(8);
-        $best_enters = Enter_profile::orderBy('count', 'desc')->limit(7);
+        $new_enters = Enter::orderBy('created_at', 'desc')->limit(8)->get();
+        $best_enters = Enter_profile::orderBy('count', 'desc')->limit(7)->get();
         $banners = Exhibition::where('flag', 'B')->get();
 
         return view('home')->with('new_enters', $new_enters)->with('best_enters', $best_enters)->with('banners', $banners);

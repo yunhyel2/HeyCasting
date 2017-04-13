@@ -39,15 +39,15 @@
         </nav>
         <div class="slide-wrap">
             <ul class="slider">
-                @for($i=0;$i<8;$i++)
+                @foreach($new_enters as $new)
                 <li>
                     <div class="img-box">
-                        <a href="#" class="profile" style="background:url('http://www.ohfun.net/contents/article/images/2016/0310/1457585379036881.jpg');background-size:cover;"></a>
+                        <a href="#" class="profile" style="{{ 'background:url(' . $new->profile()->first()->image . ') no-repeat;background-size:cover;' }}"></a>
                     </div>
-                    <p class="title">유스<span>크리에이터</span></p>
-                    <p>안녕하세요 뷰튜버 유스입니다. 당신의 메이크업을 책임지겠습니다.</p>
+                    <p class="title">{{ $new->profile()->first()->name }}<span>{{ $new->jobs()->first()->jobs()->job }}</span></p>
+                    <p>{{ $new->profile()->first()->intro }}</p>
                 </li>
-                @endfor
+                @endforeach
             </ul>
         </div>
     </div>
@@ -56,17 +56,17 @@
         <h2>베스트 엔터테이너</h2>
         <p>모든 카테고리 안에서 종합 7위안에 드는 베스트 엔터테이너입니다</p>
         <ul>
-            @for($i=0;$i<7;$i++)
+            @foreach($best_enters as $i=>$best)
             <li class="{{ $i < 3 ? 'triple' : '' }}">
-                <a href="#" class="img-box" style="background:url('http://cfile8.uf.tistory.com/image/1139444B4DA9A50710DF80') no-repeat;background-size:cover;">
+                <a href="#" class="img-box" style="{{ 'background:url(' . $best->enter()->first()->main_image()->first()->image . ') no-repeat;background-size:cover;' }}">
                     <div class="cover"></div>
                     <div class="detail">
-                        <p class="enter-name {{ $i == 0 ? 'best' : '' }}">공기남녀</p>
-                        <p class="enter-type {{ $i == 0 ? 'best' : '' }}">가수</p>
+                        <p class="enter-name {{ $i == 0 ? 'best' : '' }}">{{ $best->name }}</p>
+                        <p class="enter-type {{ $i == 0 ? 'best' : '' }}">{{ $best->enter()->first()->jobs()->first()->jobs() }}</p>
                     </div>
                 </a>
             </li>
-            @endfor
+            @endforeach
         </ul>
     </div>
     <hr/>
