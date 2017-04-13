@@ -81,13 +81,20 @@
         </nav>
         <div class="slide-wrap">
             <ul class="slider">
-                @for($i=0;$i<3;$i++)
                 <li>
-                    <a href="#"><img src="https://image.genie.co.kr/Y/IMAGE/IMG_MUZICAT/IV2/Genie_Magazine/1274/Mgz_Main_Top_20150909112409.jpg" alt="대학교 축제를 위한 취향저격 캐스팅"/></a>
-                    <a href="#"><img src="https://image.genie.co.kr/Y/IMAGE/IMG_MUZICAT/IV2/Genie_Magazine/1274/Mgz_Main_Top_20150909112409.jpg" alt="대학교 축제를 위한 취향저격 캐스팅"/></a>
-                    <a href="#"><img src="https://image.genie.co.kr/Y/IMAGE/IMG_MUZICAT/IV2/Genie_Magazine/1274/Mgz_Main_Top_20150909112409.jpg" alt="대학교 축제를 위한 취향저격 캐스팅"/></a>
-                </li>
+                @for($i=0;$i<3;$i++)
+                    @if( $i<$banners->count() )
+                    <a href="{{ $banners[$i]->content_image }}"><img src="{{ $banners[$i]->image }}" alt=""/></a>
+                    @endif
                 @endfor
+                </li>
+                <li>
+                @for($i=3;$i<6;$i++)
+                    @if( $i<$banners->count() )
+                    <a href="{{ $banners[$i]->content_image }}"><img src="{{ $banners[$i]->image }}" alt=""/></a>
+                    @endif
+                @endfor
+                </li>
             </ul>
         </div>
     </div>

@@ -107,8 +107,8 @@
                     <input type="hidden" name="naver_mail" id="naver_mail" value=""/>
                     <div class="group video">
                         <div class="form-group">
-                            <label for="videos" class="title">활동 영상 첨부<span class="required"><img src="/img/required.png" alt="(필수)"></span></label>
-                            <p class="explanation">최소 1개 이상의 영상을 등록해주세요</p>
+                            <label for="videos" class="title">활동 영상 첨부</label>
+                            <p class="explanation">최소 1개 이상의 영상 등록을 권장합니다</p>
                             <div class="preview-items">
                                 <ul class="video">
                                     <li name="video1"></li>
@@ -116,10 +116,22 @@
                                     <li name="video3" class="hidden"></li>
                                 </ul>
                             </div>
-                            <div class="items bt-mrg">
+                            <div name="video1" class="items bt-mrg">
                                 <a href="#" class="btn change">직접등록</a>
-                                <input type="text" name="videos[]" id="video1" class="required" placeholder="Youtube 주소 입력" autocomplete="Off"/>
-                                <input type="file" name="videos2[]" id="videoDirect1" class="required hidden"/>
+                                <input type="text" name="videos[]" id="video1" placeholder="Youtube 주소 입력" autocomplete="Off"/>
+                                <input type="file" name="videos2[]" id="videoDirect1" class="hidden"/>
+                            </div>
+                            <div name="video2" class="items bt-mrg hidden">
+                                <a href="#" class="btn change">직접등록</a>
+                                <input type="text" name="videos[]" id="video2" placeholder="Youtube 주소 입력" autocomplete="Off"/>
+                                <input type="file" name="videos2[]" id="videoDirect2" class="hidden"/>
+                                <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
+                            </div>
+                            <div name="video3" class="items bt-mrg hidden">
+                                <a href="#" class="btn change">직접등록</a>
+                                <input type="text" name="videos[]" id="video3" placeholder="Youtube 주소 입력" autocomplete="Off"/>
+                                <input type="file" name="videos2[]" id="videoDirect3" class="hidden"/>
+                                <a href="#" class="delete"><img src="/img/icon_delete_contents.png" alt="삭제"/></a>
                             </div>
                         </div>
                         <a href="#" class="add-btn add-items video"><img src="/img/icon_plus_contents.png" class="icon" alt=""/></i>영상 추가 하기</a>
