@@ -133,7 +133,7 @@
         }else if( $(this).parent().parent().parent().hasClass('video') ){
             $count = $('input[name="videos[]"]').length;
             $nth = $(this).parent().index('div.items');
-            $(this).parent().find('a.change').html('직접등록').next().removeClass('hidden').next().addClass('hidden');
+            $(this).parent().find('a.change').html('직접등록').next().removeClass('hidden').next().addClass('hidden').val('');
             $(this).closest('div.form-group').find('ul.video').css('width', 160*($count-1)+'px');
             $(this).closest('div.form-group').find('ul.video li:nth-child(' + ($nth+1) + ')').addClass('hidden');
             $(this).closest('div.form-group').find('ul.video li:nth-child(' + ($nth+1) + ') video').remove();
