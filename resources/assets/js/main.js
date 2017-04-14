@@ -56,7 +56,7 @@
             link.data('isClicked', true);
             setTimeout(function() {
             link.removeData('isClicked')
-            }, 1200);
+            }, 800);
         } else {
             // Anything you want to say 'Bad user!'
         };
@@ -68,10 +68,10 @@
         var width = $(target).closest('nav.arrow').next().find('ul.slider').find('li').outerWidth(true);
         if( $(target).attr('name') == 'left' ){
             $(target).closest('nav.arrow').next().find('ul.slider').css('left', '-'+width+'px').prepend( $(target).closest('nav.arrow').next().find('ul.slider').find('li:last-child') );
-            $(target).closest('nav.arrow').next().find('ul.slider').animate( {left : '+='+width+'px'}, 1000, function(){
+            $(target).closest('nav.arrow').next().find('ul.slider').animate( {left : '+='+width+'px'}, 800, function(){
             } );
         }else{
-            $(target).closest('nav.arrow').next().find('ul.slider').animate( {left : '-='+width+'px'}, 1000, function(){
+            $(target).closest('nav.arrow').next().find('ul.slider').animate( {left : '-='+width+'px'}, 800, function(){
                 $(target).closest('nav.arrow').next().find('ul.slider').css('left', '0').find('li:first-child').remove();
                 $(target).closest('nav.arrow').next().find('ul.slider').find('li:first-child').clone().appendTo( $(target).closest('nav.arrow').next().find('ul.slider') );
             } );

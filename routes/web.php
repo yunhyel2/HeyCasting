@@ -31,3 +31,4 @@ Route::post('/upload', 'CropController@upload');
 Route::post('/crop', 'CropController@crop');
 
 Route::get('/test', 'JoinController@test');
+Route::get('/audition', 'AuditionController@index');

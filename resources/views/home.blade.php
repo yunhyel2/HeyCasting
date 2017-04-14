@@ -84,7 +84,7 @@
                 <li>
                 @for($i=0;$i<3;$i++)
                     @if( $i<$banners->count() )
-                    <a href="{{ $banners[$i]->content_image }}"><img src="{{ $banners[$i]->image }}" alt=""/></a>
+                    <a href="{{ $banners[$i]->content_image }}" style="{{ 'background:url('. $banners[$i]->image.') center no-repeat;background-size:cover;'}}"></a>
                     @endif
                 @endfor
                 </li>
@@ -92,7 +92,7 @@
                 <li>
                 @for($i=3;$i<6;$i++)
                     @if( $i<$banners->count() )
-                    <a href="{{ $banners[$i]->content_image }}"><img src="{{ $banners[$i]->image }}" alt=""/></a>
+                    <a href="{{ $banners[$i]->content_image }}" style="{{ 'background:url('. $banners[$i]->image.') center no-repeat;background-size:cover;'}}"></a>
                     @endif
                 @endfor
                 </li>
@@ -101,7 +101,7 @@
                 <li>
                 @for($i=6;$i<9;$i++)
                     @if( $i<$banners->count() )
-                    <a href="{{ $banners[$i]->content_image }}"><img src="{{ $banners[$i]->image }}" alt=""/></a>
+                    <a href="{{ $banners[$i]->content_image }}" style="{{ 'background:url('. $banners[$i]->image.') center no-repeat;background-size:cover;'}}"></a>
                     @endif
                 @endfor
                 </li>

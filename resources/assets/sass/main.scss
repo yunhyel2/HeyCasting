@@ -378,6 +378,15 @@ div.section{
                     width:100%;
                     border-radius:30px;
                     padding-bottom:30%;
+                    @include respond-to('small-nav'){
+                        border-radius:20px;
+                    }
+                    @include respond-to('small'){
+                        border-radius:15px;
+                    }
+                    @include respond-to('too-small'){
+                        border-radius:10px;
+                    }
                     img{
                         position:absolute;
                         top:0;
@@ -423,6 +432,9 @@ div.section{
                 }
                 &:nth-child(4){
                     width:15.38461538461538%;
+                    div:first-child, div:nth-child(2){
+                        padding-bottom:98.9%;
+                    }
                     @include respond-to('small'){
                         width:33.3333333333333333333333%;
                     }
@@ -454,7 +466,9 @@ div.section{
         margin-top:100px;
         background:#7f7e7e;
         width:100%;
-        min-height:800px;
+        position:relative;
+        overflow:hidden;
+        padding-bottom:50%;
         box-shadow:0 -100px 100px rgba(0,0,0,0.2) inset;
     }
 }
