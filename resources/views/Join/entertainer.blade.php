@@ -220,6 +220,16 @@
                                 <ul class="select hidden half"></ul>
                             </div> 
                         </div>
+                        <div id="model-additional" class="hidden">
+                            <div class="form-group model">
+                                <label for="height">키</label>
+                                <input type="text" name="height" id="height" class="digits" maxlength="3"><span>cm</span>
+                            </div>
+                            <div class="form-group model">
+                                <label for="foot-size">발사이즈</label>
+                                <input type="text" name="foot-size" id="foot-size" class="digits" maxlength="3"><span>mm</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="group">
                         <div class="form-group">

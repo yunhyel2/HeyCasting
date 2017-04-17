@@ -169,12 +169,6 @@
             $(this).toggleClass('active').next('ul.select').toggleClass('hidden');
         }
     });
-    // $('select').on('click', function(e){
-    //     //e.preventDefault();
-    //     if( !$(this).hasClass('disable') ){
-    //         $(this).toggleClass('active').next('ul.select').toggleClass('hidden');
-    //     }
-    // });
     $('ul.select').on('click', 'li', function(){
         $value = $(this).attr('name');
         if( $(this).parent('ul.select').hasClass('sns') ){
@@ -245,6 +239,12 @@
                 $selected = $(this).attr('name');
                 $('select[name="user-job2"]').next().next('ul.select').children('li').not('[name="'+$selected+'"]').removeClass('hidden');
                 $('select[name="user-job2"]').next().next('ul.select').find('li[name="'+$selected+'"]').addClass('hidden');
+            }
+            if( $(this).html() != '외국모델' && $( 'select[name="user-job2"] option:selected' ).html() != '외국모델' && $( 'select[name="user-job3"] option:selected' ).html() != '외국모델' ){
+                $('div#model-additional').addClass('hidden').children('input').attr('disabled', 'disabled');
+            }else{
+                $('div#model-additional').removeClass('hidden');
+                $('div#model-additional').find('input[name="height"]').focus();
             }
         }
     });

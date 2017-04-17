@@ -378,7 +378,7 @@ div.form-group{
             }
         }
     }
-    input[type="radio"], input[name="cost-secret"], input[name="agree"]{
+    input[type="radio"], input[name="cost-secret"], input[name="agree"], input[name="remember"]{
         &:empty~label{
             cursor:pointer;
             position:relative;
@@ -420,6 +420,25 @@ div.form-group{
                 background:url('/img/icon_check_box_pressed_off.png') no-repeat;
                 background-size:cover;
             }
+        }
+    }
+    &.model{
+        width:50%;
+        margin-top:20px;
+        float:left;
+        text-align:center;
+        label{
+            font-size:1em;
+            padding-right:5px;
+        }
+        input{
+            width:40%;
+            padding:0 !important;
+            text-align:right;
+        }
+        span{
+            font-size:1em;
+            padding-left:5px;
         }
     }
 }
@@ -979,5 +998,43 @@ div.docu-wrap{
                 color:orangered;
             }
         }
+    }
+}
+div.section-wrap{
+    margin:0;
+    padding:50px 5%;
+    &.form{
+        background:url('/img/background/01_back.jpg');
+        background-size:cover;
+    }
+}
+div.section.form{
+    h2{
+        color:#fff;
+    }
+    width:90%;
+    max-width:600px;
+    padding:50px 5%;
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:20px;
+    background:rgba(0,0,0,0.6);
+    label{
+        color:#fff;
+        &[for="remember"]{
+            position:absolute !important;
+            right:0;
+        }
+    }
+    input{
+        padding:0 !important;
+    }
+    a.forgot{
+        position:absolute;
+        bottom:10px;
+        right:10px;
+        color:#fff;
+        font-size:0.8em;
     }
 }

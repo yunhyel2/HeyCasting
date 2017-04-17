@@ -33,12 +33,12 @@
             <div class="sub-nav">
                 <ul>
                     <li><a href="#"><img src="/image/icon_download_app.png" alt="" class="down"><span>APP 다운받기</span></a></li>
-                    <li><a href="#"><img src="/image/icon_facebook_top.png" alt="헤이캐스팅 페이스북"/></a></li>
-                    <li><a href="#"><img src="/image/icon_instagram_top.png" alt="헤이캐스팅 인스타그램"/></a></li>
+                    <li class="not-show-mobile"><a href="#"><img src="/image/icon_facebook_top.png" alt="헤이캐스팅 페이스북"/></a></li>
+                    <li class="not-show-mobile"><a href="#"><img src="/image/icon_instagram_top.png" alt="헤이캐스팅 인스타그램"/></a></li>
                 </ul>
                 <ul class="right">
                     @if ( Auth::guest() )
-                    <li><a href="#">로그인</a></li>
+                    <li><a href="{{ url('/login') }}">로그인</a></li>
                     @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -69,11 +69,11 @@
                     <li><a href="#" class="tabmenu"><i class="fa fa-bars" aria-hidden="true"></i></a></li>
                 </ul>
                 <ul class="hidden">
-                    <li class="active"><a href="#">홈</a></li>
-                    <li><a href="#">엔터테이너</a></li>
-                    <li><a href="#">오디션</a></li>
-                    <li><a href="#">커뮤니티</a></li>
-                    <li><a href="#">마이페이지</a></li>
+                    <li class="{{ Request::segment(1) == 'home' ? 'active' : '' }}"><a href="{{ url('/home') }}">홈</a></li>
+                    <li class="{{ Request::segment(1) == 'enter' ? 'active' : '' }}"><a href="{{ url('/enter') }}">엔터테이너</a></li>
+                    <li class="{{ Request::segment(1) == 'audition' ? 'active' : '' }}"><a href="{{ url('/audition') }}">오디션</a></li>
+                    <li class="{{ Request::segment(1) == 'community' ? 'active' : '' }}"><a href="{{ url('/community') }}">커뮤니티</a></li>
+                    <li class="{{ Request::segment(1) == 'mypage' ? 'active' : '' }}"><a href="{{ url('/mypage') }}">마이페이지</a></li>
                 </ul>
             </nav>
                 @yield('content')

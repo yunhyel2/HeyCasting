@@ -77,6 +77,8 @@ class JoinController extends Controller
         $job = $request->input('user-job');
         $job2 = $request->input('user-job2');
         $job3 = $request->input('user-job3');
+        $height = $request->input('height');
+        $footsize = $request->input('foot-size');
         
         $team_name = $request->input('team-name');
         $gender = $request->input('gender');
@@ -186,6 +188,8 @@ class JoinController extends Controller
             $profile->team = $team;
             $profile->prefer_area = $prefer_area;
             $profile->residence = $residence;
+            $profile->height = $height;
+            $profile->footsize = $footsize;
             
             $profile->howmany = 0;
             $profile->age = $age;

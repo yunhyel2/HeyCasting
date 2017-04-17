@@ -60,8 +60,8 @@ abbr, acronym {
 }
 
 .dont-show {
-  width: 0;
-  height: 0;
+  width: 0 !important;
+  height: 0 !important;
   overflow: hidden;
   position: relative;
   left: -9999px;
@@ -165,6 +165,12 @@ img.icon {
   img.icon {
     height: 18px;
     width: auto;
+  }
+}
+
+@media (max-width: 385px) {
+  .not-show-mobile {
+    display: none;
   }
 }
 
@@ -274,6 +280,12 @@ nav#main-nav h1.logo {
   padding: 25px 0;
 }
 
+@media (max-width: 385px) {
+  nav#main-nav h1.logo {
+    width: 81%;
+  }
+}
+
 nav#main-nav h1.logo img {
   width: auto;
 }
@@ -282,9 +294,23 @@ nav#main-nav h1.logo img:first-child {
   height: 30px;
 }
 
+@media (max-width: 385px) {
+  nav#main-nav h1.logo img:first-child {
+    height: 25px;
+    padding: 2.5px 0;
+  }
+}
+
 nav#main-nav h1.logo img:not(:first-child) {
   height: 20px;
   padding: 5px 0 5px 10px;
+}
+
+@media (max-width: 385px) {
+  nav#main-nav h1.logo img:not(:first-child) {
+    height: 15px;
+    padding: 7.5px 0 7.5px 10px;
+  }
 }
 
 nav#main-nav ul {
@@ -370,6 +396,12 @@ nav#main-nav ul li a {
 nav#main-nav ul li a.tabmenu {
   color: #494949;
   font-size: 25px;
+}
+
+@media (max-width: 385px) {
+  nav#main-nav ul li a.tabmenu {
+    font-size: 22px;
+  }
 }
 
 nav#main-nav ul li.active a {
@@ -1520,7 +1552,7 @@ div.form-group ul.select li:hover {
   background: rgba(255, 255, 255, 0.3);
 }
 
-div.form-group input[type="radio"]:empty ~ label, div.form-group input[name="cost-secret"]:empty ~ label, div.form-group input[name="agree"]:empty ~ label {
+div.form-group input[type="radio"]:empty ~ label, div.form-group input[name="cost-secret"]:empty ~ label, div.form-group input[name="agree"]:empty ~ label, div.form-group input[name="remember"]:empty ~ label {
   cursor: pointer;
   position: relative;
   font-size: 15px;
@@ -1533,7 +1565,7 @@ div.form-group input[type="radio"]:empty ~ label, div.form-group input[name="cos
   user-select: none;
 }
 
-div.form-group input[type="radio"]:empty ~ label:before, div.form-group input[name="cost-secret"]:empty ~ label:before, div.form-group input[name="agree"]:empty ~ label:before {
+div.form-group input[type="radio"]:empty ~ label:before, div.form-group input[name="cost-secret"]:empty ~ label:before, div.form-group input[name="agree"]:empty ~ label:before, div.form-group input[name="remember"]:empty ~ label:before {
   position: absolute;
   top: 0;
   left: 0;
@@ -1544,11 +1576,11 @@ div.form-group input[type="radio"]:empty ~ label:before, div.form-group input[na
   background-size: cover;
 }
 
-div.form-group input[type="radio"]:checked ~ label, div.form-group input[name="cost-secret"]:checked ~ label, div.form-group input[name="agree"]:checked ~ label {
+div.form-group input[type="radio"]:checked ~ label, div.form-group input[name="cost-secret"]:checked ~ label, div.form-group input[name="agree"]:checked ~ label, div.form-group input[name="remember"]:checked ~ label {
   opacity: 1.0;
 }
 
-div.form-group input[type="radio"]:checked ~ label:before, div.form-group input[name="cost-secret"]:checked ~ label:before, div.form-group input[name="agree"]:checked ~ label:before {
+div.form-group input[type="radio"]:checked ~ label:before, div.form-group input[name="cost-secret"]:checked ~ label:before, div.form-group input[name="agree"]:checked ~ label:before, div.form-group input[name="remember"]:checked ~ label:before {
   position: absolute;
   top: 0;
   left: 0;
@@ -1559,13 +1591,36 @@ div.form-group input[type="radio"]:checked ~ label:before, div.form-group input[
   background-size: cover;
 }
 
-div.form-group input[type="radio"]:not(:checked) ~ label, div.form-group input[name="cost-secret"]:not(:checked) ~ label, div.form-group input[name="agree"]:not(:checked) ~ label {
+div.form-group input[type="radio"]:not(:checked) ~ label, div.form-group input[name="cost-secret"]:not(:checked) ~ label, div.form-group input[name="agree"]:not(:checked) ~ label, div.form-group input[name="remember"]:not(:checked) ~ label {
   opacity: 0.7;
 }
 
-div.form-group input[type="radio"]:not(:checked) ~ label:before, div.form-group input[name="cost-secret"]:not(:checked) ~ label:before, div.form-group input[name="agree"]:not(:checked) ~ label:before {
+div.form-group input[type="radio"]:not(:checked) ~ label:before, div.form-group input[name="cost-secret"]:not(:checked) ~ label:before, div.form-group input[name="agree"]:not(:checked) ~ label:before, div.form-group input[name="remember"]:not(:checked) ~ label:before {
   background: url("/img/icon_check_box_pressed_off.png") no-repeat;
   background-size: cover;
+}
+
+div.form-group.model {
+  width: 50%;
+  margin-top: 20px;
+  float: left;
+  text-align: center;
+}
+
+div.form-group.model label {
+  font-size: 1em;
+  padding-right: 5px;
+}
+
+div.form-group.model input {
+  width: 40%;
+  padding: 0 !important;
+  text-align: right;
+}
+
+div.form-group.model span {
+  font-size: 1em;
+  padding-left: 5px;
 }
 
 div.group a.add-items, div.group a.toggle-folder {
@@ -2231,6 +2286,54 @@ div.docu-wrap a.close.inner {
 
 div.docu-wrap a.close.inner:hover {
   color: orangered;
+}
+
+div.section-wrap {
+  margin: 0;
+  padding: 50px 5%;
+}
+
+div.section-wrap.form {
+  background: url("/img/background/01_back.jpg");
+  background-size: cover;
+}
+
+div.section.form {
+  width: 90%;
+  max-width: 600px;
+  padding: 50px 5%;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+div.section.form h2 {
+  color: #fff;
+}
+
+div.section.form label {
+  color: #fff;
+}
+
+div.section.form label[for="remember"] {
+  position: absolute !important;
+  right: 0;
+}
+
+div.section.form input {
+  padding: 0 !important;
+}
+
+div.section.form a.forgot {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 0.8em;
 }
 
 .section {
@@ -3317,6 +3420,7 @@ div.section.audition > div nav {
 }
 
 div.section.audition > div nav ul {
+  min-width: 158px;
   position: absolute;
   top: 15px;
   left: 50%;
